@@ -1,0 +1,37 @@
+[
+  {
+    "name": "hero-falesias",
+    "prompt": "Slow cinematic aerial drone shot gliding along the golden limestone cliffs of the Algarve coast in Portugal at golden hour, turquoise and emerald Atlantic water, small hidden sandy coves, gentle white waves, warm soft sunlight, photorealistic, steady smooth camera movement, no people, no text",
+    "duration": 6,
+    "resolution": "1080p",
+    "aspect_ratio": "16:9"
+  },
+  {
+    "name": "praia",
+    "prompt": "Gentle clear waves washing over a golden sand beach framed by ochre rock formations in the Algarve, Portugal, late afternoon light, crystal clear turquoise water, slow dolly forward close to the sand, photorealistic, cinematic, no people, no text",
+    "duration": 6,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  },
+  {
+    "name": "gruta",
+    "prompt": "Inside a vast golden sea cave with a round opening in the ceiling, sunbeams falling onto a small sandy beach and calm turquoise water, like the Benagil cave in the Algarve, slow push-in camera, photorealistic, cinematic, no people, no text",
+    "duration": 6,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  },
+  {
+    "name": "aldeia",
+    "prompt": "A quiet whitewashed street in an old Algarve village in Portugal with ochre and blue painted door frames, traditional lace chimneys and pink bougainvillea, soft warm morning light, slow forward tracking shot, photorealistic, cinematic, no people, no text",
+    "duration": 6,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  },
+  {
+    "name": "por-do-sol",
+    "prompt": "The sun setting over a calm Atlantic ocean seen from a cliff top in the Algarve, Portugal, warm orange and soft pink sky, gentle sea surface shimmering, slow lateral camera movement, photorealistic, cinematic, no people, no text",
+    "duration": 6,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  }
+]
