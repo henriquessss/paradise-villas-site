@@ -1,26 +1,27 @@
 import { motion, useMotionValueEvent, useScroll, useTransform, type MotionValue } from 'motion/react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { useLang } from '../content'
+import { content, useLang } from '../content'
 import heroFrames from '../hero-frames.json'
 import { EXTERNAL } from '../routes'
 import { Button } from './ui'
 
 /*
- * Home hero as a scroll-driven "journey" through the Algarve.
- * The section is ~6 viewports tall with a sticky stage. Scroll progress scrubs a WebP frame
- * sequence on a canvas (five Higgsfield clips: cliffs → cave → beach → village → sunset) and
- * drives five text chapters that enter and leave, each with its own movement. At the end the
- * stage shrinks into a rounded card and hands over to the next section.
+ * Home hero as a scroll-driven flight along the Algarve coast.
+ * The section is ~3 viewports tall with a sticky stage. Scroll progress scrubs a WebP frame
+ * sequence on a canvas (one Higgsfield clip: a drone pass along the golden cliffs) and drives
+ * three short text moments that enter and leave, each with its own movement. At the end the stage
+ * shrinks into a rounded card and hands over to the next section.
  * Prefers-reduced-motion: no frames are loaded; poster + chapters stacked as normal content.
  */
 
-const EXIT_START = 0.93 // last 7% of the scroll: stage shrinks, frames stay on the last one
-const FADE = 0.035 // scroll distance for a chapter to fade in / out
-const ITEM_STAGGER = 0.012 // label → heading → body → CTA
-const WORD_STAGGER = 0.005
+const EXIT_START = 0.9 // last 10% of the scroll: stage shrinks, frames stay on the last one
+const FADE = 0.06 // scroll distance for a chapter to fade in / out
+const ITEM_STAGGER = 0.02 // label → heading → CTA
+const WORD_STAGGER = 0.008
 
-// Chapter k spans [bounds[k], bounds[k+1]] of the scroll (clip boundaries from the frame build).
-const bounds = [...heroFrames.chapters.map((c) => c * EXIT_START), EXIT_START]
+// Chapter k spans [bounds[k], bounds[k+1]] of the scroll: equal slices of the clip.
+const CHAPTERS = content.pt.home.hero.chapters.length + 1 // title + journey chapters
+const bounds = Array.from({ length: CHAPTERS + 1 }, (_, k) => (k / CHAPTERS) * EXIT_START)
 
 type Variant = 'up' | 'left' | 'right' | 'scale' | 'clip' | 'blur'
 /** [enter start, enter end, exit start, exit end] in scroll progress. */
@@ -29,8 +30,8 @@ type Range = [number, number, number, number]
 function chapterRange(k: number): Range {
   const last = k === bounds.length - 2
   // First chapter starts visible (enter = 0), last one never leaves (exit = 1).
-  const enter: [number, number] = k === 0 ? [0, 0] : [bounds[k] + 0.012, bounds[k] + 0.012 + FADE]
-  const exit: [number, number] = last ? [1, 1] : k === 0 ? [0.11, 0.11 + FADE] : [bounds[k + 1] - 0.012 - FADE, bounds[k + 1] - 0.012]
+  const enter: [number, number] = k === 0 ? [0, 0] : [bounds[k] + 0.02, bounds[k] + 0.02 + FADE]
+  const exit: [number, number] = last ? [1, 1] : k === 0 ? [0.12, 0.12 + FADE] : [bounds[k + 1] - 0.02 - FADE, bounds[k + 1] - 0.02]
   return [...enter, ...exit]
 }
 
@@ -195,14 +196,11 @@ export function HeroJourney() {
   })
 
   const total = bounds.length - 1
-  const labels = [h.title.join(' '), ...h.chapters.map((c) => c.eyebrow)]
   // Side zones alternate so the text never sits in the middle of the picture.
   const layout = [
     { variant: 'up' as Variant, words: 'blur' as Variant, align: 'items-start text-left', box: 'max-w-[40rem]' },
-    { variant: 'left' as Variant, words: 'up' as Variant, align: 'items-start text-left', box: 'max-w-[36rem]' },
-    // Right-aligned text keeps clear of the chapter rail on large screens.
-    { variant: 'right' as Variant, words: 'right' as Variant, align: 'items-end text-right', box: 'max-w-[36rem] lg:mr-64' },
-    { variant: 'clip' as Variant, words: 'clip' as Variant, align: 'items-start text-left', box: 'max-w-[36rem]' },
+    // Right-aligned text keeps clear of the progress rail on large screens.
+    { variant: 'right' as Variant, words: 'right' as Variant, align: 'items-end text-right', box: 'max-w-[36rem] lg:mr-24' },
     { variant: 'scale' as Variant, words: 'blur' as Variant, align: 'items-start text-left', box: 'max-w-[44rem]' },
   ]
 
@@ -211,7 +209,7 @@ export function HeroJourney() {
       ref={section}
       data-header-dark
       aria-label={h.title.join(' ')}
-      className="relative h-[620vh] bg-navy-deep text-cream max-md:h-[520vh] motion-reduce:h-auto"
+      className="relative h-[300vh] bg-navy-deep text-cream max-md:h-[260vh] motion-reduce:h-auto"
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden motion-reduce:static motion-reduce:h-auto">
         <motion.div
@@ -245,17 +243,12 @@ export function HeroJourney() {
                 <ScrollWords progress={p} range={shift(chapterRange(0), 2 * WORD_STAGGER)} variant={layout[0].words} text={h.title[2]} />
               </span>
             </h1>
-            <div className="mt-8 flex w-full flex-col gap-8 md:mt-10 md:flex-row md:items-end md:justify-between">
-              <ScrollItem progress={p} range={shift(chapterRange(0), ITEM_STAGGER)} variant="up">
-                <p className="max-w-md text-lg leading-relaxed text-cream/85">{h.lead}</p>
-              </ScrollItem>
-              <ScrollItem progress={p} range={shift(chapterRange(0), 2 * ITEM_STAGGER)} variant="up" className="flex flex-wrap gap-3">
-                <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
-                <Button to={to('gestao')} variant="ghost-light">
-                  {h.secondary}
-                </Button>
-              </ScrollItem>
-            </div>
+            <ScrollItem progress={p} range={shift(chapterRange(0), ITEM_STAGGER)} variant="up" className="mt-8 flex flex-wrap gap-3 md:mt-10">
+              <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
+              <Button to={to('gestao')} variant="ghost-light">
+                {h.secondary}
+              </Button>
+            </ScrollItem>
           </div>
 
           {/* 1-4 — the journey */}
@@ -277,11 +270,8 @@ export function HeroJourney() {
                   <h2 className={`font-display mt-6 leading-[0.98] tracking-[-0.02em] ${last ? 'text-[clamp(2.8rem,6.4vw,6.4rem)]' : 'text-[clamp(2.6rem,5.6vw,5.4rem)]'}`}>
                     <ScrollWords progress={p} range={shift(range, ITEM_STAGGER)} variant={l.words} text={c.title} />
                   </h2>
-                  <ScrollItem progress={p} range={shift(range, 2 * ITEM_STAGGER)} variant={l.variant}>
-                    <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/85">{c.text}</p>
-                  </ScrollItem>
                   {last && (
-                    <ScrollItem progress={p} range={shift(range, 3 * ITEM_STAGGER)} variant="up" className="mt-10 flex flex-wrap gap-3">
+                    <ScrollItem progress={p} range={shift(range, 2 * ITEM_STAGGER)} variant="up" className="mt-10 flex flex-wrap gap-3">
                       <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
                       <Button to={to('gestao')} variant="ghost-light">
                         {h.secondary}
@@ -301,13 +291,6 @@ export function HeroJourney() {
             <div className="relative h-40 w-px bg-cream/20">
               <motion.div style={{ height: progressBar }} className="absolute top-0 left-0 w-px bg-terracotta" />
             </div>
-            <ul className="space-y-2 text-right text-[0.65rem] tracking-[0.2em] uppercase">
-              {labels.map((label, i) => (
-                <li key={label} className={`transition-all duration-500 ${i === chapter ? 'text-cream' : 'text-cream/35'}`}>
-                  {label}
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Scroll cue, only at the start */}

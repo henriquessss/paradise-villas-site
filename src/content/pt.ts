@@ -84,32 +84,12 @@ export const pt = {
   home: {
     hero: {
       title: ['Explore', 'o', 'Algarve'],
-      lead: 'Na Paradise Villas, criamos experiências únicas para quem viaja — e soluções inteligentes para quem investe.',
       secondary: 'Gestão de Alojamento Local',
-      // NOVO: capítulos da hero (scroll), um por clip — validar com o cliente.
+      // NOVO: capítulos da hero (scroll sobre o vídeo das falésias) — validar com o cliente.
       chapters: [
-        {
-          eyebrow: 'Lugares mágicos',
-          title: 'Grutas onde a luz desce até ao mar.',
-          text: 'Arcos de rocha dourada e falésias que parecem esculpidas à mão.',
-        },
-        {
-          eyebrow: 'Praias incríveis',
-          title: 'Areia dourada, água cristalina.',
-          text: 'Grandes areais e enseadas escondidas para dias sem pressa.',
-        },
-        {
-          eyebrow: 'Tradição e modernidade',
-          title: 'Ruas caiadas, portas de cor, buganvílias.',
-          text: 'O Algarve autêntico, sempre perto da sua estadia.',
-        },
-        {
-          eyebrow: 'Férias perfeitas',
-          title: 'E ao fim do dia, a casa perfeita à sua espera.',
-          text: 'Alojamentos verificados, check-in personalizado e apoio durante toda a estadia.',
-        },
+        { eyebrow: 'Lugares mágicos', title: 'Falésias douradas, esculpidas pelo mar.' },
+        { eyebrow: 'Férias perfeitas', title: 'A casa perfeita à sua espera.' },
       ],
-      progressLabel: 'Capítulo',
     },
     welcome: {
       eyebrow: 'Seja bem-vindo',

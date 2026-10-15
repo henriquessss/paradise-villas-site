@@ -82,31 +82,11 @@ export const en: Content = {
   home: {
     hero: {
       title: ['Explore', 'the', 'Algarve'],
-      lead: 'At Paradise Villas, we create unique experiences for travellers — and smart solutions for investors.',
       secondary: 'Property management',
       chapters: [
-        {
-          eyebrow: 'Magical places',
-          title: 'Sea caves where the light pours into the ocean.',
-          text: 'Golden rock arches and cliffs that look carved by hand.',
-        },
-        {
-          eyebrow: 'Stunning beaches',
-          title: 'Golden sand, crystal-clear water.',
-          text: 'Long beaches and hidden coves for unhurried days.',
-        },
-        {
-          eyebrow: 'Tradition and modernity',
-          title: 'Whitewashed streets, painted doors, bougainvillea.',
-          text: 'The authentic Algarve, always close to your stay.',
-        },
-        {
-          eyebrow: 'Perfect holidays',
-          title: 'And at the end of the day, the perfect home awaits.',
-          text: 'Verified properties, personalised check-in and support throughout your stay.',
-        },
+        { eyebrow: 'Magical places', title: 'Golden cliffs, carved by the sea.' },
+        { eyebrow: 'Perfect holidays', title: 'Your perfect home awaits.' },
       ],
-      progressLabel: 'Chapter',
     },
     welcome: {
       eyebrow: 'Welcome',

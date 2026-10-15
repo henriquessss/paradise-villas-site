@@ -11,11 +11,11 @@ npm run preview   # serve dist/
 npm run media     # regenera public/images, logos, favicons e a sequência da hero (public/hero/)
 ```
 
-`content-source/` (conteúdo e imagens extraídos do site antigo e do Instagram) e `media-jobs/raw/` (os 5 clips originais da Higgsfield) não estão no git. São a origem do `npm run media`.
+`content-source/` (conteúdo e imagens extraídos do site antigo e do Instagram) e `media-jobs/raw/` (os 5 clips originais da Higgsfield; a hero usa só `falesias.mp4`) não estão no git. São a origem do `npm run media`.
 
 ## Hero da Home
 
-`src/components/HeroJourney.tsx`: secção de ~6 ecrãs com palco fixo. O scroll percorre uma sequência de frames WebP (falésias → gruta → praia → aldeia → pôr do sol, clips Higgsfield/Seedance 2.5 unidos com fades) num canvas e comanda 5 capítulos de texto que entram e saem. `src/hero-frames.json` (gerado) tem o número de frames e os limites de cada clip. Com `prefers-reduced-motion` não carrega frames: imagem fixa e textos em sequência.
+`src/components/HeroJourney.tsx`: secção de ~3 ecrãs com palco fixo. O scroll percorre uma sequência de frames WebP de um único clip Higgsfield/Seedance 2.5 (voo de drone pelas falésias douradas; 24 fps em desktop, corte 9:16 a 15 fps em mobile) num canvas e comanda 3 momentos de texto curtos (título, uma frase, fecho com botões) que entram e saem. `src/hero-frames.json` (gerado) tem o número de frames. Com `prefers-reduced-motion` não carrega frames: imagem fixa e textos em sequência.
 
 ## Estrutura
 

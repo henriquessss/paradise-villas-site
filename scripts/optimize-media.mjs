@@ -140,42 +140,24 @@ console.log('logos + favicons → public/')
 
 const ffmpeg = (args) => execFileSync('ffmpeg', ['-v', 'error', '-y', ...args], { stdio: 'inherit' })
 
-// Home hero "journey": the five Higgsfield (Seedance 2.5) clips in media-jobs/raw/ joined with
-// 0.6s cross-fades, then exported as WebP frame sequences the hero scrubs with the scroll.
-// Writes src/hero-frames.json (frame counts + clip boundaries) for the component.
-const RAW = 'media-jobs/raw'
-const order = ['falesias', 'gruta', 'praia', 'aldeia', 'por-do-sol']
-const fade = 0.6
-const durations = order.map((name) =>
-  Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path.join(RAW, `${name}.mp4`)]).toString().trim()),
-)
-const prepared = order.map((_, i) => `[${i}:v]scale=1280:720,fps=24,format=yuv420p,setpts=PTS-STARTPTS[v${i}]`)
-let chain = 'v0'
-let offset = 0
-const boundaries = [0]
-for (let i = 1; i < order.length; i++) {
-  offset += durations[i - 1] - fade
-  prepared.push(`[${chain}][v${i}]xfade=transition=fade:duration=${fade}:offset=${offset.toFixed(3)}[x${i}]`)
-  boundaries.push(offset + fade / 2)
-  chain = `x${i}`
+// Home hero: one Higgsfield (Seedance 2.5) clip — a drone pass along the golden cliffs —
+// exported as WebP frame sequences the hero scrubs with the scroll. Desktop keeps the 16:9
+// frame; mobile gets a centred 9:16 crop (cliff face, then sea and coastline as the drone
+// moves) so portrait screens are not upscaled 3x. Writes src/hero-frames.json (frame counts).
+const clip = 'media-jobs/raw/falesias.mp4'
+const sets = {
+  desktop: { fps: 24, filter: 'scale=1440:-2', quality: 62 },
+  mobile: { fps: 15, filter: 'crop=ih*9/16:ih', quality: 62 },
 }
-const total = offset + durations.at(-1)
-const journey = path.join(RAW, 'journey.mp4')
-ffmpeg([...order.flatMap((name) => ['-i', path.join(RAW, `${name}.mp4`)]), '-filter_complex', prepared.join(';'), '-map', `[${chain}]`, '-an', '-c:v', 'libx264', '-crf', '14', '-preset', 'fast', journey])
-
-const sets = { desktop: { fps: 10, width: 1280, quality: 66 }, mobile: { fps: 7, width: 960, quality: 60 } }
 const counts = {}
-for (const [name, { fps, width, quality }] of Object.entries(sets)) {
+for (const [name, { fps, filter, quality }] of Object.entries(sets)) {
   const dir = path.join('public/hero', name)
   await rm(dir, { recursive: true, force: true })
   await mkdir(dir, { recursive: true })
-  ffmpeg(['-i', journey, '-vf', `fps=${fps},scale=${width}:-2`, '-c:v', 'libwebp', '-quality', String(quality), path.join(dir, '%04d.webp')])
+  ffmpeg(['-i', clip, '-vf', `fps=${fps},${filter}`, '-c:v', 'libwebp', '-quality', String(quality), path.join(dir, '%04d.webp')])
   counts[name] = (await readdir(dir)).length
 }
 // First frame, sharper, as the prerendered poster (LCP) and the reduced-motion still.
-ffmpeg(['-i', path.join(RAW, 'falesias.mp4'), '-frames:v', '1', '-vf', 'scale=1600:-2', '-c:v', 'libwebp', '-quality', '80', 'public/hero/poster.webp'])
-await writeFile(
-  'src/hero-frames.json',
-  JSON.stringify({ ...counts, chapters: boundaries.map((t) => +(t / total).toFixed(4)) }, null, 2) + '\n',
-)
-console.log(`hero journey: ${JSON.stringify(counts)} frames → public/hero/`)
+ffmpeg(['-i', clip, '-frames:v', '1', '-vf', 'scale=1600:-2', '-c:v', 'libwebp', '-quality', '80', 'public/hero/poster.webp'])
+await writeFile('src/hero-frames.json', JSON.stringify(counts, null, 2) + '\n')
+console.log(`hero: ${JSON.stringify(counts)} frames → public/hero/`)
