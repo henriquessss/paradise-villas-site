@@ -78,8 +78,7 @@ export function Hero() {
         <div className="grain absolute inset-0" aria-hidden="true" />
       </div>
 
-      {/* Passe-partout and the postcard details along the edges. */}
-      <div className="animate-fade pointer-events-none absolute inset-3 border border-cream/20 [--delay:1.5s] md:inset-6" aria-hidden="true" />
+      {/* Postcard details along the edges. */}
       <p className="animate-fade eyebrow absolute top-1/2 left-10 hidden -translate-y-1/2 rotate-180 text-cream/55 [--delay:1.8s] [writing-mode:vertical-rl] lg:block" aria-hidden="true">
         Paradise Villas — Algarve
       </p>
