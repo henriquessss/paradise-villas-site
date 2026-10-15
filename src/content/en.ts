@@ -13,7 +13,7 @@ export const en: Content = {
     gestao: {
       title: 'Holiday Rental Management in the Algarve — Paradise Villas',
       description:
-        'Full management of your holiday rental for 20% (+VAT) per booking: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms.',
+        'Full management of your holiday rental: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms.',
     },
     experiencias: {
       title: 'Experiences in the Algarve — Paradise Villas',
@@ -203,7 +203,7 @@ export const en: Content = {
     management: {
       eyebrow: 'Holiday rental management',
       title: 'Complete management of your holiday rental',
-      body: 'At Paradise Villas, we offer a **complete** holiday rental management service **for just 20% (+VAT) per booking** — designed for owners who value professional support. We manage your property as if it were our own — **focused on profitability and the quality of the guest experience.**',
+      body: 'At Paradise Villas, we offer a **complete** holiday rental management service — designed for owners who value professional support. We manage your property as if it were our own — **focused on profitability and the quality of the guest experience.**',
       items: [
         'Personalised check-in',
         'Cleaning and maintenance',
@@ -226,7 +226,7 @@ export const en: Content = {
   gestao: {
     header: { eyebrow: 'Holiday rental services', title: 'Property Management' },
     intro: {
-      title: 'Complete management of your holiday rental for just 20% (+VAT) per booking',
+      title: 'Complete, hassle-free management of your holiday rental',
       body: 'Do you own a holiday home you would like to rent out profitably and hassle-free? We provide an excellent service with **complete management of your property**, from licensing through to guest check-out. We take care of everything so you get peace of mind and a solid return.',
       lead: 'Here is everything included when you trust Paradise Villas with your holiday rental:',
     },
@@ -269,7 +269,6 @@ export const en: Content = {
       },
     ],
     stats: [
-      { value: 20, suffix: '%', label: 'commission' },
       { value: 500, suffix: '+', label: 'Owners' },
       { value: 200, suffix: '+', label: 'Properties' },
       { value: 750, suffix: '+', label: 'Guests' },
@@ -340,10 +339,6 @@ export const en: Content = {
       title: 'Frequently asked questions',
       body: 'Here are answers to the most common questions. Feel free to get in touch if you still have any doubts.',
       items: [
-        {
-          q: 'What is the Paradise Villas commission?',
-          a: 'Our commission is **20% (+VAT)** of confirmed bookings. This includes the complete management of your holiday rental.',
-        },
         {
           q: 'How are booking prices set?',
           a: 'We use **dynamic pricing**, adjusted automatically according to **season**, **demand**, **competition** and **occupancy**. This way we strike the best balance between competitiveness and profitability for your property.',

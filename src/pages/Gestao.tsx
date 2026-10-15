@@ -50,7 +50,7 @@ export function Gestao() {
       <section className="grain relative overflow-hidden bg-navy-deep text-cream">
         <ParallaxImage src={img('gestao-mar')} alt="" strength={18} className="absolute inset-0 opacity-45" />
         <div className="absolute inset-0 bg-navy-deep/55" aria-hidden="true" />
-        <dl className="relative mx-auto grid max-w-[1440px] grid-cols-2 gap-y-14 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-4">
+        <dl className="relative mx-auto grid max-w-[1440px] grid-cols-1 gap-y-14 px-5 py-24 sm:grid-cols-3 md:px-10 md:py-32">
           {g.stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.1} className="flex flex-col-reverse items-center text-center">
               <dt className="eyebrow mt-4 text-cream/70">{s.label}</dt>

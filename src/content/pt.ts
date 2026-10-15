@@ -15,7 +15,7 @@ export const pt = {
     gestao: {
       title: 'Gestão de Alojamento Local no Algarve — Paradise Villas',
       description:
-        'Gestão completa do seu Alojamento Local por 20% (+IVA) por reserva: limpezas, check-in, manutenção, preços dinâmicos e visibilidade nas principais plataformas.',
+        'Gestão completa do seu Alojamento Local: limpezas, check-in, manutenção, preços dinâmicos e visibilidade nas principais plataformas.',
     },
     experiencias: {
       title: 'Experiências no Algarve — Paradise Villas',
@@ -207,7 +207,7 @@ export const pt = {
     management: {
       eyebrow: 'Gestão Alojamento Local',
       title: 'Gestão completa do seu Alojamento Local',
-      body: 'Na Paradise Villas, temos um serviço **completo** de gestão de alojamento local **apenas por 20% (+IVA) por reserva** — pensado para proprietários que valorizam um acompanhamento profissional. Gerimos o seu imóvel como se fosse nosso — **com foco na rentabilidade e qualidade da experiência.**',
+      body: 'Na Paradise Villas, temos um serviço **completo** de gestão de alojamento local — pensado para proprietários que valorizam um acompanhamento profissional. Gerimos o seu imóvel como se fosse nosso — **com foco na rentabilidade e qualidade da experiência.**',
       items: [
         'Check-in personalizado',
         'Limpezas e manutenção',
@@ -230,7 +230,7 @@ export const pt = {
   gestao: {
     header: { eyebrow: 'Serviços Alojamento Local', title: 'Gestão AL' },
     intro: {
-      title: 'Gestão completa do seu Alojamento Local apenas por 20% (+IVA) por reserva',
+      title: 'Gestão completa do seu Alojamento Local, sem complicações',
       body: 'Tem uma casa de férias que gostaria de rentabilizar ao máximo e sem complicações? Garantimos um serviço de excelência, com **gestão completa do seu imóvel**, desde a legalização até ao check-out dos hóspedes. Cuidamos de tudo para que tenha tranquilidade e retorno.',
       lead: 'Veja todas as vantagens e o que inclui ao confiar a gestão do seu Alojamento Local à Paradise Villas:',
     },
@@ -273,7 +273,6 @@ export const pt = {
       },
     ],
     stats: [
-      { value: 20, suffix: '%', label: 'de comissão' },
       { value: 500, suffix: '+', label: 'Proprietários' },
       { value: 200, suffix: '+', label: 'Imóveis' },
       { value: 750, suffix: '+', label: 'Hóspedes' },
@@ -344,10 +343,6 @@ export const pt = {
       title: 'Perguntas frequentes',
       body: 'Respondemos às perguntas mais frequentes. Sinta-se à vontade para entrar em contacto connosco, caso continue com dúvidas.',
       items: [
-        {
-          q: 'Qual é o valor da comissão da Paradise Villas?',
-          a: 'A nossa comissão é de **20% (+IVA)** sobre as reservas efetivas. Este valor inclui a gestão completa do seu alojamento local.',
-        },
         {
           q: 'Como são definidos os preços das reservas?',
           a: 'Trabalhamos com **preços dinâmicos**, ajustados automaticamente com base na **época do ano**, **procura**, **concorrência** e **ocupação**. Desta forma, garantimos o melhor equilíbrio entre competitividade e rentabilidade para o seu imóvel.',
