@@ -11,9 +11,9 @@ export function NotFound() {
       </span>
       <div className="relative mx-auto w-full max-w-[1440px]">
         <p className="eyebrow animate-rise text-terracotta">{n.eyebrow}</p>
-        <h1 className="font-display animate-rise mt-6 max-w-4xl text-[clamp(2.8rem,8vw,7.5rem)] leading-[0.95] tracking-[-0.02em] [animation-delay:120ms]">{n.title}</h1>
-        <p className="animate-rise mt-8 max-w-md text-lg text-cream/75 [animation-delay:220ms]">{n.body}</p>
-        <div className="animate-rise mt-10 [animation-delay:320ms]">
+        <h1 className="font-display animate-rise mt-6 max-w-4xl text-[clamp(2.8rem,8vw,7.5rem)] leading-[0.95] tracking-[-0.02em] [--delay:120ms]">{n.title}</h1>
+        <p className="animate-rise mt-8 max-w-md text-lg text-cream/75 [--delay:220ms]">{n.body}</p>
+        <div className="animate-rise mt-10 [--delay:320ms]">
           <Button to={to('home')} variant="light">
             {n.back}
           </Button>

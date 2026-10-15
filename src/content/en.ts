@@ -68,19 +68,17 @@ export const en: Content = {
     comeceHoje: 'Start today',
     comprar: 'Book',
     verTodas: 'See all',
-    scroll: 'Scroll',
     home: 'Home',
     opensNewTab: '(opens in a new tab)',
   },
 
   home: {
     hero: {
+      eyebrow: 'Private homes in the Algarve',
       title: ['The Algarve', 'in', 'private'],
       secondary: 'Property management',
-      chapters: [
-        { eyebrow: 'Magical places', title: 'Golden cliffs, carved by the sea.' },
-        { eyebrow: 'Perfect holidays', title: 'Hand-picked homes, waiting for you.' },
-      ],
+      scenesLabel: 'Algarve scenes',
+      scenes: ['The sea', 'The cliffs', 'The home', 'The light'],
     },
     welcome: {
       eyebrow: 'Welcome',

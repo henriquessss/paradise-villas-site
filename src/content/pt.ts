@@ -70,20 +70,18 @@ export const pt = {
     comeceHoje: 'Comece hoje',
     comprar: 'Comprar',
     verTodas: 'Ver todas',
-    scroll: 'Deslize',
     home: 'Início',
     opensNewTab: '(abre num novo separador)',
   },
 
   home: {
     hero: {
-      // NOVO (exclusividade): título e capítulos revistos — validar com o cliente.
+      // NOVO (exclusividade): título, linha de abertura e nomes das cenas — validar com o cliente.
+      eyebrow: 'Casas privadas no Algarve',
       title: ['O Algarve', 'em', 'privado'],
       secondary: 'Gestão de Alojamento Local',
-      chapters: [
-        { eyebrow: 'Lugares mágicos', title: 'Falésias douradas, esculpidas pelo mar.' },
-        { eyebrow: 'Férias perfeitas', title: 'Casas escolhidas a dedo, à sua espera.' },
-      ],
+      scenesLabel: 'Cenas do Algarve',
+      scenes: ['O mar', 'As falésias', 'A casa', 'A luz'],
     },
     welcome: {
       eyebrow: 'Seja bem-vindo',

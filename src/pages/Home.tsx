@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
-import { HeroJourney } from '../components/HeroJourney'
+import { Hero } from '../components/Hero'
 import { Parallax, ParallaxImage } from '../components/motion/Parallax'
 import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
@@ -11,7 +11,7 @@ import { EXTERNAL } from '../routes'
 export function Home() {
   return (
     <>
-      <HeroJourney />
+      <Hero />
       <Welcome />
       <Featured />
       <Advantages />

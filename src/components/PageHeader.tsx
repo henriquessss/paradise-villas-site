@@ -30,8 +30,8 @@ export function PageHeader({ eyebrow, title, image, compact = false }: { eyebrow
           <span className="mx-3" aria-hidden="true">/</span>
           <span aria-current="page">{title}</span>
         </nav>
-        <p className="eyebrow animate-rise text-terracotta [animation-delay:120ms]">{eyebrow}</p>
-        <h1 className={`font-display animate-rise mt-4 leading-[0.92] tracking-[-0.02em] [animation-delay:200ms] ${compact ? 'text-[clamp(2.6rem,7vw,6.5rem)]' : 'text-[clamp(3.2rem,11vw,10rem)]'}`}>
+        <p className="eyebrow animate-rise text-terracotta [--delay:120ms]">{eyebrow}</p>
+        <h1 className={`font-display animate-rise mt-4 leading-[0.92] tracking-[-0.02em] [--delay:200ms] ${compact ? 'text-[clamp(2.6rem,7vw,6.5rem)]' : 'text-[clamp(3.2rem,11vw,10rem)]'}`}>
           {title}
         </h1>
       </motion.div>

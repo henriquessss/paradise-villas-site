@@ -81,7 +81,9 @@
   }
 }
 
-/* Hero entrance runs in CSS so it plays before hydration (prerendered HTML). */
+/* Hero entrance runs in CSS so it plays before hydration (prerendered HTML).
+ * Stagger with `[--delay:…]`: these rules sit outside the utilities layer, so an
+ * `animation-delay` utility would lose to the shorthand. */
 @keyframes rise {
   from {
     opacity: 0;
@@ -100,24 +102,71 @@
     clip-path: inset(0 0 0 0);
   }
 }
-@keyframes scrollcue {
+@keyframes fade {
   from {
-    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+/* Home hero: the picture opens from a vertical slit, like a shutter. */
+@keyframes aperture {
+  from {
+    clip-path: inset(20% 41% 20% 41%);
   }
   to {
-    transform: translateY(200%);
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes pushin {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 .animate-rise {
   animation: rise 1.1s var(--ease-out-expo) both;
+  animation-delay: var(--delay, 0s);
 }
 .animate-unveil {
   animation: unveil 1.4s var(--ease-out-expo) both;
+  animation-delay: var(--delay, 0s);
+}
+.animate-fade {
+  animation: fade 1.6s ease-out both;
+  animation-delay: var(--delay, 0s);
+}
+.animate-aperture {
+  animation: aperture 1.9s cubic-bezier(0.76, 0, 0.24, 1) both;
+  animation-delay: var(--delay, 0.15s);
+}
+.animate-pushin {
+  animation: pushin 11s cubic-bezier(0.33, 0, 0.67, 1) both;
+}
+.animate-fill {
+  animation: fill 7s linear both;
+  animation-delay: var(--delay, 0s);
+}
+/* Hovering the hero holds the current scene. */
+[data-hero]:hover .animate-fill {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-rise,
-  .animate-unveil {
+  .animate-unveil,
+  .animate-fade,
+  .animate-aperture,
+  .animate-pushin,
+  .animate-fill {
     animation: none;
   }
 }

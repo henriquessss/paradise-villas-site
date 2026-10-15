@@ -1,7 +1,7 @@
 // One-off media pipeline: content-source/ (scraped originals, not in git) → public/ (optimized).
 // Run with `npm run media`. Re-running overwrites outputs.
 import { execFileSync } from 'node:child_process'
-import { mkdir, readdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import sharp from 'sharp'
 
@@ -140,24 +140,9 @@ console.log('logos + favicons → public/')
 
 const ffmpeg = (args) => execFileSync('ffmpeg', ['-v', 'error', '-y', ...args], { stdio: 'inherit' })
 
-// Home hero: one Higgsfield (Seedance 2.5) clip — a drone pass along the golden cliffs —
-// exported as WebP frame sequences the hero scrubs with the scroll. Desktop keeps the 16:9
-// frame; mobile gets a centred 9:16 crop (cliff face, then sea and coastline as the drone
-// moves) so portrait screens are not upscaled 3x. Writes src/hero-frames.json (frame counts).
+// Home hero, scene "A luz": first frame of the Higgsfield (Seedance 2.5) clip of the golden
+// cliffs, as a still.
 const clip = 'media-jobs/raw/falesias.mp4'
-const sets = {
-  desktop: { fps: 24, filter: 'scale=1440:-2', quality: 62 },
-  mobile: { fps: 15, filter: 'crop=ih*9/16:ih', quality: 62 },
-}
-const counts = {}
-for (const [name, { fps, filter, quality }] of Object.entries(sets)) {
-  const dir = path.join('public/hero', name)
-  await rm(dir, { recursive: true, force: true })
-  await mkdir(dir, { recursive: true })
-  ffmpeg(['-i', clip, '-vf', `fps=${fps},${filter}`, '-c:v', 'libwebp', '-quality', String(quality), path.join(dir, '%04d.webp')])
-  counts[name] = (await readdir(dir)).length
-}
-// First frame, sharper, as the prerendered poster (LCP) and the reduced-motion still.
+await mkdir('public/hero', { recursive: true })
 ffmpeg(['-i', clip, '-frames:v', '1', '-vf', 'scale=1600:-2', '-c:v', 'libwebp', '-quality', '80', 'public/hero/poster.webp'])
-await writeFile('src/hero-frames.json', JSON.stringify(counts, null, 2) + '\n')
-console.log(`hero: ${JSON.stringify(counts)} frames → public/hero/`)
+console.log('hero still → public/hero/poster.webp')
