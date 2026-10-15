@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { useLang } from '../content'
 import { EXTERNAL } from '../routes'
-import { ScrollMarquee } from './motion/ScrollMarquee'
 
 export function Footer() {
   const { t, to } = useLang()
@@ -11,8 +10,6 @@ export function Footer() {
 
   return (
     <footer className="grain relative overflow-hidden bg-navy-mid text-cream">
-      <ScrollMarquee text={t.marquee.footer} className="font-display border-b border-cream/10 py-8 text-[12vw] leading-none text-cream/10 italic md:text-[8vw]" />
-
       <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:grid-cols-12 md:px-10 md:py-24">
         <div className="md:col-span-4">
           <Link to={to('home')} aria-label="Paradise Villas">
@@ -101,6 +98,11 @@ export function Footer() {
           </ul>
         </div>
       </div>
+
+      {/* Signature: oversized wordmark, cut by the page edge. */}
+      <p className="font-display pointer-events-none -mb-[0.22em] text-center text-[14.5vw] leading-none whitespace-nowrap text-cream/[0.05] italic select-none" aria-hidden="true">
+        Paradise Villas
+      </p>
     </footer>
   )
 }

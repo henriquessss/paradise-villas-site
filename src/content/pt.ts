@@ -63,7 +63,7 @@ export const pt = {
 
   common: {
     verAlojamentos: 'Ver alojamentos',
-    verTodos: 'Ver todos',
+    verTodos: 'Ver a coleção',
     saberMais: 'Saber mais',
     contacteNos: 'Contacte-nos',
     faleConnosco: 'Fale connosco',
@@ -75,35 +75,26 @@ export const pt = {
     opensNewTab: '(abre num novo separador)',
   },
 
-  marquee: {
-    alojamentos: 'Alojamentos incríveis para as suas férias',
-    gestao: 'Gestão de Alojamento Local',
-    footer: 'Paradise Villas — Férias perfeitas',
-  },
-
   home: {
     hero: {
-      title: ['Explore', 'o', 'Algarve'],
+      // NOVO (exclusividade): título e capítulos revistos — validar com o cliente.
+      title: ['O Algarve', 'em', 'privado'],
       secondary: 'Gestão de Alojamento Local',
-      // NOVO: capítulos da hero (scroll sobre o vídeo das falésias) — validar com o cliente.
       chapters: [
         { eyebrow: 'Lugares mágicos', title: 'Falésias douradas, esculpidas pelo mar.' },
-        { eyebrow: 'Férias perfeitas', title: 'A casa perfeita à sua espera.' },
+        { eyebrow: 'Férias perfeitas', title: 'Casas escolhidas a dedo, à sua espera.' },
       ],
     },
     welcome: {
       eyebrow: 'Seja bem-vindo',
-      title: 'Paradise Villas: o início das suas melhores férias!',
-      body: 'Em Paradise Villas acreditamos que umas férias perfeitas começam num espaço onde o conforto, a privacidade e a confiança se encontram. Temos alojamentos incríveis para férias e serviços completos de gestão de alojamento local, com um compromisso firme com a qualidade, a transparência e a excelência no atendimento.',
-      stats: [
-        { value: 750, suffix: '+', label: 'Hóspedes' },
-        { value: 100, suffix: '%', label: 'Satisfação' },
-      ],
+      title: 'O início das suas melhores férias.',
+      body: 'Em Paradise Villas acreditamos que umas férias perfeitas começam num espaço onde o conforto, a privacidade e a confiança se encontram. Reunimos casas de férias selecionadas e serviços completos de gestão de alojamento local, com um compromisso firme com a qualidade, a transparência e a excelência no atendimento.',
+      pillars: ['Privacidade', 'Conforto', 'Confiança'],
       imageAlt: ['Piscina de uma villa Paradise Villas', 'Sala de uma villa Paradise Villas com vista'],
     },
     featured: {
-      eyebrow: 'Reserve as suas férias',
-      title: 'Encontre aqui o alojamento perfeito para as suas férias',
+      eyebrow: 'A Coleção',
+      title: 'Casas escolhidas a dedo para as suas férias',
       villas: [
         {
           name: 'Villa Goreti',
@@ -130,10 +121,10 @@ export const pt = {
     },
     advantages: {
       eyebrow: 'Reserve connosco',
-      title: 'Vantagens de reservar as suas férias connosco',
+      title: 'A diferença Paradise Villas',
       body: 'Na Paradise Villas, garantimos muito mais do que uma estadia. Desde o momento da reserva até ao último dia de estadia, queremos que se sinta verdadeiramente em casa, sem preocupações.',
       items: [
-        'Melhor preço',
+        'Privacidade e tranquilidade',
         'Alojamentos verificados',
         'Limpeza profissional',
         'Amenities de boas-vindas',
@@ -306,7 +297,7 @@ export const pt = {
     },
     includes: {
       eyebrow: 'Atraímos mais reservas',
-      title: 'Garantimos que o seu alojamento se destaca!',
+      title: 'Garantimos que o seu alojamento se destaca.',
       label: 'O que inclui?',
       cards: [
         {
@@ -359,7 +350,7 @@ export const pt = {
     },
     cta: {
       eyebrow: 'Não perca mais tempo',
-      title: 'Aproveite o potencial do seu imóvel ainda hoje!',
+      title: 'Aproveite todo o potencial do seu imóvel.',
       body: 'Se tem uma casa parada ou pouco explorada, esta é a oportunidade de a transformar num verdadeiro ativo. Na Paradise Villas, tratamos de tudo por si — para que rentabilize sem esforço, com total apoio e zero burocracia. Comece agora e deixe o seu imóvel trabalhar por si.',
     },
   },
@@ -376,7 +367,7 @@ export const pt = {
     },
     complete: {
       eyebrow: 'Experiência completa',
-      title: 'Mais do que férias, uma experiência completa!',
+      title: 'Mais do que férias, uma experiência completa.',
       body: [
         'Na **Paradise Villas**, não nos limitamos a ter alojamentos — criamos estadias completas, confortáveis e sem preocupações. Quer esteja à procura de relaxar, aventurar-se ou explorar o melhor do Algarve, temos tudo pensado para si.',
         'Selecionámos experiências únicas em parceria com os melhores operadores locais, para garantir que cada momento da sua estadia seja memorável.',
@@ -526,7 +517,7 @@ export const pt = {
   },
 
   footer: {
-    tagline: 'Férias perfeitas!',
+    tagline: 'O Algarve, em privado.',
     contacts: 'Contactos',
     services: 'Serviços',
     alojamentos: 'Alojamentos de férias',

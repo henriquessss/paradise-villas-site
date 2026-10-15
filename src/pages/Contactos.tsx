@@ -158,7 +158,7 @@ export function Contactos() {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="rounded-full bg-terracotta px-9 py-4 text-[0.8rem] font-semibold tracking-[0.14em] text-cream uppercase transition-colors hover:bg-navy disabled:opacity-60"
+                  className="bg-navy-deep px-10 py-4 text-[0.7rem] font-semibold tracking-[0.24em] text-cream uppercase transition-colors duration-500 hover:bg-terracotta disabled:opacity-60"
                 >
                   {status === 'sending' ? c.form.sending : c.form.submit}
                 </button>
@@ -183,7 +183,7 @@ export function Contactos() {
                 <button
                   type="button"
                   onClick={() => setShowMap(true)}
-                  className="rounded-full bg-cream px-7 py-3.5 text-[0.8rem] font-semibold tracking-[0.14em] text-navy uppercase transition-colors hover:bg-terracotta hover:text-cream"
+                  className="bg-cream px-8 py-4 text-[0.7rem] font-semibold tracking-[0.24em] text-navy-deep uppercase transition-colors duration-500 hover:bg-terracotta hover:text-cream"
                 >
                   {c.map.load}
                 </button>

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ParallaxImage } from '../components/motion/Parallax'
 import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
 import { PageHeader } from '../components/PageHeader'
 import { Rich } from '../components/Rich'
 import { ArrowUpRight, Button, Eyebrow, img } from '../components/ui'
@@ -60,10 +59,8 @@ export function Experiencias() {
         </Reveal>
       </section>
 
-      <ScrollMarquee text={t.marquee.alojamentos} className="font-display py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
-
       {/* Complete experience */}
-      <section className="px-5 pb-28 md:px-10 md:pb-40">
+      <section className="px-5 py-28 md:px-10 md:py-44">
         <div className="mx-auto grid max-w-[1440px] items-center gap-16 lg:grid-cols-12">
           <RevealGroup className="order-2 lg:order-1 lg:col-span-5">
             <RevealItem>
@@ -124,7 +121,9 @@ export function Experiencias() {
             ))}
           </div>
           <Reveal className="mt-14">
-            <Button to={to('contactos')}>{t.common.faleConnosco}</Button>
+            <Button to={to('contactos')} variant="light">
+              {t.common.faleConnosco}
+            </Button>
           </Reveal>
         </div>
       </section>

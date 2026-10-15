@@ -2,7 +2,6 @@ import { useId, useState } from 'react'
 import { CountUp } from '../components/motion/CountUp'
 import { ParallaxImage } from '../components/motion/Parallax'
 import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
 import { PageHeader } from '../components/PageHeader'
 import { Rich } from '../components/Rich'
 import { Button, Eyebrow, img } from '../components/ui'
@@ -139,8 +138,6 @@ export function Gestao() {
         </div>
       </section>
 
-      <ScrollMarquee text={t.marquee.gestao} className="font-display bg-cream py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
-
       <Faq />
 
       {/* Final CTA */}
@@ -158,7 +155,9 @@ export function Gestao() {
             <p className="mx-auto mt-8 max-w-2xl leading-relaxed text-cream/80">{g.cta.body}</p>
           </RevealItem>
           <RevealItem className="mt-12">
-            <Button to={to('contactos')}>{t.common.contacteNos}</Button>
+            <Button to={to('contactos')} variant="light">
+              {t.common.contacteNos}
+            </Button>
           </RevealItem>
         </RevealGroup>
       </section>
@@ -172,7 +171,7 @@ function Faq() {
   const [open, setOpen] = useState<number | null>(0)
   const id = useId()
   return (
-    <section className="bg-cream px-5 pb-28 md:px-10 md:pb-40">
+    <section className="bg-cream px-5 py-28 md:px-10 md:py-44">
       <div className="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-12">
         <RevealGroup className="lg:col-span-4">
           <RevealItem>

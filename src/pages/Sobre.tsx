@@ -2,7 +2,6 @@ import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import { Parallax, ParallaxImage } from '../components/motion/Parallax'
 import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
 import { PageHeader } from '../components/PageHeader'
 import { Rich } from '../components/Rich'
 import { Arrow, ArrowUpRight, Button, Eyebrow, img } from '../components/ui'
@@ -78,8 +77,6 @@ export function Sobre() {
           </RevealGroup>
         </div>
       </section>
-
-      <ScrollMarquee text={t.marquee.alojamentos} className="font-display pb-10 text-[13vw] leading-none text-navy/[0.07] italic md:pb-16 md:text-[10vw]" />
 
       {/* Mission / Vision / Values / Difference — checkerboard */}
       <section className="bg-sand">

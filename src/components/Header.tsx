@@ -35,7 +35,7 @@ export function Header() {
   const switchTo = route.alternates[otherLang === 'pt' ? 'pt-PT' : 'en'] ?? (otherLang === 'en' ? '/en/' : '/')
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative py-2 text-[0.78rem] font-semibold tracking-[0.16em] uppercase transition-opacity hover:opacity-100 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-current after:transition-all after:duration-500 ${
+    `relative py-2 text-[0.7rem] font-semibold tracking-[0.24em] uppercase transition-opacity hover:opacity-100 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-current after:transition-all after:duration-500 ${
       isActive ? 'opacity-100 after:w-full' : 'opacity-80 after:w-0 hover:after:w-full'
     }`
 
@@ -89,7 +89,7 @@ export function Header() {
               to={switchTo}
               hrefLang={otherLang}
               lang={otherLang}
-              className="hidden text-[0.78rem] font-semibold tracking-[0.16em] opacity-80 transition-opacity hover:opacity-100 sm:block"
+              className="hidden text-[0.7rem] font-semibold tracking-[0.24em] opacity-80 transition-opacity hover:opacity-100 sm:block"
               aria-label={t.nav.switchLang}
             >
               {t.nav.switchLangShort}
@@ -98,7 +98,9 @@ export function Header() {
               href={EXTERNAL.booking}
               target="_blank"
               rel="noopener"
-              className="hidden rounded-full bg-terracotta px-5 py-2.5 text-[0.75rem] font-semibold tracking-[0.14em] text-cream uppercase transition-colors hover:bg-navy md:inline-block"
+              className={`hidden border px-6 py-3 text-[0.7rem] font-semibold tracking-[0.24em] uppercase transition-colors duration-500 md:inline-block ${
+                onDark ? 'border-cream/45 hover:border-cream hover:bg-cream hover:text-navy-deep' : 'border-navy/25 hover:border-navy-deep hover:bg-navy-deep hover:text-cream'
+              }`}
             >
               {t.nav.book}
             </a>
@@ -157,7 +159,7 @@ export function Header() {
               </motion.ul>
             </nav>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.7 } }} className="mt-12 space-y-4 text-sm">
-              <a href={EXTERNAL.booking} target="_blank" rel="noopener" className="inline-block rounded-full bg-terracotta px-6 py-3 font-semibold tracking-[0.14em] uppercase">
+              <a href={EXTERNAL.booking} target="_blank" rel="noopener" className="inline-block border border-cream/45 px-7 py-3.5 text-xs font-semibold tracking-[0.24em] uppercase">
                 {t.nav.book}
               </a>
               <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 opacity-80">

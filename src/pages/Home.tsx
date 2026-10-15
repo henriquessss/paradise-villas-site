@@ -1,10 +1,8 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { HeroJourney } from '../components/HeroJourney'
-import { CountUp } from '../components/motion/CountUp'
 import { Parallax, ParallaxImage } from '../components/motion/Parallax'
 import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
 import { Rich } from '../components/Rich'
 import { ArrowUpRight, Button, Eyebrow, img } from '../components/ui'
 import { useLang } from '../content'
@@ -58,17 +56,14 @@ function Welcome() {
             <p className="mt-8 text-lg leading-relaxed text-ink-soft">{w.body}</p>
           </RevealItem>
           <RevealItem>
-            <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-navy/15 pt-10">
-              {w.stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse">
-                  <dt className="eyebrow mt-3 text-ink-soft">{s.label}</dt>
-                  <dd className="font-display text-[clamp(3.5rem,6vw,5.5rem)] leading-none">
-                    <CountUp to={s.value} locale={t.locale} />
-                    <span className="text-terracotta">{s.suffix}</span>
-                  </dd>
-                </div>
+            <ul className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-navy/15 pt-8 sm:gap-x-6">
+              {w.pillars.map((p, i) => (
+                <li key={p} className="font-display flex items-center gap-6 text-[1.45rem] italic sm:text-[1.7rem]">
+                  {i > 0 && <span className="hidden h-1.5 w-1.5 rotate-45 bg-terracotta sm:block" aria-hidden="true" />}
+                  {p}
+                </li>
               ))}
-            </dl>
+            </ul>
           </RevealItem>
         </RevealGroup>
       </div>
@@ -76,13 +71,16 @@ function Welcome() {
   )
 }
 
+// The villa photos carry a dark band baked into their lower part; the 4:3 frame shows the
+// clean upper part, and this sets which slice per photo.
+const villaFocus: Record<string, string> = { 'apt-palmeiras': '50% 42%', 'villa-marina': '50% 15%' }
+
 function Featured() {
   const { t } = useLang()
   const f = t.home.featured
   const speeds = [0, 12, 4]
   return (
-    <section className="bg-sand pt-6 pb-28 md:pb-44">
-      <ScrollMarquee text={t.marquee.alojamentos} className="font-display py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
+    <section className="bg-sand py-28 md:py-44">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <RevealGroup className="max-w-2xl">
@@ -108,23 +106,27 @@ function Featured() {
               <Parallax speed={speeds[i]}>
                 <Reveal variant="up" delay={i * 0.12}>
                   <a href={v.href} target="_blank" rel="noopener" className="group block">
-                    <div className="relative aspect-[37/52] overflow-hidden bg-dune">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-dune">
                       <img
                         src={img(v.image)}
                         alt={v.name}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+                        style={{ objectPosition: villaFocus[v.image] ?? '50% 0%' }}
+                        className="h-full w-full object-cover transition-transform duration-[1.8s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent" aria-hidden="true" />
-                      <div className="absolute inset-x-0 bottom-0 p-7 text-cream">
-                        <p className="eyebrow text-cream/80">{v.place} · Algarve</p>
-                        <h3 className="font-display mt-2 flex items-center justify-between text-4xl">
-                          {v.name}
-                          <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                        </h3>
-                      </div>
+                      {/* Hairline frame that draws in on hover. */}
+                      <div className="pointer-events-none absolute inset-4 border border-cream/0 transition-colors duration-700 group-hover:border-cream/60" aria-hidden="true" />
                     </div>
-                    <p className="mt-5 max-w-sm leading-relaxed text-ink-soft">{v.text}</p>
+                    <div className="mt-6 flex items-center justify-between gap-4 border-t border-navy/15 pt-5">
+                      <p className="eyebrow text-ink-soft">
+                        <span className="text-terracotta tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                        <span className="mx-3 opacity-40" aria-hidden="true">/</span>
+                        {v.place} · Algarve
+                      </p>
+                      <ArrowUpRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                    <h3 className="font-display mt-4 text-[clamp(2rem,2.8vw,2.6rem)] leading-none">{v.name}</h3>
+                    <p className="mt-4 max-w-sm leading-relaxed text-ink-soft">{v.text}</p>
                     <span className="sr-only"> {t.common.opensNewTab}</span>
                   </a>
                 </Reveal>
@@ -158,7 +160,9 @@ function Advantages() {
             <p className="mt-8 text-lg leading-relaxed text-cream/75">{a.body}</p>
           </RevealItem>
           <RevealItem className="mt-10">
-            <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
+            <Button href={EXTERNAL.booking} variant="light">
+              {t.common.verAlojamentos}
+            </Button>
           </RevealItem>
         </RevealGroup>
 
@@ -294,7 +298,7 @@ function Testimonials() {
         </Reveal>
 
         <div className="mt-10 flex items-center justify-center gap-6">
-          <button type="button" onClick={() => go(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border border-navy/25 transition-colors hover:bg-navy hover:text-cream">
+          <button type="button" onClick={() => go(-1)} className="flex h-12 w-12 items-center justify-center border border-navy/20 transition-colors duration-500 hover:bg-navy-deep hover:text-cream">
             <span className="sr-only">{s.prev}</span>
             <ArrowUpRight className="-rotate-[135deg]" />
           </button>
@@ -303,7 +307,7 @@ function Testimonials() {
               <span key={i} className={`h-px transition-all duration-500 ${i === index ? 'w-10 bg-terracotta' : 'w-4 bg-navy/25'}`} />
             ))}
           </div>
-          <button type="button" onClick={() => go(1)} className="flex h-12 w-12 items-center justify-center rounded-full border border-navy/25 transition-colors hover:bg-navy hover:text-cream">
+          <button type="button" onClick={() => go(1)} className="flex h-12 w-12 items-center justify-center border border-navy/20 transition-colors duration-500 hover:bg-navy-deep hover:text-cream">
             <span className="sr-only">{s.next}</span>
             <ArrowUpRight className="rotate-45" />
           </button>
@@ -317,8 +321,7 @@ function Management() {
   const { t, to } = useLang()
   const m = t.home.management
   return (
-    <section className="relative overflow-hidden bg-cream pb-28 md:pb-40">
-      <ScrollMarquee text={t.marquee.gestao} reverse className="font-display py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
+    <section className="relative overflow-hidden bg-cream py-28 md:py-44">
       <div className="mx-auto grid max-w-[1440px] items-center gap-16 px-5 md:px-10 lg:grid-cols-12">
         <Reveal variant="clip" className="lg:col-span-6">
           <ParallaxImage src={img('gestao-piscina')} alt="" className="aspect-[4/5] w-full md:aspect-[5/6]" />
@@ -367,7 +370,7 @@ function InstagramStrip() {
           <Eyebrow index="07" className="text-terracotta">
             {t.footer.follow}
           </Eyebrow>
-          <a href={EXTERNAL.instagram} target="_blank" rel="noopener" className="font-display mt-4 block text-[clamp(2.4rem,6vw,5.5rem)] leading-none transition-colors hover:text-terracotta">
+          <a href={EXTERNAL.instagram} target="_blank" rel="noopener" className="font-display mt-4 block text-[clamp(1.9rem,3.6vw,3.2rem)] leading-none italic transition-colors hover:text-terracotta">
             {EXTERNAL.instagramHandle}
             <span className="sr-only"> {t.common.opensNewTab}</span>
           </a>
@@ -409,7 +412,9 @@ function FinalCta() {
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-cream/80">{c.body}</p>
         </RevealItem>
         <RevealItem className="mt-12 flex flex-wrap justify-center gap-3">
-          <Button to={to('gestao')}>{t.common.saberMais}</Button>
+          <Button to={to('gestao')} variant="light">
+            {t.common.saberMais}
+          </Button>
           <Button to={to('contactos')} variant="ghost-light">
             {t.common.contacteNos}
           </Button>

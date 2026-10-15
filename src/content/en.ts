@@ -61,7 +61,7 @@ export const en: Content = {
 
   common: {
     verAlojamentos: 'See our rentals',
-    verTodos: 'See all',
+    verTodos: 'View the collection',
     saberMais: 'Learn more',
     contacteNos: 'Contact us',
     faleConnosco: 'Talk to us',
@@ -73,34 +73,25 @@ export const en: Content = {
     opensNewTab: '(opens in a new tab)',
   },
 
-  marquee: {
-    alojamentos: 'Amazing places for your holidays',
-    gestao: 'Holiday rental management',
-    footer: 'Paradise Villas — Perfect holidays',
-  },
-
   home: {
     hero: {
-      title: ['Explore', 'the', 'Algarve'],
+      title: ['The Algarve', 'in', 'private'],
       secondary: 'Property management',
       chapters: [
         { eyebrow: 'Magical places', title: 'Golden cliffs, carved by the sea.' },
-        { eyebrow: 'Perfect holidays', title: 'Your perfect home awaits.' },
+        { eyebrow: 'Perfect holidays', title: 'Hand-picked homes, waiting for you.' },
       ],
     },
     welcome: {
       eyebrow: 'Welcome',
-      title: 'Paradise Villas: where your best holidays begin!',
-      body: 'At Paradise Villas we believe that perfect holidays begin in a place where comfort, privacy and trust come together. We offer amazing holiday homes and complete holiday rental management services, with a firm commitment to quality, transparency and outstanding service.',
-      stats: [
-        { value: 750, suffix: '+', label: 'Guests' },
-        { value: 100, suffix: '%', label: 'Satisfaction' },
-      ],
+      title: 'Where your best holidays begin.',
+      body: 'At Paradise Villas we believe that perfect holidays begin in a place where comfort, privacy and trust come together. We bring together hand-picked holiday homes and complete holiday rental management services, with a firm commitment to quality, transparency and outstanding service.',
+      pillars: ['Privacy', 'Comfort', 'Trust'],
       imageAlt: ['Swimming pool at a Paradise Villas home', 'Living room with a view at a Paradise Villas home'],
     },
     featured: {
-      eyebrow: 'Book your holidays',
-      title: 'Find the perfect place for your holidays',
+      eyebrow: 'The Collection',
+      title: 'Hand-picked homes for your holidays',
       villas: [
         {
           name: 'Villa Goreti',
@@ -127,10 +118,10 @@ export const en: Content = {
     },
     advantages: {
       eyebrow: 'Book with us',
-      title: 'Why book your holidays with us',
+      title: 'The Paradise Villas difference',
       body: 'At Paradise Villas, we offer much more than a place to stay. From the moment you book until the last day of your stay, we want you to feel truly at home, without a care in the world.',
       items: [
-        'Best price',
+        'Privacy and peace of mind',
         'Verified properties',
         'Professional cleaning',
         'Welcome amenities',
@@ -302,7 +293,7 @@ export const en: Content = {
     },
     includes: {
       eyebrow: 'We bring in more bookings',
-      title: 'We make sure your property stands out!',
+      title: 'We make sure your property stands out.',
       label: 'What’s included?',
       cards: [
         {
@@ -355,7 +346,7 @@ export const en: Content = {
     },
     cta: {
       eyebrow: 'Don’t wait any longer',
-      title: 'Unlock your property’s potential today!',
+      title: 'Unlock your property’s full potential.',
       body: 'If you have a home that sits empty or is under-used, this is your chance to turn it into a real asset. At Paradise Villas we take care of everything — so you earn effortlessly, with full support and zero paperwork. Start now and let your property work for you.',
     },
   },
@@ -372,7 +363,7 @@ export const en: Content = {
     },
     complete: {
       eyebrow: 'The complete experience',
-      title: 'More than a holiday, a complete experience!',
+      title: 'More than a holiday, a complete experience.',
       body: [
         'At **Paradise Villas**, we don’t just offer places to stay — we create complete, comfortable, worry-free stays. Whether you want to relax, seek adventure or explore the best of the Algarve, we have thought of everything for you.',
         'We have selected unique experiences with the best local operators, so every moment of your stay is memorable.',
@@ -522,7 +513,7 @@ export const en: Content = {
   },
 
   footer: {
-    tagline: 'Perfect holidays!',
+    tagline: 'The Algarve, in private.',
     contacts: 'Contact',
     services: 'Services',
     alojamentos: 'Holiday rentals',

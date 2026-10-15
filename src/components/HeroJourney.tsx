@@ -226,6 +226,8 @@ export function HeroJourney() {
           <canvas ref={canvas} className="absolute inset-0 h-full w-full motion-reduce:hidden" aria-hidden="true" />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/10 to-navy-deep/45" aria-hidden="true" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,25,44,0.55)_100%)]" aria-hidden="true" />
+          {/* Passe-partout: a hairline frame inside the picture. */}
+          <div className="pointer-events-none absolute inset-3 border border-cream/20 md:inset-6" aria-hidden="true" />
         </motion.div>
 
         {/* Chapters */}
@@ -244,7 +246,7 @@ export function HeroJourney() {
               </span>
             </h1>
             <ScrollItem progress={p} range={shift(chapterRange(0), ITEM_STAGGER)} variant="up" className="mt-8 flex flex-wrap gap-3 md:mt-10">
-              <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
+              <Button href={EXTERNAL.booking} variant="light">{t.common.verAlojamentos}</Button>
               <Button to={to('gestao')} variant="ghost-light">
                 {h.secondary}
               </Button>
@@ -272,7 +274,7 @@ export function HeroJourney() {
                   </h2>
                   {last && (
                     <ScrollItem progress={p} range={shift(range, 2 * ITEM_STAGGER)} variant="up" className="mt-10 flex flex-wrap gap-3">
-                      <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
+                      <Button href={EXTERNAL.booking} variant="light">{t.common.verAlojamentos}</Button>
                       <Button to={to('gestao')} variant="ghost-light">
                         {h.secondary}
                       </Button>

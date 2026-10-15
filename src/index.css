@@ -48,20 +48,23 @@
 }
 
 @layer components {
+  /* Light, high-contrast serif: crisp rather than soft. */
   .font-display {
     font-family: var(--font-display);
+    font-weight: 340;
     font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 30, "WONK" 0;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
   }
   .font-display em,
-  .font-display i {
-    font-variation-settings: "SOFT" 100, "WONK" 1;
+  .font-display i,
+  .font-display.italic {
+    font-variation-settings: "SOFT" 0, "WONK" 0;
   }
 
   /* Small uppercase section label, e.g. "01 — Experiências" */
   .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     font-weight: 600;
   }
