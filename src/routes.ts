@@ -1,13 +1,14 @@
 export type Lang = 'pt' | 'en'
-export type PageKey = 'home' | 'gestao' | 'experiencias' | 'sobre' | 'contactos' | 'privacidade' | 'termos'
+export type PageKey = 'home' | 'experiencias' | 'gestao' | 'parceiros' | 'sobre' | 'contactos' | 'privacidade' | 'termos'
 
 export const SITE_URL = 'https://paradisevillas.pt'
 export const LANGS: Lang[] = ['pt', 'en']
 
 export const paths: Record<PageKey, Record<Lang, string>> = {
   home: { pt: '/', en: '/en/' },
-  gestao: { pt: '/gestao-al/', en: '/en/property-management/' },
   experiencias: { pt: '/experiencias/', en: '/en/experiences/' },
+  gestao: { pt: '/gestao-al/', en: '/en/property-management/' },
+  parceiros: { pt: '/parceiros/', en: '/en/partners/' },
   sobre: { pt: '/sobre-nos/', en: '/en/about-us/' },
   contactos: { pt: '/contactos/', en: '/en/contact/' },
   privacidade: { pt: '/politica-de-privacidade/', en: '/en/privacy-policy/' },
@@ -51,6 +52,38 @@ export const EXTERNAL = {
   huglocals: 'https://huglocals.com/Pereira',
   phone: '+351960039608',
   phoneDisplay: '+351 960 039 608',
+  whatsapp: 'https://wa.me/351960039608',
   email: 'info@paradisevillas.pt',
   address: 'Rua da Esteva, Lote 14, 1ºA, 8200-252 Albufeira',
 }
+
+/**
+ * Avantio search results for a stay. Avantio has no documented deep-link API; these are the
+ * URLs its own search form produces (checked 2026-10-16). Swap when RentalReady goes live.
+ */
+export function bookingSearchUrl(lang: Lang, { from, to, guests }: { from: Date; to: Date; guests: number }): string {
+  const nights = Math.round((to.getTime() - from.getTime()) / 86_400_000)
+  const d = (date: Date) => `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
+  const base = EXTERNAL.booking.replace(/\/$/, '')
+  return lang === 'en'
+    ? `${base}/en/rentals/holidays-rentals-rentals-p0/${nights}-nights/${guests}-people/available-from-${d(from)}/to-${d(to)}/`
+    : `${base}/aluguer/aluguer-alugueres-p0/${nights}-noites/${guests}-pessoas/del-${d(from)}/al-${d(to)}/vista-lista/`
+}
+
+/**
+ * Civitatis affiliate id (`ag_aid`). Empty = plain links (no commission).
+ * TODO(cliente): pedir o ID de afiliado da Paradise Villas na Civitatis.
+ */
+export const CIVITATIS_AID = ''
+
+/** Civitatis page in the visitor's language; `slug` is the activity path under /albufeira/. */
+export function civitatisUrl(lang: Lang, slug = ''): string {
+  const url = `https://www.civitatis.com/${lang}/albufeira/${slug ? `${slug}/` : ''}`
+  return CIVITATIS_AID ? `${url}?ag_aid=${CIVITATIS_AID}` : url
+}
+
+/**
+ * Partner programme: share of Paradise Villas' management revenue paid for each owner a
+ * partner refers. TODO(cliente): confirmar a percentagem e a base de cálculo.
+ */
+export const PARTNER_RATE = 10

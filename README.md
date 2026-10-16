@@ -5,25 +5,24 @@ Substitui o WordPress em paradisevillas.pt. React 19 + Vite + TypeScript + Tailw
 ## Comandos
 
 ```bash
-npm run dev       # desenvolvimento (sem pré-render; /api não corre aqui)
-npm run build     # tsc + build cliente + build SSR + scripts/prerender.mjs → dist/
-npm run preview   # serve dist/
-npm run media     # regenera public/images, logos, favicons e a sequência da hero (public/hero/)
+npm run dev         # desenvolvimento (sem pré-render; /api não corre aqui)
+npm run build       # tsc + build cliente + build SSR + scripts/prerender.mjs → dist/
+npm run preview     # serve dist/ (sem /api: os formulários mostram erro de envio)
+npm run media       # regenera public/images, logos e favicons
+npm run media:hero  # regenera o vídeo da hero (public/video/) a partir dos vídeos do cliente
 ```
 
-`content-source/` (conteúdo e imagens extraídos do site antigo e do Instagram) e `media-jobs/raw/` (os 5 clips originais da Higgsfield; a hero usa só `falesias.mp4`) não estão no git. São a origem do `npm run media`.
+`content-source/` (conteúdo e imagens do site antigo e do Instagram) e `media-jobs/raw/` (vídeos originais do cliente em `cliente/`, clips Higgsfield) não estão no git — são a origem dos scripts de media. Nunca pôr vídeos originais em `public/` (vão para o build).
 
-## Hero da Home
+## Design
 
-`src/components/HeroJourney.tsx`: secção de ~3 ecrãs com palco fixo. O scroll percorre uma sequência de frames WebP de um único clip Higgsfield/Seedance 2.5 (voo de drone pelas falésias douradas; 24 fps em desktop, corte 9:16 a 15 fps em mobile) num canvas e comanda 3 momentos de texto curtos (título, uma frase, fecho com botões) que entram e saem. `src/hero-frames.json` (gerado) tem o número de frames. Com `prefers-reduced-motion` não carrega frames: imagem fixa e textos em sequência.
+Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, cartões brancos, títulos em serifa com uma palavra em itálico terracota (`*palavra*` nos textos).
 
-## Estrutura
-
-- `src/content/pt.ts` / `en.ts` — todos os textos. `src/content/legal/*.md` — política de privacidade e termos.
-- `src/routes.ts` — rotas PT/EN, links externos (motor de reservas, login do proprietário, Instagram).
-- `src/pages/` — uma página por ficheiro; `src/components/motion/` — reveal, parallax, vídeo, contador, marquee.
-- `api/contacto.ts` — formulário de contacto → email via Resend (Vercel Function).
-- `vercel.json` — redirecionamentos dos URLs antigos do WordPress (`/portfolio/*`, `/contacts`, …).
+- **Home** — vídeo das villas do cliente com card central (título, pesquisa de datas/hóspedes, números). A pesquisa abre o Avantio já filtrado (`bookingSearchUrl` em `src/routes.ts`).
+- **Experiências** — atividades da Civitatis com filtros; `CIVITATIS_AID` em `src/routes.ts` acrescenta o ID de afiliado.
+- **Gestão AL** — pedido de proposta, serviços, legalização, simulador de rendimento (valores em `src/simulator.ts`), FAQ. Sem percentagens de comissão.
+- **Parceiros** — programa de indicação; percentagem em `PARTNER_RATE` (`src/routes.ts`).
+- Todos os formulários enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro).
 
 ## Variáveis de ambiente (Vercel)
 
@@ -35,7 +34,11 @@ npm run media     # regenera public/images, logos, favicons e a sequência da he
 
 ## Pendente com o cliente
 
-- Validar textos novos: capítulos da hero, frases das 6 «razões para o Algarve» e toda a tradução EN.
+- Validar textos novos (marcados «NOVO» em `src/content/pt.ts`) e toda a tradução EN.
+- Percentagem e base de cálculo da parceria (`PARTNER_RATE`).
+- ID de afiliado Civitatis (`CIVITATIS_AID`).
+- Valores do simulador (`src/simulator.ts`) — são estimativas nossas, não dados do cliente.
+- Vídeo final da hero (o cliente ficou de enviar; o atual é uma montagem dos vídeos das villas).
 - Confirmar números da Gestão AL (500+ proprietários, 200+ imóveis).
 - Foto do fundador: a atual parece imagem de banco — pedir foto real do Bruno.
 - Textos legais referem o SEF (extinto); rever com quem os redigiu.

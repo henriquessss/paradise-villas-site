@@ -1,229 +1,198 @@
-import { useId, useState } from 'react'
+import { useId, type FormEvent } from 'react'
+import { CtaBand } from '../components/blocks'
+import { Consent, ContactFields, Field, FormMessage, useLead, value } from '../components/forms'
+import { Icon, IconTile } from '../components/icons'
 import { CountUp } from '../components/motion/CountUp'
-import { ParallaxImage } from '../components/motion/Parallax'
-import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
-import { PageHeader } from '../components/PageHeader'
+import { Reveal } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
-import { Button, Eyebrow, img } from '../components/ui'
+import { Simulator } from '../components/Simulator'
+import { Accent, Button, card, Eyebrow, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
+import { EXTERNAL } from '../routes'
 
-export function Gestao() {
-  const { t, to } = useLang()
-  const g = t.gestao
+function ProposalForm() {
+  const { t } = useLang()
+  const p = t.gestao.proposal
+  const id = useId()
+  const lead = useLead('gestao')
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const ok = await lead.send(form, {
+      name: value(form, 'name'),
+      email: value(form, 'email'),
+      phone: value(form, 'phone'),
+      details: {
+        Tipo: value(form, 'type'),
+        Quartos: value(form, 'bedrooms'),
+        Localização: value(form, 'location'),
+        Piscina: new FormData(form).get('pool') ? 'Sim' : '',
+      },
+    })
+    if (ok) form.reset()
+  }
+
   return (
-    <>
-      <PageHeader eyebrow={g.header.eyebrow} title={g.header.title} image={img('gestao-quarto')} />
-
-      {/* Intro */}
-      <section className="px-5 py-28 md:px-10 md:py-36">
-        <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7">
-            <h2 className="font-display text-[clamp(2.2rem,4.4vw,4rem)] leading-[1.04] tracking-[-0.02em]">{g.intro.title}</h2>
-          </Reveal>
-          <RevealGroup className="lg:col-span-4 lg:col-start-9 lg:pt-3">
-            <RevealItem>
-              <p className="text-lg leading-relaxed text-ink-soft">
-                <Rich text={g.intro.body} />
-              </p>
-            </RevealItem>
-            <RevealItem>
-              <p className="font-display mt-6 text-xl italic">{g.intro.lead}</p>
-            </RevealItem>
-          </RevealGroup>
+    <form id="proposta" onSubmit={submit} className={`${card} relative space-y-5 p-6 md:p-8`}>
+      <h2 className="font-display text-2xl text-navy">{p.title}</h2>
+      <ContactFields id={`${id}-p`} />
+      <fieldset className="space-y-4 border-t border-navy/[0.07] pt-5">
+        <legend className="field-label pt-5">
+          <Icon name="home" className="h-4 w-4 text-terracotta" /> {p.details}
+        </legend>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label={p.type} htmlFor={`${id}-type`}>
+            <select id={`${id}-type`} name="type" defaultValue="" className="field">
+              <option value="">{t.form.select}</option>
+              {p.types.map((type) => (
+                <option key={type}>{type}</option>
+              ))}
+            </select>
+          </Field>
+          <Field label={p.bedrooms} htmlFor={`${id}-bed`}>
+            <select id={`${id}-bed`} name="bedrooms" defaultValue="" className="field">
+              <option value="">{t.form.select}</option>
+              {t.gestao.simulator.bedroomOptions.map((label) => (
+                <option key={label}>{label}</option>
+              ))}
+            </select>
+          </Field>
+          <Field label={p.location} htmlFor={`${id}-loc`}>
+            <input id={`${id}-loc`} name="location" placeholder={p.locationPlaceholder} className="field" />
+          </Field>
+          <label className="flex items-center gap-3 self-end rounded-[0.85rem] border border-navy/14 bg-white px-4 py-3 text-sm font-medium text-navy">
+            <input type="checkbox" name="pool" className="h-4 w-4 accent-terracotta" /> {p.pool}
+          </label>
         </div>
-
-        {/* Services: numbered editorial grid */}
-        <RevealGroup className="mx-auto mt-20 grid max-w-[1440px] border-t border-navy/15 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
-          {g.services.map((s, i) => (
-            <RevealItem key={s.title} className="group relative border-b border-navy/15 py-10 sm:px-8 sm:odd:border-r lg:border-r lg:[&:nth-child(3n)]:border-r-0">
-              <span className="font-display text-sm text-terracotta tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="font-display mt-4 text-2xl md:text-3xl">{s.title}</h3>
-              <p className="mt-4 leading-relaxed text-ink-soft">{s.text}</p>
-              <span className="absolute bottom-0 left-0 h-px w-0 bg-terracotta transition-all duration-700 group-hover:w-full" aria-hidden="true" />
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </section>
-
-      {/* Stats band */}
-      <section className="grain relative overflow-hidden bg-navy-deep text-cream">
-        <ParallaxImage src={img('gestao-mar')} alt="" strength={18} className="absolute inset-0 opacity-45" />
-        <div className="absolute inset-0 bg-navy-deep/55" aria-hidden="true" />
-        <dl className="relative mx-auto grid max-w-[1440px] grid-cols-1 gap-y-14 px-5 py-24 sm:grid-cols-3 md:px-10 md:py-32">
-          {g.stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.1} className="flex flex-col-reverse items-center text-center">
-              <dt className="eyebrow mt-4 text-cream/70">{s.label}</dt>
-              <dd className="font-display text-[clamp(3.6rem,7vw,6.5rem)] leading-none">
-                <CountUp to={s.value} locale={t.locale} />
-                <span className="text-terracotta">{s.suffix}</span>
-              </dd>
-            </Reveal>
-          ))}
-        </dl>
-      </section>
-
-      {/* Licensing: sticky heading, steps scroll past */}
-      <section className="px-5 py-28 md:px-10 md:py-40">
-        <div className="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-32">
-              <Reveal>
-                <Eyebrow index="01" className="text-terracotta">
-                  {g.legal.eyebrow}
-                </Eyebrow>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="font-display mt-6 text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{g.legal.title}</h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="mt-8 text-lg leading-relaxed text-ink-soft">
-                  <Rich text={g.legal.body} />
-                </p>
-              </Reveal>
-            </div>
-          </div>
-          <ol className="lg:col-span-6 lg:col-start-7">
-            {g.legal.steps.map((step, i) => (
-              <Reveal key={step.title} as="li" variant="right" className="grid grid-cols-[auto_1fr] gap-8 border-b border-navy/15 py-10 first:pt-0">
-                <span className="font-display text-[clamp(3rem,5vw,4.5rem)] leading-none text-terracotta">{i + 1}</span>
-                <div>
-                  <h3 className="font-display text-2xl md:text-3xl">{step.title}</h3>
-                  <p className="mt-3 leading-relaxed text-ink-soft">{step.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* What's included */}
-      <section className="bg-sand px-5 py-28 md:px-10 md:py-40">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <RevealGroup>
-              <RevealItem>
-                <Eyebrow index="02" className="text-terracotta">
-                  {g.includes.eyebrow}
-                </Eyebrow>
-              </RevealItem>
-              <RevealItem>
-                <h2 className="font-display mt-6 max-w-3xl text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{g.includes.title}</h2>
-              </RevealItem>
-            </RevealGroup>
-            <Reveal variant="right">
-              <Button to={to('contactos')}>{t.common.contacteNos}</Button>
-            </Reveal>
-          </div>
-          <ul className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
-            {g.includes.cards.map((card, i) => (
-              <Reveal key={card.title} as="li" delay={i * 0.12}>
-                <div className="overflow-hidden">
-                  <img src={img(card.image)} alt="" loading="lazy" className="aspect-[74/40] w-full object-cover" />
-                </div>
-                <p className="eyebrow mt-8 text-terracotta">{g.includes.label}</p>
-                <h3 className="font-display mt-3 text-3xl">{card.title}</h3>
-                <ul className="mt-6 space-y-4 text-ink-soft">
-                  {card.items.map((item) => (
-                    <li key={item} className="border-t border-navy/10 pt-4 leading-relaxed">
-                      <Rich text={item} />
-                    </li>
-                  ))}
-                </ul>
-                <Button to={to('contactos')} variant="outline" className="mt-8">
-                  {t.common.comeceHoje}
-                </Button>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <ScrollMarquee text={t.marquee.gestao} className="font-display bg-cream py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
-
-      <Faq />
-
-      {/* Final CTA */}
-      <section className="grain relative flex min-h-[80svh] items-center overflow-hidden bg-navy-deep py-28 text-cream">
-        <ParallaxImage src={img('gestao-piscina')} alt="" strength={16} className="absolute inset-0" />
-        <div className="absolute inset-0 bg-navy-deep/65" aria-hidden="true" />
-        <RevealGroup className="relative mx-auto max-w-4xl px-5 text-center">
-          <RevealItem>
-            <Eyebrow className="justify-center text-terracotta">{g.cta.eyebrow}</Eyebrow>
-          </RevealItem>
-          <RevealItem>
-            <h2 className="font-display mt-6 text-[clamp(2.6rem,6vw,5.6rem)] leading-[1] tracking-[-0.02em]">{g.cta.title}</h2>
-          </RevealItem>
-          <RevealItem>
-            <p className="mx-auto mt-8 max-w-2xl leading-relaxed text-cream/80">{g.cta.body}</p>
-          </RevealItem>
-          <RevealItem className="mt-12">
-            <Button to={to('contactos')}>{t.common.contacteNos}</Button>
-          </RevealItem>
-        </RevealGroup>
-      </section>
-    </>
+      </fieldset>
+      <Consent id={`${id}-p`} />
+      <button
+        type="submit"
+        disabled={lead.status === 'sending'}
+        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-terracotta px-6 py-4 font-semibold text-white shadow-[0_10px_24px_-10px_rgba(214,89,55,0.8)] transition-colors hover:bg-terracotta-dark disabled:opacity-60"
+      >
+        <Icon name="message" className="h-5 w-5" />
+        {lead.status === 'sending' ? t.form.sending : p.submit}
+      </button>
+      <FormMessage status={lead.status} success={p.success} />
+    </form>
   )
 }
 
 function Faq() {
   const { t } = useLang()
   const f = t.gestao.faq
-  const [open, setOpen] = useState<number | null>(0)
-  const id = useId()
   return (
-    <section className="bg-cream px-5 pb-28 md:px-10 md:pb-40">
-      <div className="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-12">
-        <RevealGroup className="lg:col-span-4">
-          <RevealItem>
-            <Eyebrow index="03" className="text-terracotta">
-              {f.eyebrow}
-            </Eyebrow>
-          </RevealItem>
-          <RevealItem>
-            <h2 className="font-display mt-6 text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{f.title}</h2>
-          </RevealItem>
-          <RevealItem>
-            <p className="mt-8 leading-relaxed text-ink-soft">{f.body}</p>
-          </RevealItem>
-        </RevealGroup>
-        <ul className="lg:col-span-7 lg:col-start-6">
-          {f.items.map((item, i) => {
-            const isOpen = open === i
-            return (
-              <Reveal key={item.q} as="li" delay={i * 0.08} className="border-b border-navy/15">
-                <h3>
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={`${id}-${i}`}
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-7 text-left"
-                  >
-                    <span className="font-display text-xl md:text-2xl">{item.q}</span>
-                    <span className="relative h-5 w-5 shrink-0" aria-hidden="true">
-                      <span className="absolute top-1/2 left-0 h-px w-5 bg-terracotta" />
-                      <span className={`absolute top-1/2 left-0 h-px w-5 bg-terracotta transition-transform duration-500 ${isOpen ? '' : 'rotate-90'}`} />
-                    </span>
-                  </button>
-                </h3>
-                {/* Answers stay in the DOM (prerendered for SEO); closed ones are collapsed and inert. */}
-                <div
-                  id={`${id}-${i}`}
-                  inert={!isOpen}
-                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="max-w-2xl pb-8 leading-relaxed text-ink-soft">
-                      <Rich text={item.a} />
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            )
-          })}
-        </ul>
+    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+      <SectionHeading eyebrow={f.eyebrow} title={f.title} />
+      <div className="mx-auto mt-12 max-w-3xl space-y-3">
+        {f.items.map((item) => (
+          <details key={item.q} className={`${card} group p-0 [&_summary::-webkit-details-marker]:hidden`}>
+            <summary className="flex cursor-pointer items-center justify-between gap-6 px-6 py-5 font-semibold text-navy md:px-8">
+              {item.q}
+              <Icon name="chevronDown" className="h-5 w-5 shrink-0 text-terracotta transition-transform duration-300 group-open:rotate-180" />
+            </summary>
+            <p className="px-6 pb-6 leading-relaxed text-ink-soft md:px-8">
+              <Rich text={item.a} />
+            </p>
+          </details>
+        ))}
       </div>
     </section>
+  )
+}
+
+export function Gestao() {
+  const { t } = useLang()
+  const g = t.gestao
+
+  return (
+    <>
+      <section className="px-5 pt-32 pb-20 md:px-8 md:pt-40 md:pb-28">
+        <div className="mx-auto grid max-w-[1200px] items-start gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+          <div className="animate-rise lg:sticky lg:top-32">
+            <Eyebrow>{g.hero.eyebrow}</Eyebrow>
+            <h1 className="font-display mt-4 text-[clamp(2.6rem,6vw,4.6rem)] leading-[1.02] tracking-[-0.015em] text-navy">
+              <Accent text={g.hero.title} />
+            </h1>
+            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-ink-soft">{g.hero.body}</p>
+            <div className={`${card} mt-8 flex max-w-md items-center gap-5 p-5`}>
+              <p className="font-display text-4xl leading-none text-terracotta">{g.hero.highlight.value}</p>
+              <p className="text-sm leading-snug text-ink-soft">
+                <strong className="font-semibold text-navy">{g.hero.highlight.label}</strong> {g.hero.highlight.text}
+              </p>
+            </div>
+            <ul className="mt-8 space-y-3">
+              {g.hero.points.map((point) => (
+                <li key={point} className="flex items-center gap-3 text-navy">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
+                    <Icon name="check" className="h-3.5 w-3.5" strokeWidth={2.5} />
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="animate-rise [animation-delay:120ms]">
+            <ProposalForm />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy-deep px-5 py-16 text-white md:py-20">
+        <dl className="mx-auto grid max-w-[1000px] grid-cols-1 gap-y-10 text-center sm:grid-cols-3">
+          {g.stats.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse">
+              <dt className="eyebrow mt-3 text-white/60">{s.label}</dt>
+              <dd className="font-display text-[clamp(3rem,6vw,4.5rem)] leading-none">
+                <CountUp to={s.value} locale={t.locale} />
+                <span className="text-terracotta">{s.suffix}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="px-5 py-24 md:px-8 md:py-32">
+        <SectionHeading eyebrow={g.services.eyebrow} title={g.services.title} body={g.services.body} />
+        <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {g.services.items.map((s, i) => (
+            <Reveal as="li" key={s.title} delay={(i % 3) * 0.08} className={`${card} p-7`}>
+              <IconTile name={s.icon} />
+              <h3 className="mt-5 font-semibold text-navy">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.text}</p>
+            </Reveal>
+          ))}
+        </ul>
+      </section>
+
+      <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+        <SectionHeading eyebrow={g.legal.eyebrow} title={g.legal.title} body={g.legal.body} />
+        <ol className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {g.legal.steps.map((s, i) => (
+            <Reveal as="li" key={s.title} delay={i * 0.06} className={`${card} relative p-6 text-center`}>
+              <span className="absolute top-4 right-5 font-display text-sm text-ink-soft/50">0{i + 1}</span>
+              <IconTile name={s.icon} />
+              <h3 className="mt-5 font-semibold text-navy">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.text}</p>
+            </Reveal>
+          ))}
+        </ol>
+      </section>
+
+      <section id="simulador" className="px-5 py-24 md:px-8 md:py-32">
+        <Simulator proposalHref="#proposta" />
+      </section>
+
+      <Faq />
+
+      <CtaBand eyebrow={g.cta.eyebrow} title={g.cta.title} body={g.cta.body}>
+        <Button anchor="#proposta">{g.cta.button}</Button>
+        <Button anchor={`tel:${EXTERNAL.phone}`} variant="ghost-light" icon="none">
+          <Icon name="phone" className="-ml-1 h-4 w-4" /> {EXTERNAL.phoneDisplay}
+        </Button>
+      </CtaBand>
+    </>
   )
 }

@@ -1,5 +1,6 @@
-// English translation of pt.ts (British English). To be validated by the client.
 import type { Content } from './pt'
+
+// English version. Same structure as pt.ts — TypeScript flags any missing key.
 
 export const en: Content = {
   locale: 'en-GB',
@@ -8,17 +9,22 @@ export const en: Content = {
     home: {
       title: 'Paradise Villas — Holiday rentals and property management in the Algarve',
       description:
-        'At Paradise Villas we create unique experiences for travellers — and smart solutions for investors. Holiday rentals and short-let property management in the Algarve.',
-    },
-    gestao: {
-      title: 'Holiday Rental Management in the Algarve — Paradise Villas',
-      description:
-        'Full management of your holiday rental: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms.',
+        'Hand-picked holiday homes in the Algarve, local experiences and complete holiday rental management. Book direct with Paradise Villas in Albufeira.',
     },
     experiencias: {
       title: 'Experiences in the Algarve — Paradise Villas',
       description:
-        'Boat trips, sea caves, dolphins, wine tastings, theme parks and much more. The experiences we recommend to enjoy the very best of the Algarve.',
+        'Boat trips to the Benagil caves, dolphin watching, kayaking, jeep safaris, wine tasting and much more. Book the best experiences in the Algarve online.',
+    },
+    gestao: {
+      title: 'Holiday Rental Management in the Algarve — Paradise Villas',
+      description:
+        'Complete management of your holiday rental: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms. Estimate your property’s income.',
+    },
+    parceiros: {
+      title: 'Partner Programme — Paradise Villas',
+      description:
+        'Refer property owners to Paradise Villas and earn a partner commission for every property that joins our management. For estate agents, building managers, accountants and individuals.',
     },
     sobre: {
       title: 'About Us — Paradise Villas',
@@ -27,7 +33,7 @@ export const en: Content = {
     },
     contactos: {
       title: 'Contact — Paradise Villas',
-      description: 'Get in touch by phone, email or through our form. Paradise Villas, Albufeira — Algarve.',
+      description: 'Talk to us by phone, WhatsApp, email or form. Paradise Villas, Albufeira — Algarve.',
     },
     privacidade: {
       title: 'Privacy Policy — Paradise Villas',
@@ -46,61 +52,104 @@ export const en: Content = {
   nav: {
     home: 'Home',
     alojamentos: 'Rentals',
-    gestao: 'Property Management',
     experiencias: 'Experiences',
-    sobre: 'About Us',
+    gestao: 'Property management',
+    parceiros: 'Partners',
+    sobre: 'About us',
     contactos: 'Contact',
-    ownerLogin: 'Owner Login',
-    book: 'Book now',
+    owner: 'Owners',
+    ownerLogin: 'Owner area',
+    book: 'Book',
     menu: 'Menu',
     close: 'Close',
     skip: 'Skip to content',
     switchLang: 'Português',
     switchLangShort: 'PT',
+    langLabel: 'Language',
   },
 
   common: {
-    verAlojamentos: 'See our rentals',
-    verTodos: 'See all',
+    verAlojamentos: 'View rentals',
     saberMais: 'Learn more',
-    contacteNos: 'Contact us',
-    faleConnosco: 'Talk to us',
-    comeceHoje: 'Start today',
-    comprar: 'Book',
-    verTodas: 'See all',
-    scroll: 'Scroll',
+    reservarAgora: 'Book now',
     home: 'Home',
     opensNewTab: '(opens in a new tab)',
+    scroll: 'Scroll',
   },
 
-  marquee: {
-    alojamentos: 'Amazing places for your holidays',
-    gestao: 'Holiday rental management',
-    footer: 'Paradise Villas — Perfect holidays',
+  form: {
+    name: 'Name',
+    namePlaceholder: 'Your name',
+    email: 'Email',
+    emailPlaceholder: 'email@example.com',
+    phone: 'Phone',
+    phonePlaceholder: '+44 …',
+    select: 'Select…',
+    consent: 'I have read and accept the',
+    consentLink: 'Privacy Policy',
+    sending: 'Sending…',
+    required: 'Required field',
+    error: 'We could not send this. Please try again or email us at',
   },
 
   home: {
     hero: {
-      title: ['Explore', 'the', 'Algarve'],
-      secondary: 'Property management',
-      chapters: [
-        { eyebrow: 'Magical places', title: 'Golden cliffs, carved by the sea.' },
-        { eyebrow: 'Perfect holidays', title: 'Your perfect home awaits.' },
-      ],
-    },
-    welcome: {
-      eyebrow: 'Welcome',
-      title: 'Paradise Villas: where your best holidays begin!',
-      body: 'At Paradise Villas we believe that perfect holidays begin in a place where comfort, privacy and trust come together. We offer amazing holiday homes and complete holiday rental management services, with a firm commitment to quality, transparency and outstanding service.',
+      badges: ['Albufeira, Algarve', 'Over 7 years of experience'],
+      title: 'Where your *best holidays* begin',
+      lead: 'Hand-picked holiday homes in the Algarve, with a personal check-in and support throughout your stay.',
+      search: {
+        label: 'Search rentals',
+        checkin: 'Check-in',
+        checkout: 'Check-out',
+        guests: 'Guests',
+        guest: 'guest',
+        guestsUnit: 'guests',
+        submit: 'Search',
+        invalid: 'The check-out date must be after the check-in date.',
+      },
       stats: [
+        { value: 200, suffix: '+', label: 'Properties' },
+        { value: 7, suffix: '+', label: 'Years of experience' },
         { value: 750, suffix: '+', label: 'Guests' },
         { value: 100, suffix: '%', label: 'Satisfaction' },
       ],
-      imageAlt: ['Swimming pool at a Paradise Villas home', 'Living room with a view at a Paradise Villas home'],
+    },
+    services: {
+      eyebrow: 'Services',
+      title: 'For an *incredible* stay',
+      body: 'Much more than a place to stay: we take care of the details so your Algarve holiday starts before you arrive.',
+      items: [
+        {
+          icon: 'home',
+          title: 'Hand-picked rentals',
+          text: 'Verified villas and apartments, professionally cleaned and stocked with welcome amenities.',
+          cta: 'View rentals',
+        },
+        {
+          icon: 'compass',
+          title: 'Experiences in the Algarve',
+          text: 'Sea caves, dolphins, kayaking and adventure — choose yours and book online in minutes.',
+          cta: 'View experiences',
+        },
+        {
+          icon: 'car',
+          title: 'Private transfers',
+          text: 'From Faro airport to your front door, in comfort and whenever you need.',
+          cta: 'Book a transfer',
+        },
+        {
+          icon: 'luggage',
+          title: 'Luggage storage',
+          text: 'Late flight? Leave your bags with us and enjoy your last day in the Algarve.',
+          cta: 'Contact us',
+        },
+      ],
     },
     featured: {
-      eyebrow: 'Book your holidays',
-      title: 'Find the perfect place for your holidays',
+      eyebrow: 'Rentals',
+      title: 'Choose your *holiday home*',
+      body: 'Villas with pools, apartments close to the beach and homes for the whole family, in the best areas of the Algarve.',
+      cta: 'View all rentals',
       villas: [
         {
           name: 'Villa Goreti',
@@ -125,219 +174,319 @@ export const en: Content = {
         },
       ],
     },
-    advantages: {
-      eyebrow: 'Book with us',
-      title: 'Why book your holidays with us',
-      body: 'At Paradise Villas, we offer much more than a place to stay. From the moment you book until the last day of your stay, we want you to feel truly at home, without a care in the world.',
+    management: {
+      eyebrow: 'Complete management',
+      title: 'Holiday rental *management*',
+      body: 'Let us take care of everything: we maximise your property’s income and make sure every guest has an excellent stay.',
       items: [
-        'Best price',
-        'Verified properties',
-        'Professional cleaning',
-        'Welcome amenities',
-        'Guest support',
-        'Personalised check-in',
+        'Cleaning between bookings',
+        'Maintenance',
+        'Photo shoot',
+        'Amenities',
+        'Personal check-in',
+        'Bed and bath linen',
+        'Deposit management',
+        'Dynamic pricing',
       ],
+      badge: { value: '500+', label: 'owners trust us' },
+      imageAlt: 'Living room of a villa managed by Paradise Villas',
+      cta: 'Learn more',
+      simulate: 'Estimate your income',
+    },
+    algarve: {
+      eyebrow: 'Algarve',
+      title: 'Much more than a *destination*',
+      body: 'Postcard beaches, golden cliffs, whitewashed villages and over 300 days of sunshine a year. The Algarve has everything for the perfect holiday — and we know it like no one else.',
+      features: [
+        { icon: 'sun', title: '300+ days of sun', text: 'One of the sunniest regions in Europe, for holidays at any time of year.' },
+        { icon: 'waves', title: 'Stunning beaches', text: 'From Falésia to Marinha: long sandy beaches and hidden coves.' },
+        { icon: 'utensils', title: 'Unique food', text: 'Fresh fish, seafood and the authentic flavours of the Algarve hills.' },
+      ],
+      imageAlt: ['Algarve beach with cliffs', 'Rock arch over the sea', 'Algarve village', 'Beach at sunset'],
+    },
+    experiences: {
+      eyebrow: 'Experiences',
+      title: 'Live the best of the *Algarve*',
+      body: 'The experiences we recommend most to our guests. Book online with instant confirmation.',
+      cta: 'View all experiences',
+    },
+    direct: {
+      badge: 'Book direct',
+      title: 'Book direct and *save*',
+      body: 'Booking on our website avoids the platforms’ service fees and puts you in touch with the people who look after your home.',
+      items: ['No platform service fees', 'Direct contact with our team', 'Personal check-in', 'Support throughout your stay'],
+      cta: 'View rentals',
     },
     testimonials: {
-      eyebrow: 'What people say about us',
-      title: 'Reviews from those who chose Paradise Villas',
+      eyebrow: 'Reviews',
+      title: 'What people say *about us*',
       items: [
         {
           quote:
-            'We loved our stay! The house was even better than in the photos, spotless and well equipped. Check-in was quick and easy, and the team’s support was flawless. We’ll definitely be back!',
+            'We loved our stay! The house was even better than in the photos, spotless and well equipped. Check-in was quick and easy, and the team’s support was faultless. We will definitely be back!',
           name: 'Marta Amorim',
           role: 'Guest in Albufeira',
         },
         {
           quote:
-            'I trusted my villa to Paradise Villas and couldn’t be happier. The team handles everything professionally and transparently. I have steady occupancy and zero worries.',
+            'I trusted my villa to Paradise Villas and could not be happier. The team handles everything professionally and transparently. Regular bookings and zero worries.',
           name: 'João Matias',
           role: 'Owner in Lagoa',
         },
         {
           quote:
-            'The perfect family holiday. The location was excellent, very close to the beach with everything nearby. The kids loved the pool! We really felt at home.',
+            'The perfect family holiday. Excellent location, close to the beach with everything nearby. The kids loved the pool! We really felt at home.',
           name: 'Carla Tavares',
           role: 'Guest in Pêra',
         },
       ],
-      prev: 'Previous review',
-      next: 'Next review',
     },
-    algarve: {
-      eyebrow: 'Why holiday in the Algarve?',
-      title: 'Six reasons to choose the Algarve',
+    contact: {
+      eyebrow: 'Contact',
+      title: 'Talk *to us*',
+      body: 'Own a property or planning your holiday? We are just a call or message away.',
+    },
+  },
+
+  channels: {
+    phone: { title: 'Phone', note: '(call to a Portuguese mobile number)' },
+    email: { title: 'Email' },
+    whatsapp: { title: 'WhatsApp', value: 'Send us a message' },
+  },
+
+  experiencias: {
+    header: {
+      eyebrow: 'Algarve',
+      title: 'Adventure, fun and *discovery*',
+      body: 'Boat trips, sea caves, dolphins and much more. We have picked the best experiences to enjoy the Algarve during your stay.',
+    },
+    filtersLabel: 'Filter experiences',
+    filters: { all: 'All', barco: 'Boat', aventura: 'Adventure', natureza: 'Nature', cultura: 'Culture' },
+    items: [
+      {
+        title: 'Benagil Cave, Algar Seco and Praia da Marinha',
+        text: 'A boat trip to the Algarve’s most famous sea caves and cliffs.',
+        place: 'Albufeira',
+        category: 'barco',
+        image: 'experiencias-arco',
+        slug: { pt: 'sete-vales-suspensos-algarve-passeio-barco', en: 'seven-hanging-valleys-benagil-boat-tour' },
+      },
+      {
+        title: 'Dolphin watching',
+        text: 'See dolphins in their natural habitat off the coast of Albufeira.',
+        place: 'Albufeira',
+        category: 'barco',
+        image: 'exp-golfinhos-grutas',
+        slug: { pt: 'avistamento-golfinhos-albufeira', en: 'dolphin-watching-albufeira' },
+      },
+      {
+        title: 'Kayak tour',
+        text: 'Paddle into sea caves and hidden coves, close to the water and the rock.',
+        place: 'Albufeira',
+        category: 'natureza',
+        image: 'exp-caiaque',
+        slug: { pt: 'tour-caiaque-albufeira', en: 'kayak-tour-albufeira' },
+      },
+      {
+        title: 'Jeep safari',
+        text: 'An off-road adventure through dirt tracks, villages and viewpoints in the Algarve hills.',
+        place: 'Albufeira',
+        category: 'aventura',
+        image: 'exp-safari',
+        slug: { pt: 'jeep-safari-albufeira-entardecer', en: 'jeep-safari-tour' },
+      },
+      {
+        title: 'Algarve villages and wine tasting',
+        text: 'Carvoeiro, Benagil and Ferragudo, the coast’s prettiest villages, with an Algarve wine tasting.',
+        place: 'Lagoa',
+        category: 'cultura',
+        image: 'exp-vinhos-silves',
+        slug: { pt: 'carvoeiro-benagil-ferragudo-degustacao-vinhos', en: 'algarve-villages-wine-tasting' },
+      },
+      {
+        title: 'Parasailing',
+        text: 'Fly over the sea and see Albufeira from a unique perspective.',
+        place: 'Albufeira',
+        category: 'aventura',
+        image: 'exp-parasailing',
+        slug: { pt: 'parasailing-albufeira', en: 'parasailing' },
+      },
+      {
+        title: 'Beginner scuba diving',
+        text: 'Your first dive, guided by certified instructors.',
+        place: 'Albufeira',
+        category: 'natureza',
+        image: 'exp-mergulho',
+        slug: { pt: 'batismo-mergulho-albufeira', en: 'scuba-diving-introduction' },
+      },
+      {
+        title: 'Sagres, Cape St. Vincent and Silves',
+        text: 'A day trip to the south-western tip of Europe and the historic town of Silves.',
+        place: 'Sagres',
+        category: 'cultura',
+        image: 'experiencias-capela',
+        slug: { pt: 'excursao-sagres-lagos', en: 'sagres-lagos-st-vincent-tour' },
+      },
+    ],
+    more: {
+      eyebrow: 'More experiences',
+      title: 'Explore all *available* activities',
+      body: 'Discover hundreds of activities and experiences in the Algarve, with secure online booking.',
+      cta: 'View all on Civitatis',
+    },
+    extras: {
+      eyebrow: 'Extra services',
+      title: 'Making your stay *even easier*',
+      body: 'Beyond experiences, we offer practical services so you have nothing to worry about on holiday.',
       items: [
         {
-          title: 'Sport all year round',
-          text: 'Golf, surfing, sailing, paddle boarding and coastal walks — there is a sport for every season.',
-          image: 'algarve-desportos',
+          icon: 'car',
+          title: 'Airport transfer',
+          text: 'Arrive at your rental stress-free: private transfers straight from Faro airport, comfortable and on time.',
+          cta: 'Book a transfer',
         },
         {
-          title: 'Warmth and hospitality',
-          text: 'People who know how to welcome you, at the table and in the street. In the Algarve you feel at home from day one.',
-          image: 'algarve-hospitalidade',
+          icon: 'luggage',
+          title: 'Luggage storage',
+          text: 'The perfect solution for late flights: leave your bags with us and keep exploring the Algarve.',
+          cta: 'Contact us',
         },
         {
-          title: 'Magical places',
-          text: 'Sea caves, golden rock arches and cliffs that look carved by hand.',
-          image: 'algarve-lugares',
-        },
-        {
-          title: 'For families and friends',
-          text: 'Calm beaches, water parks and spacious homes to share the best days of the year.',
-          image: 'algarve-familias',
-        },
-        {
-          title: 'Tradition and modernity',
-          text: 'Whitewashed towns, markets and traditional cooking, side by side with marinas and chef-led restaurants.',
-          image: 'algarve-tradicao',
-        },
-        {
-          title: 'Stunning beaches',
-          text: 'Long sandy stretches and hidden coves, with golden sand and crystal-clear water.',
-          image: 'algarve-praias',
+          icon: 'map',
+          title: 'Experiences with locals',
+          text: 'Tours, theme parks and activities recommended by people who live in the Algarve, on our HugLocals page.',
+          cta: 'View on HugLocals',
         },
       ],
-    },
-    management: {
-      eyebrow: 'Holiday rental management',
-      title: 'Complete management of your holiday rental',
-      body: 'At Paradise Villas, we offer a **complete** holiday rental management service — designed for owners who value professional support. We manage your property as if it were our own — **focused on profitability and the quality of the guest experience.**',
-      items: [
-        'Personalised check-in',
-        'Cleaning and maintenance',
-        'Laundry',
-        'Property inspections',
-        'Marketing and visibility',
-        'Photography and video',
-        'Welcome amenities',
-        'Deposit management',
-      ],
-    },
-    cta: {
-      eyebrow: 'We take care of everything',
-      title: 'Not sure how to start earning from your property?',
-      lead: 'At Paradise Villas, we make the complex simple.',
-      body: 'Whether you are starting from scratch or want to get more out of what you already have, we handle the whole process: from licensing to the day-to-day management of your holiday rental. We deal with the paperwork, welcome your guests, and take care of cleaning, maintenance and accounting support.',
     },
   },
 
   gestao: {
-    header: { eyebrow: 'Holiday rental services', title: 'Property Management' },
-    intro: {
-      title: 'Complete, hassle-free management of your holiday rental',
-      body: 'Do you own a holiday home you would like to rent out profitably and hassle-free? We provide an excellent service with **complete management of your property**, from licensing through to guest check-out. We take care of everything so you get peace of mind and a solid return.',
-      lead: 'Here is everything included when you trust Paradise Villas with your holiday rental:',
+    hero: {
+      eyebrow: 'Holiday rental management',
+      title: 'Ready to *get started*?',
+      body: 'Leave your details and a few facts about your property. We will prepare a tailored proposal, with no commitment.',
+      points: [
+        'Free assessment of your property’s potential',
+        'Tailored proposal, no commitment',
+        'We handle the licensing if needed',
+        'Support from start to finish',
+      ],
+      highlight: { value: '500+', label: 'owners', text: 'already trust Paradise Villas to manage their property.' },
     },
-    services: [
-      {
-        title: 'Cleaning between bookings',
-        text: 'We clean after every check-out, using qualified external teams, so the property is comfortable and hygienic for the next guest.',
-      },
-      {
-        title: 'Maintenance and inspections',
-        text: 'Our technical team handles small repairs, replacements and one-off assistance, keeping the property running smoothly for every booking.',
-      },
-      {
-        title: 'Photo and/or video shoot',
-        text: 'We arrange a professional photo and/or video shoot to showcase your property on booking platforms and attract more quality guests.',
-      },
-      {
-        title: 'Welcome amenities',
-        text: 'We supply shampoo, shower gel, toilet paper and a welcome kit so guests feel comfortable from the moment they arrive.',
-      },
-      {
-        title: 'Personalised check-in',
-        text: 'We look after every guest from booking to check-out, with a personal welcome and full support throughout their stay at your property.',
-      },
-      {
-        title: 'Laundry, bed and bath linen',
-        text: 'We work with external teams and laundries that ensure deep cleaning and sanitising between every booking, with great attention to detail.',
-      },
-      {
-        title: 'Secure deposit management',
-        text: 'We securely manage the deposits paid by guests, with strict control of payments and refunds, protecting both the property and the owner.',
-      },
-      {
-        title: 'Visibility and occupancy',
-        text: 'We promote your property on the main booking channels — such as Airbnb, Booking, Vrbo and Expedia — and on our website, for maximum visibility and occupancy.',
-      },
-      {
-        title: 'Dynamic, tailored pricing',
-        text: 'We adjust prices according to demand, season and occupancy, maximising the owner’s income without making the property less attractive.',
-      },
-    ],
+    proposal: {
+      title: 'Request your proposal',
+      details: 'Property details (optional)',
+      type: 'Type',
+      types: ['Apartment', 'Villa', 'Other'],
+      bedrooms: 'Bedrooms',
+      location: 'Location',
+      locationPlaceholder: 'e.g. Albufeira',
+      pool: 'Has a pool',
+      submit: 'Request proposal',
+      success: 'Thank you! We have received your request and will be in touch very soon.',
+    },
     stats: [
       { value: 500, suffix: '+', label: 'Owners' },
       { value: 200, suffix: '+', label: 'Properties' },
       { value: 750, suffix: '+', label: 'Guests' },
     ],
-    legal: {
-      eyebrow: 'We take care of everything',
-      title: 'Want to license your holiday rental?',
-      body: 'We can do it for you. We work with qualified professionals — solicitors, accountants and technicians — to make sure everything is done properly. **We take care of the 5 essential steps:**',
-      steps: [
+    services: {
+      eyebrow: 'What’s included',
+      title: 'Services *included*',
+      body: 'Everything you need to earn from your property without the hassle.',
+      items: [
         {
-          title: 'Holiday rental insurance',
-          text: 'We arrange the mandatory third-party liability insurance for holiday rental properties.',
+          icon: 'sparkles',
+          title: 'Cleaning between bookings',
+          text: 'Cleaning after every check-out by qualified teams, keeping the property comfortable and hygienic.',
         },
         {
-          title: 'SIBA registration',
-          text: 'We register the property for the mandatory reporting of foreign guests (SIBA), as required by law.',
+          icon: 'wrench',
+          title: 'Maintenance and inspections',
+          text: 'A technical team for small repairs, replacements and one-off assistance, so everything always works.',
         },
         {
-          title: 'Holiday rental licence',
-          text: 'We submit the official application for the holiday rental (Alojamento Local) licence with the local council.',
+          icon: 'camera',
+          title: 'Photo and video shoot',
+          text: 'Professional photography and video to showcase your property and attract more bookings.',
         },
         {
-          title: 'Tax registration',
-          text: 'We open or update your activity with the Tax Authority so everything is fully compliant.',
+          icon: 'gift',
+          title: 'Welcome amenities',
+          text: 'Shampoo, shower gel, toilet paper and a welcome kit so guests feel at home from the start.',
         },
         {
-          title: 'Holiday rental safety kit',
-          text: 'We provide all the mandatory items: fire extinguisher, fire blanket, signage, complaints book and more.',
+          icon: 'key',
+          title: 'Personal check-in',
+          text: 'We look after every guest from booking to check-out, with a personal welcome and support throughout.',
+        },
+        {
+          icon: 'shirt',
+          title: 'Bed and bath linen',
+          text: 'Clean, ironed sheets and towels, professionally laundered and changed between stays.',
+        },
+        {
+          icon: 'shield',
+          title: 'Deposit management',
+          text: 'Careful handling of security deposits, payments and refunds, protecting the property and the owner.',
+        },
+        {
+          icon: 'globe',
+          title: 'Visibility and occupancy',
+          text: 'Listings on Airbnb, Booking, Vrbo, Expedia and our own website for maximum visibility and occupancy.',
+        },
+        {
+          icon: 'chart',
+          title: 'Dynamic pricing',
+          text: 'Prices adjusted to demand, season and occupancy to maximise your income all year round.',
         },
       ],
     },
-    includes: {
-      eyebrow: 'We bring in more bookings',
-      title: 'We make sure your property stands out!',
-      label: 'What’s included?',
-      cards: [
-        {
-          title: 'Bed and bath linen',
-          image: 'gestao-roupas',
-          items: [
-            '**Complete supply:** clean, ironed sheets and towels.',
-            '**Professional laundry:** hygiene guaranteed with certified products.',
-            '**Efficient changeovers:** restocked between stays so the property is always ready.',
-          ],
-        },
-        {
-          title: 'Maintenance and repairs',
-          image: 'gestao-manutencao',
-          items: [
-            '**Regular visits:** we inspect the property to prevent problems.',
-            '**Quick repairs:** we fix issues such as taps, locks or lights.',
-            '**A property that works:** everything working properly from check-in to check-out.',
-          ],
-        },
-        {
-          title: 'Marketing and listings',
-          image: 'gestao-marketing',
-          items: [
-            '**Marketing:** ads and campaigns to bring in more bookings.',
-            '**Listing creation and optimisation:** we publish your property on the main platforms.',
-            '**Continuous performance tuning:** we analyse the data and optimise prices, copy and promotions.',
-          ],
-        },
+    legal: {
+      eyebrow: 'Starting from scratch?',
+      title: 'We take care of *everything*',
+      body: 'From licensing to day-to-day management, we work with qualified solicitors, accountants and technicians so everything is done properly.',
+      steps: [
+        { icon: 'shield', title: 'Rental insurance', text: 'We arrange the mandatory civil liability insurance for holiday rentals.' },
+        { icon: 'file', title: 'SIBA registration', text: 'The legally required reporting of foreign guests’ stays.' },
+        { icon: 'badge', title: 'Rental licence', text: 'The official holiday rental (AL) licence application with the local council.' },
+        { icon: 'briefcase', title: 'Tax registration', text: 'We open or update your business activity with the tax office so everything is in order.' },
+        { icon: 'flame', title: 'Safety kit', text: 'Fire extinguisher, fire blanket, signage, complaints book and every other mandatory item.' },
       ],
+    },
+    simulator: {
+      eyebrow: 'Income estimate',
+      title: 'How much could *your property* earn?',
+      body: 'Tell us where your property is and what it offers, and get an estimate of its yearly holiday rental income.',
+      location: 'Location',
+      locationNote: '(Algarve only)',
+      locationPlaceholder: 'Select a location…',
+      type: 'Property type',
+      types: { apartamento: 'Apartment', moradia: 'Villa' },
+      bedrooms: 'Bedrooms',
+      bedroomOptions: ['Studio', '1 bedroom', '2 bedrooms', '3 bedrooms', '4 bedrooms', '5 bedrooms', '6 or more'],
+      extras: 'Features',
+      pool: 'Pool',
+      seaView: 'Sea view',
+      next: 'Estimate income',
+      contactTitle: 'Where should we send the estimate?',
+      contactBody: 'Leave your details to see the result. One of our managers can then help you understand your property’s real potential.',
+      back: 'Back',
+      submit: 'See estimate',
+      resultTitle: 'Estimated yearly income',
+      to: 'to',
+      perNight: 'average nightly rate',
+      nights: 'booked nights per year',
+      disclaimer:
+        'Indicative estimate of gross booking revenue, before cleaning, platform commissions and taxes. Actual figures depend on the property, the season and demand.',
+      cta: 'I want a proposal',
+      restart: 'New estimate',
+      sendError: 'We could not register your details, but here is your estimate. Give us a call to find out more.',
     },
     faq: {
-      eyebrow: 'Your questions answered',
-      title: 'Frequently asked questions',
-      body: 'Here are answers to the most common questions. Feel free to get in touch if you still have any doubts.',
+      eyebrow: 'Your questions',
+      title: 'Frequently asked *questions*',
       items: [
         {
           q: 'How are booking prices set?',
@@ -345,162 +494,165 @@ export const en: Content = {
         },
         {
           q: 'How can I follow my property’s performance?',
-          a: 'We provide an **online dashboard** where you can follow **bookings**, **occupancy rate**, **prices** and **guest reviews** in real time — with full transparency.',
+          a: 'You get an **online dashboard** where you can follow **bookings**, **occupancy rate**, **prices** and **guest reviews** in real time — with full transparency.',
         },
         {
           q: 'How do I sign up?',
-          a: 'It’s simple! Just **get in touch** and we will send you all the details. Joining is **quick and hassle-free**, and your property can start generating income in no time.',
+          a: 'It’s simple! Just **request your proposal** on this page or **get in touch**. Joining is **quick and hassle-free**, and your property can start earning in no time.',
         },
       ],
     },
     cta: {
-      eyebrow: 'Don’t wait any longer',
-      title: 'Unlock your property’s potential today!',
-      body: 'If you have a home that sits empty or is under-used, this is your chance to turn it into a real asset. At Paradise Villas we take care of everything — so you earn effortlessly, with full support and zero paperwork. Start now and let your property work for you.',
+      eyebrow: 'Talk to us',
+      title: 'Want to know *more*?',
+      body: 'Own a property and looking for a hassle-free way to earn from it? You are in the right place.',
+      button: 'Request proposal',
     },
   },
 
-  experiencias: {
-    header: { eyebrow: 'Live the best of the Algarve', title: 'Experiences' },
-    intro: {
-      title: 'Why choose the Algarve for your holidays?',
-      body: [
-        'Sunshine all year round, stunning beaches, unspoilt nature and a welcoming spirit make the Algarve the ideal holiday destination at any time of year. Combining a beautiful coastline with culture, food and adventure, it is perfect for both relaxing and exploring.',
-        'At **Paradise Villas**, we believe every trip deserves to be unique — so we have gathered the best experiences for you to make the most of everything this incredible region has to offer.',
-      ],
-      stripAlt: ['The Algarve coast seen from the sea', 'A marina in the Algarve', 'A rock arch over the sea', 'Beach and cliffs at sunset'],
+  parceiros: {
+    hero: {
+      eyebrow: 'Partner programme',
+      title: 'Grow with us as a *partner*',
+      body: 'Know owners looking for management they can trust? Refer them to Paradise Villas and earn a commission for every property that joins our management.',
+      cta: 'Become a partner',
     },
-    complete: {
-      eyebrow: 'The complete experience',
-      title: 'More than a holiday, a complete experience!',
-      body: [
-        'At **Paradise Villas**, we don’t just offer places to stay — we create complete, comfortable, worry-free stays. Whether you want to relax, seek adventure or explore the best of the Algarve, we have thought of everything for you.',
-        'We have selected unique experiences with the best local operators, so every moment of your stay is memorable.',
-      ],
-      checks: [
-        '**Book experiences** with us, simply and securely',
-        '**Get personal support** before, during and after your stay',
-        '**Enjoy local recommendations**',
-      ],
+    rate: {
+      label: 'Partner commission',
+      text: 'of the management revenue from every property you refer.',
     },
-    solutions: {
-      eyebrow: 'A solution for everything',
+    who: {
+      eyebrow: 'Who it’s for',
+      title: 'Who can be a *partner*',
       items: [
         {
-          title: 'Need somewhere to leave your luggage?',
-          text: 'The perfect solution for late flights: leave your bags with us and keep exploring the Algarve freely.',
+          icon: 'building',
+          title: 'Estate agents and consultants',
+          text: 'Clients buying to invest? We help them earn from the property from day one.',
         },
         {
-          title: 'Direct, private transfers',
-          text: 'Travel stress-free! We offer private transport for all guests, at any time. We also provide a **personal taxi service** so you can go wherever you want, whenever you want.',
+          icon: 'key',
+          title: 'Building managers',
+          text: 'You know the owners in the building and which homes sit empty or under-used.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Accountants and solicitors',
+          text: 'You advise owners every day. Recommend a serious, complete management service.',
+        },
+        {
+          icon: 'users',
+          title: 'Individuals',
+          text: 'A friend or relative owns a holiday home? A recommendation is all it takes.',
         },
       ],
     },
-    list: {
-      eyebrow: 'Something for everyone',
-      title: 'The experiences we recommend',
-      placeLabel: 'Location',
-      durationLabel: 'Duration',
+    steps: {
+      eyebrow: 'How it works',
+      title: 'Three steps, *zero hassle*',
       items: [
-        { title: 'Dolphins and caves', area: 'Albufeira Marina', text: 'Dolphin watching and a visit to the sea caves', place: 'Albufeira', duration: '2h30', image: 'exp-golfinhos-grutas', href: 'https://huglocals.com/Pereira/a/dolphins-and-caves/15' },
-        { title: 'Kayak and coastline', area: 'Albufeira Marina', text: 'Enjoy the beauty of the sea the eco-friendly way', place: 'Albufeira', duration: '2h30', image: 'exp-caiaque', href: 'https://huglocals.com/Pereira/a/kayak-and-coast-line/533' },
-        { title: 'Two-dive trip', area: 'Albufeira', text: '2 dives, for certified divers only', place: 'Albufeira', duration: '4h00', image: 'exp-mergulho', href: 'https://huglocals.com/Pereira/a/2-dives-trip/53' },
-        { title: 'Wine tasting', area: 'Silves', text: 'Taste local wines and visit the historic town of Silves', place: 'Silves', duration: '4h00', image: 'exp-vinhos-silves', href: 'https://huglocals.com/Pereira/a/half-day-wine-tasting-tour/511' },
-        { title: 'A day at Zoomarine', area: 'Guia', text: 'The best theme park in the Algarve', place: 'Guia', duration: '1 day', image: 'exp-zoomarine', href: 'https://huglocals.com/Pereira/a/entry-1-day/11015' },
-        { title: 'A day at Aquashow', area: 'Albufeira', text: 'The best water park in the Algarve', place: 'Albufeira', duration: '1 day', image: 'exp-aquashow', href: 'https://huglocals.com/Pereira/a/outside-water-park/10483' },
-        { title: 'A day at Krazy World', area: 'Algoz', text: 'Exotic animals, pools, slides, mini golf and more', place: 'Algoz', duration: '1 day', image: 'exp-krazy-world', href: 'https://huglocals.com/Pereira/a/zoo-and-activity-ticket/59' },
-        { title: 'Tandem skydiving', area: 'Portimão Airfield', text: 'Free fall in a thrilling tandem jump', place: 'Portimão Airfield', duration: '2h00', image: 'exp-paraquedismo', href: 'https://huglocals.com/Pereira/a/tandem-skydiving-10-000-ft/81' },
-        { title: 'Jeep safari', area: 'Albufeira', text: 'Set off on a safari adventure through the Algarve hills', place: 'Albufeira', duration: '4h00', image: 'exp-safari', href: 'https://huglocals.com/Pereira/a/safari-half-day/110' },
-        { title: 'Beach barbecue', area: 'Vilamoura', text: 'A cruise along the Algarve coast and a barbecue on the beach', place: 'Vilamoura', duration: '7h30', image: 'exp-churrasco', href: 'https://huglocals.com/Pereira/a/beach-bbq-vilamoura/10159' },
-        { title: 'Algarve boat party', area: 'Albufeira Marina', text: 'Music, sea and good vibes on a sunset cruise', place: 'Albufeira', duration: '3h00', image: 'exp-festa-barco', href: 'https://huglocals.com/Pereira/a/boat-party/12' },
-        { title: 'Parasailing: fly over the sea', area: 'Albufeira', text: 'Soar above the sea and see the Algarve from a new angle', place: 'Albufeira', duration: '10 min', image: 'exp-parasailing', href: 'https://huglocals.com/Pereira/a/parasailling/17' },
+        { title: 'Refer', text: 'Send us the owner’s contact, with their permission, through the form or by phone.' },
+        { title: 'We do the rest', text: 'We visit the property, present our proposal and handle the whole process.' },
+        { title: 'Earn your commission', text: 'Once the property joins our management, you receive your share — fully transparent.' },
       ],
+    },
+    benefits: {
+      title: 'Why partner with *Paradise Villas*',
+      items: ['Commission paid transparently, with paperwork', 'Every referral followed up', 'A local team in the Algarve', 'No cost to the partner'],
+    },
+    form: {
+      eyebrow: 'Apply',
+      title: 'Become a *partner*',
+      body: 'Fill in the form and we will get in touch to explain every detail of the programme.',
+      company: 'Company (optional)',
+      companyPlaceholder: 'Company name',
+      partnerType: 'Partner type',
+      partnerTypes: ['Estate agent or consultant', 'Building manager', 'Accountant or solicitor', 'Individual', 'Other'],
+      message: 'Message (optional)',
+      submit: 'I want to be a partner',
+      success: 'Thank you! We have received your application and will be in touch very soon.',
     },
   },
 
   sobre: {
-    header: { eyebrow: 'About us', title: 'About Us' },
+    header: {
+      eyebrow: 'About us',
+      title: 'Meet *Paradise Villas*',
+      body: 'Holiday rental management specialists in the Algarve, focused on warm and unforgettable stays.',
+    },
     intro: {
-      title: 'Meet Paradise Villas',
       body: [
         'At **Paradise Villas** we specialise in holiday rental management in the Algarve, focused on creating warm and unforgettable stays. More than managing properties, **we create unique experiences that make guests feel at home.**',
         'We work closely, with dedication and attention to detail — to ensure comfort, safety and well-being in every stay.',
       ],
-      rings: [
-        { value: 100, label: 'Transparency' },
-        { value: 100, label: 'Hospitality' },
+      imageAlt: 'Pool of a Paradise Villas villa',
+    },
+    pillars: {
+      eyebrow: 'What drives us',
+      title: 'Mission, vision and *values*',
+      items: [
+        {
+          icon: 'compass',
+          title: 'Mission',
+          text: 'To provide memorable, comfortable stays for visitors to the Algarve through efficient holiday rental management, for guests and owners alike.',
+        },
+        {
+          icon: 'star',
+          title: 'Vision',
+          text: 'To be a benchmark in holiday rental management in the Algarve, known for excellent service, attention to detail and authentic, welcoming experiences.',
+        },
+        {
+          icon: 'heart',
+          title: 'Values',
+          text: 'Trust, hospitality, dedication and professionalism — with owners, guests and partners. These are the pillars behind everything we do.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'What sets us apart',
+          text: 'Personal service, designed down to the last detail. We manage every property as if it were our own and welcome every guest as we would like to be welcomed.',
+        },
       ],
     },
-    pillars: [
-      {
-        title: 'Mission',
-        text: 'To provide memorable, comfortable stays for visitors to the Algarve through efficient holiday rental management, for guests and owners alike.',
-        image: 'sobre-missao',
-      },
-      {
-        title: 'Vision',
-        text: 'To be a benchmark in holiday rental management in the Algarve, recognised for outstanding service, attention to detail and authentic, welcoming experiences.',
-        image: 'sobre-visao',
-      },
-      {
-        title: 'Values',
-        text: 'Trust, hospitality, dedication and professionalism — with owners, guests and partners. These are the pillars that guide everything we do, day after day.',
-        image: 'sobre-valores',
-      },
-      {
-        title: 'What sets us apart',
-        text: 'What makes us different? A personal approach and a service designed down to the last detail. We manage every property as if it were our own and welcome every guest the way we would like to be welcomed.',
-        image: 'sobre-diferenciacao',
-      },
-    ],
     founder: {
       eyebrow: 'Meet the founder',
       name: 'Bruno Pereira',
-      title: 'A passion for the Algarve. Dedication to every detail.',
+      title: 'Passion for the Algarve. *Dedication* to every detail.',
       imageAlt: 'Bruno Pereira, founder of Paradise Villas',
       body: [
-        'Bruno Pereira is the founder of Paradise Villas and the face behind every successful stay. Born in the Algarve and with more than 7 years of experience in holiday rentals, he created the brand to offer much more than holiday homes: warm, relaxed and authentic experiences, for guests and owners alike.',
-        'With an entrepreneurial spirit and constant attention to detail, Bruno personally oversees every process — from welcoming guests to the day-to-day management of the properties. His mission is to make sure everything runs smoothly, every day, with professionalism, a personal touch and a genuine smile.',
-        '**Passionate about the region and about people, he believes a holiday rental’s success starts with how you care for those who choose it — whether for a holiday or an investment.**',
+        'Bruno Pereira is the founder of Paradise Villas and the face behind every successful stay. Born in the Algarve and with more than 7 years of experience in holiday rentals, he created the brand to offer much more than holiday homes: warm, relaxed and authentic experiences for guests and owners alike.',
+        'With an entrepreneurial spirit and constant attention to detail, Bruno personally oversees every process — from welcoming guests to the day-to-day management of each property — with professionalism, closeness and a genuine smile.',
       ],
-      closing:
-        'Trust someone who lives the Algarve, understands hospitality and treats your property and your holidays with unique care. Trust Paradise Villas.',
+      closing: 'Trust someone who lives the Algarve, understands hospitality and looks after your property and your holiday with unique care.',
     },
     ctas: [
       {
         title: 'Holiday rental management',
-        text: 'Earn from your property with confidence, transparency and full support — we take care of everything for you.',
+        text: 'Earn from your property with confidence, transparency and full support — we take care of everything.',
         image: 'sobre-cta-gestao',
       },
       {
-        title: 'Holiday homes',
-        text: 'Algarve holidays with comfort, privacy and everything prepared down to the last detail — all you need to do is relax.',
+        title: 'Holiday rentals',
+        text: 'Holidays in the Algarve with comfort, privacy and every detail prepared — all you need to do is relax.',
         image: 'sobre-cta-alojamentos',
       },
     ],
   },
 
   contactos: {
-    header: { eyebrow: 'Talk to us', title: 'Contact' },
-    info: { location: 'Location', locationValue: 'Albufeira, Algarve', phone: 'Phone', email: 'Email' },
-    form: {
-      title: 'Any questions? Talk to us',
-      body: 'Get in touch by email or phone, or fill in the form and we will get back to you as soon as possible.',
-      name: 'Name',
-      email: 'Email',
-      phone: 'Mobile',
-      service: 'Service',
-      servicePlaceholder: 'Choose a service',
-      services: ['Holiday bookings', 'Holiday rental management'],
-      message: 'Message',
-      consent: 'I have read and accept the',
-      consentLink: 'Privacy Policy',
-      submit: 'Send',
-      sending: 'Sending…',
-      success: 'Thank you! We have received your message and will get back to you as soon as possible.',
-      error: 'We could not send your message. Please try again or email us at',
-      required: 'Required field',
+    header: {
+      eyebrow: 'Contact',
+      title: 'Talk *to us*',
+      body: 'Own a property or planning your holiday? Call, send a message or fill in the form — we reply as soon as possible.',
     },
+    form: {
+      title: 'Send us a message',
+      service: 'Subject',
+      services: ['Holiday bookings', 'Holiday rental management', 'Partnerships', 'Something else'],
+      message: 'Message',
+      submit: 'Send message',
+      success: 'Thank you! We have received your message and will get back to you as soon as possible.',
+    },
+    address: { title: 'Address' },
     map: {
       title: 'Where we are',
       notice: 'The map is loaded from Google Maps, which may set cookies.',
@@ -516,17 +668,16 @@ export const en: Content = {
 
   notFound: {
     eyebrow: 'Error 404',
-    title: 'This page has gone on holiday.',
+    title: 'This page went on *holiday*.',
     body: 'The page you are looking for does not exist or has moved.',
     back: 'Back to home',
   },
 
   footer: {
-    tagline: 'Perfect holidays!',
+    tagline: 'Holiday rentals and holiday rental management in the Algarve.',
+    links: 'Useful links',
     contacts: 'Contact',
-    services: 'Services',
-    alojamentos: 'Holiday rentals',
-    follow: 'Follow us',
+    follow: 'Social media',
     company: 'Paradise Villas is a brand of Powerfuleader, Lda.',
     rights: 'All rights reserved.',
     complaints: 'Complaints Book',

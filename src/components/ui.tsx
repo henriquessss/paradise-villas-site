@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useLang } from '../content'
 
 export function Arrow({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className={`h-4 w-4 ${className}`}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true" className={`h-4 w-4 ${className}`}>
       <path d="M4 12h15M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
@@ -12,19 +12,40 @@ export function Arrow({ className = '' }: { className?: string }) {
 
 export function ArrowUpRight({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className={`h-4 w-4 ${className}`}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true" className={`h-4 w-4 ${className}`}>
       <path d="M7 17 17 7M8 7h9v9" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-type Variant = 'solid' | 'outline' | 'light' | 'ghost-light'
+/** Renders a title where `*text*` becomes the italic terracotta accent. */
+export function Accent({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\*[^*]+\*)/g).map((part, i) =>
+        part.startsWith('*') && part.endsWith('*') ? (
+          <em key={i} className="text-terracotta italic">
+            {part.slice(1, -1)}
+          </em>
+        ) : (
+          <Fragment key={i}>{part}</Fragment>
+        ),
+      )}
+    </>
+  )
+}
+
+/** Plain-text version of an accented title (aria-labels, alt texts). */
+export const plain = (text: string) => text.replace(/\*/g, '')
+
+type Variant = 'solid' | 'outline' | 'dark' | 'light' | 'ghost-light'
 
 const variants: Record<Variant, string> = {
-  solid: 'bg-terracotta text-cream hover:bg-navy',
-  outline: 'border border-navy/30 text-navy hover:border-navy hover:bg-navy hover:text-cream',
-  light: 'bg-cream text-navy hover:bg-terracotta hover:text-cream',
-  'ghost-light': 'border border-cream/40 text-cream hover:border-cream hover:bg-cream hover:text-navy',
+  solid: 'bg-terracotta text-white shadow-[0_8px_24px_-8px_rgba(214,89,55,0.6)] hover:bg-terracotta-dark',
+  outline: 'border border-navy/20 bg-white text-navy hover:border-navy/40 hover:bg-sand',
+  dark: 'bg-navy text-white hover:bg-navy-deep',
+  light: 'bg-white text-navy hover:bg-sand',
+  'ghost-light': 'border border-white/40 text-white hover:bg-white hover:text-navy',
 }
 
 interface ButtonProps {
@@ -35,20 +56,21 @@ interface ButtonProps {
   to?: string
   /** External URL — opens in a new tab. */
   href?: string
+  /** Same-page anchor or tel:/mailto: — no new tab. */
+  anchor?: string
+  icon?: 'arrow' | 'external' | 'none'
 }
 
-/** Pill button with a sliding arrow. Internal (`to`) or external (`href`). */
-export function Button({ children, variant = 'solid', className = '', to, href }: ButtonProps) {
+/** Rounded button. Internal (`to`), external (`href`) or plain link (`anchor`). */
+export function Button({ children, variant = 'solid', className = '', to, href, anchor, icon }: ButtonProps) {
   const { t } = useLang()
-  const classes = `group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-[0.8rem] font-semibold tracking-[0.14em] uppercase transition-colors duration-300 ${variants[variant]} ${className}`
+  const classes = `group inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[0.92rem] font-semibold transition-colors duration-300 ${variants[variant]} ${className}`
+  const kind = icon ?? (href ? 'external' : 'arrow')
   const inner = (
     <>
       <span>{children}</span>
-      {href ? (
-        <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      ) : (
-        <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
-      )}
+      {kind === 'external' && <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
+      {kind === 'arrow' && <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />}
     </>
   )
   if (href) {
@@ -59,6 +81,13 @@ export function Button({ children, variant = 'solid', className = '', to, href }
       </a>
     )
   }
+  if (anchor) {
+    return (
+      <a href={anchor} className={classes}>
+        {inner}
+      </a>
+    )
+  }
   return (
     <Link to={to ?? '/'} className={classes}>
       {inner}
@@ -66,15 +95,44 @@ export function Button({ children, variant = 'solid', className = '', to, href }
   )
 }
 
-/** Section label like "02 — Reserve connosco". */
-export function Eyebrow({ index, children, className = '' }: { index?: string; children: ReactNode; className?: string }) {
+/** Small uppercase label above a title. */
+export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <p className={`eyebrow text-terracotta ${className}`}>{children}</p>
+}
+
+/** Eyebrow + accented title + optional intro, centred by default. */
+export function SectionHeading({
+  eyebrow,
+  title,
+  body,
+  align = 'center',
+  as: Tag = 'h2',
+  className = '',
+  dark = false,
+}: {
+  eyebrow?: string
+  title: string
+  body?: string
+  align?: 'center' | 'left'
+  as?: 'h1' | 'h2'
+  className?: string
+  dark?: boolean
+}) {
+  const centred = align === 'center'
   return (
-    <p className={`eyebrow flex items-center gap-3 ${className}`}>
-      {index && <span className="tabular-nums">{index}</span>}
-      {index && <span className="h-px w-8 bg-current opacity-50" aria-hidden="true" />}
-      <span>{children}</span>
-    </p>
+    <div className={`${centred ? 'mx-auto max-w-2xl text-center' : 'max-w-xl'} ${className}`}>
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <Tag
+        className={`font-display mt-4 leading-[1.08] tracking-[-0.01em] ${Tag === 'h1' ? 'text-[clamp(2.4rem,5.4vw,4.4rem)]' : 'text-[clamp(2rem,4vw,3.25rem)]'} ${dark ? 'text-white' : 'text-navy'}`}
+      >
+        <Accent text={title} />
+      </Tag>
+      {body && <p className={`mt-5 text-[1.05rem] leading-relaxed ${dark ? 'text-white/70' : 'text-ink-soft'}`}>{body}</p>}
+    </div>
   )
 }
+
+/** White rounded card. */
+export const card = 'rounded-3xl border border-navy/[0.06] bg-white shadow-[0_1px_2px_rgba(0,25,44,0.04),0_12px_32px_-16px_rgba(0,25,44,0.12)]'
 
 export const img = (name: string) => `/images/${name}.webp`

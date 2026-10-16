@@ -11,13 +11,15 @@ import { Gestao } from './pages/Gestao'
 import { Home } from './pages/Home'
 import { Legal } from './pages/Legal'
 import { NotFound } from './pages/NotFound'
+import { Parceiros } from './pages/Parceiros'
 import { Sobre } from './pages/Sobre'
 import { pages, type PageKey } from './routes'
 
 const views: Record<PageKey, ComponentType> = {
   home: Home,
-  gestao: Gestao,
   experiencias: Experiencias,
+  gestao: Gestao,
+  parceiros: Parceiros,
   sobre: Sobre,
   contactos: Contactos,
   privacidade: () => <Legal doc="privacidade" />,

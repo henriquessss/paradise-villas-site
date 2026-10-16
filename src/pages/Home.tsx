@@ -1,77 +1,54 @@
-import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
-import { useEffect, useRef, useState } from 'react'
-import { HeroJourney } from '../components/HeroJourney'
-import { CountUp } from '../components/motion/CountUp'
-import { Parallax, ParallaxImage } from '../components/motion/Parallax'
-import { Reveal, RevealGroup, RevealItem } from '../components/motion/Reveal'
-import { ScrollMarquee } from '../components/motion/ScrollMarquee'
-import { Rich } from '../components/Rich'
-import { ArrowUpRight, Button, Eyebrow, img } from '../components/ui'
+import { Link } from 'react-router'
+import { ContactChannels, ExperienceCard } from '../components/blocks'
+import { HomeHero } from '../components/HomeHero'
+import { Icon, IconTile } from '../components/icons'
+import { Reveal } from '../components/motion/Reveal'
+import { Simulator } from '../components/Simulator'
+import { Accent, ArrowUpRight, Button, card, Eyebrow, img, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
-import { EXTERNAL } from '../routes'
+import { civitatisUrl, EXTERNAL } from '../routes'
 
-export function Home() {
+function Services() {
+  const { t, lang, to } = useLang()
+  const s = t.home.services
+  const links = [
+    { href: EXTERNAL.booking },
+    { to: to('experiencias') },
+    { href: civitatisUrl(lang, 'transfers') },
+    { to: to('contactos') },
+  ]
   return (
-    <>
-      <HeroJourney />
-      <Welcome />
-      <Featured />
-      <Advantages />
-      <WhyAlgarve />
-      <Testimonials />
-      <Management />
-      <InstagramStrip />
-      <FinalCta />
-    </>
-  )
-}
-
-function Welcome() {
-  const { t } = useLang()
-  const w = t.home.welcome
-  return (
-    <section className="relative overflow-hidden px-5 py-28 md:px-10 md:py-40">
-      <div className="mx-auto grid max-w-[1440px] items-center gap-16 lg:grid-cols-12">
-        <div className="relative h-[460px] sm:h-[560px] lg:col-span-6 lg:h-[680px]">
-          <Parallax speed={6} className="absolute top-0 left-0 w-[70%]">
-            <Reveal variant="clip">
-              <img src={img('boas-vindas-piscina')} alt={w.imageAlt[0]} loading="lazy" className="aspect-[4/5] w-full object-cover" />
+    <section id="servicos" className="px-5 py-24 md:px-8 md:py-32">
+      <SectionHeading eyebrow={s.eyebrow} title={s.title} body={s.body} />
+      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {s.items.map((item, i) => {
+          const link = links[i]
+          const body = (
+            <>
+              <IconTile name={item.icon} />
+              <h3 className="mt-6 text-lg font-semibold text-navy">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">{item.text}</p>
+              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-terracotta">
+                {item.cta} {link.href ? <ArrowUpRight /> : <span aria-hidden="true">→</span>}
+              </span>
+            </>
+          )
+          const cls = `${card} group flex h-full flex-col p-7 transition-transform duration-300 hover:-translate-y-1`
+          return (
+            <Reveal as="li" key={item.title} delay={i * 0.08}>
+              {link.href ? (
+                <a href={link.href} target="_blank" rel="noopener" className={cls}>
+                  {body}
+                </a>
+              ) : (
+                <Link to={link.to!} className={cls}>
+                  {body}
+                </Link>
+              )}
             </Reveal>
-          </Parallax>
-          <Parallax speed={-14} className="absolute right-0 bottom-0 w-[46%]">
-            <Reveal variant="clip" delay={0.2}>
-              <img src={img('boas-vindas-interior')} alt={w.imageAlt[1]} loading="lazy" className="aspect-[4/5] w-full border-[10px] border-cream object-cover" />
-            </Reveal>
-          </Parallax>
-        </div>
-
-        <RevealGroup className="lg:col-span-5 lg:col-start-8">
-          <RevealItem>
-            <Eyebrow index="01" className="text-terracotta">
-              {w.eyebrow}
-            </Eyebrow>
-          </RevealItem>
-          <RevealItem>
-            <h2 className="font-display mt-6 text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{w.title}</h2>
-          </RevealItem>
-          <RevealItem>
-            <p className="mt-8 text-lg leading-relaxed text-ink-soft">{w.body}</p>
-          </RevealItem>
-          <RevealItem>
-            <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-navy/15 pt-10">
-              {w.stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse">
-                  <dt className="eyebrow mt-3 text-ink-soft">{s.label}</dt>
-                  <dd className="font-display text-[clamp(3.5rem,6vw,5.5rem)] leading-none">
-                    <CountUp to={s.value} locale={t.locale} />
-                    <span className="text-terracotta">{s.suffix}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </RevealItem>
-        </RevealGroup>
-      </div>
+          )
+        })}
+      </ul>
     </section>
   )
 }
@@ -79,235 +56,34 @@ function Welcome() {
 function Featured() {
   const { t } = useLang()
   const f = t.home.featured
-  const speeds = [0, 12, 4]
   return (
-    <section className="bg-sand pt-6 pb-28 md:pb-44">
-      <ScrollMarquee text={t.marquee.alojamentos} className="font-display py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <RevealGroup className="max-w-2xl">
-            <RevealItem>
-              <Eyebrow index="02" className="text-terracotta">
-                {f.eyebrow}
-              </Eyebrow>
-            </RevealItem>
-            <RevealItem>
-              <h2 className="font-display mt-6 text-[clamp(2.4rem,5vw,4.6rem)] leading-[1.02] tracking-[-0.02em]">{f.title}</h2>
-            </RevealItem>
-          </RevealGroup>
-          <Reveal variant="right">
-            <Button href={EXTERNAL.booking} variant="outline">
-              {t.common.verTodos}
-            </Button>
-          </Reveal>
+    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading eyebrow={f.eyebrow} title={f.title} body={f.body} align="left" />
+          <Button href={EXTERNAL.booking} variant="outline" className="self-start md:self-auto">
+            {f.cta}
+          </Button>
         </div>
-
-        <ul className="mt-16 grid gap-10 md:mt-24 md:grid-cols-3 md:gap-8">
-          {f.villas.map((v, i) => (
-            <li key={v.name} className={i === 1 ? 'md:mt-24' : ''}>
-              <Parallax speed={speeds[i]}>
-                <Reveal variant="up" delay={i * 0.12}>
-                  <a href={v.href} target="_blank" rel="noopener" className="group block">
-                    <div className="relative aspect-[37/52] overflow-hidden bg-dune">
-                      <img
-                        src={img(v.image)}
-                        alt={v.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent" aria-hidden="true" />
-                      <div className="absolute inset-x-0 bottom-0 p-7 text-cream">
-                        <p className="eyebrow text-cream/80">{v.place} · Algarve</p>
-                        <h3 className="font-display mt-2 flex items-center justify-between text-4xl">
-                          {v.name}
-                          <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                        </h3>
-                      </div>
-                    </div>
-                    <p className="mt-5 max-w-sm leading-relaxed text-ink-soft">{v.text}</p>
-                    <span className="sr-only"> {t.common.opensNewTab}</span>
-                  </a>
-                </Reveal>
-              </Parallax>
-            </li>
+        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+          {f.villas.map((villa, i) => (
+            <Reveal as="li" key={villa.name} delay={i * 0.1}>
+              <a href={villa.href} target="_blank" rel="noopener" className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+                  <img src={img(villa.image)} alt={villa.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-navy backdrop-blur">
+                    <Icon name="pin" className="h-3.5 w-3.5 text-terracotta" /> {villa.place}
+                  </span>
+                </div>
+                <h3 className="font-display mt-5 flex items-center justify-between text-2xl text-navy">
+                  {villa.name}
+                  <ArrowUpRight className="h-5 w-5 text-terracotta transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{villa.text}</p>
+              </a>
+            </Reveal>
           ))}
         </ul>
-      </div>
-    </section>
-  )
-}
-
-function Advantages() {
-  const { t } = useLang()
-  const a = t.home.advantages
-  return (
-    <section className="grain relative overflow-hidden bg-navy text-cream">
-      <ParallaxImage src={img('vantagens')} alt="" strength={14} className="absolute inset-0 opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/60" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-[1440px] gap-16 px-5 py-28 md:px-10 md:py-40 lg:grid-cols-12">
-        <RevealGroup className="lg:col-span-5">
-          <RevealItem>
-            <Eyebrow index="03" className="text-terracotta">
-              {a.eyebrow}
-            </Eyebrow>
-          </RevealItem>
-          <RevealItem>
-            <h2 className="font-display mt-6 text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{a.title}</h2>
-          </RevealItem>
-          <RevealItem>
-            <p className="mt-8 text-lg leading-relaxed text-cream/75">{a.body}</p>
-          </RevealItem>
-          <RevealItem className="mt-10">
-            <Button href={EXTERNAL.booking}>{t.common.verAlojamentos}</Button>
-          </RevealItem>
-        </RevealGroup>
-
-        <RevealGroup className="grid content-end gap-x-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7" stagger={0.08}>
-          {a.items.map((item, i) => (
-            <RevealItem key={item} variant="left" className="flex items-baseline gap-5 border-b border-cream/15 py-6">
-              <span className="font-display text-sm text-terracotta tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-              <span className="font-display text-2xl md:text-3xl">{item}</span>
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </div>
-    </section>
-  )
-}
-
-/** Pinned section: the page stops while the six cards slide horizontally (desktop). */
-function WhyAlgarve() {
-  const { t } = useLang()
-  const a = t.home.algarve
-  const section = useRef<HTMLElement>(null)
-  const track = useRef<HTMLUListElement>(null)
-  const [distance, setDistance] = useState(0)
-  const { scrollYProgress } = useScroll({ target: section, offset: ['start start', 'end end'] })
-  const x = useTransform(scrollYProgress, (v) => -v * distance)
-  const bar = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
-
-  useEffect(() => {
-    const measure = () => {
-      const el = track.current
-      const pinned = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)').matches
-      setDistance(el && pinned ? Math.max(0, el.scrollWidth - window.innerWidth) : 0)
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [])
-
-  const pinned = distance > 0
-  return (
-    <section ref={section} className="relative bg-cream" style={pinned ? { height: `calc(100vh + ${distance}px)` } : undefined}>
-      <div className={pinned ? 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden' : 'py-28'}>
-        <div className="mx-auto mb-12 flex w-full max-w-[1440px] items-end justify-between gap-8 px-5 md:px-10">
-          <div>
-            <Eyebrow index="04" className="text-terracotta">
-              {a.eyebrow}
-            </Eyebrow>
-            <h2 className="font-display mt-5 text-[clamp(2.2rem,4.4vw,4rem)] leading-[1.02] tracking-[-0.02em]">{a.title}</h2>
-          </div>
-          {pinned && (
-            <div className="hidden h-px w-48 bg-navy/15 md:block" aria-hidden="true">
-              <motion.div style={{ width: bar }} className="h-px bg-terracotta" />
-            </div>
-          )}
-        </div>
-        <motion.ul
-          ref={track}
-          style={pinned ? { x } : undefined}
-          className={`flex gap-6 px-5 md:gap-8 md:px-10 ${pinned ? 'w-max will-change-transform' : 'snap-x snap-mandatory overflow-x-auto pb-4'}`}
-        >
-          {a.items.map((item, i) => (
-            <li key={item.title} className="w-[78vw] shrink-0 snap-start sm:w-[46vw] md:w-[34vw] lg:w-[28vw]">
-              <div className="relative aspect-[4/5] overflow-hidden bg-dune">
-                <img src={img(item.image)} alt="" loading="lazy" className="h-full w-full object-cover" />
-                <span className="font-display absolute top-5 left-5 text-sm text-cream tabular-nums">
-                  {String(i + 1).padStart(2, '0')} / {String(a.items.length).padStart(2, '0')}
-                </span>
-              </div>
-              <h3 className="font-display mt-6 text-3xl">{item.title}</h3>
-              <p className="mt-3 max-w-sm leading-relaxed text-ink-soft">{item.text}</p>
-            </li>
-          ))}
-        </motion.ul>
-      </div>
-    </section>
-  )
-}
-
-function Testimonials() {
-  const { t } = useLang()
-  const s = t.home.testimonials
-  const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const count = s.items.length
-  const go = (step: number) => setIndex((i) => (i + step + count) % count)
-
-  useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => setIndex((i) => (i + 1) % count), 7000)
-    return () => clearInterval(id)
-  }, [paused, count])
-
-  const item = s.items[index]
-  return (
-    <section
-      className="relative overflow-hidden bg-sand px-5 py-28 md:px-10 md:py-40"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
-      <div className="mx-auto max-w-5xl text-center">
-        <Reveal>
-          <Eyebrow index="05" className="justify-center text-terracotta">
-            {s.eyebrow}
-          </Eyebrow>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="font-display mx-auto mt-5 max-w-2xl text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">{s.title}</h2>
-        </Reveal>
-
-        <Reveal variant="scale" delay={0.2} className="relative mt-14 min-h-[340px] md:min-h-[300px]">
-          <span className="font-display pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 text-[12rem] leading-none text-terracotta/20" aria-hidden="true">
-            “
-          </span>
-          <AnimatePresence mode="wait">
-            <motion.figure
-              key={index}
-              initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              aria-live="polite"
-            >
-              <blockquote className="font-display relative text-[clamp(1.5rem,2.8vw,2.4rem)] leading-snug italic">{item.quote}</blockquote>
-              <figcaption className="mt-8">
-                <span className="font-semibold">{item.name}</span>
-                <span className="mx-3 text-terracotta" aria-hidden="true">—</span>
-                <span className="text-ink-soft">{item.role}</span>
-              </figcaption>
-            </motion.figure>
-          </AnimatePresence>
-        </Reveal>
-
-        <div className="mt-10 flex items-center justify-center gap-6">
-          <button type="button" onClick={() => go(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border border-navy/25 transition-colors hover:bg-navy hover:text-cream">
-            <span className="sr-only">{s.prev}</span>
-            <ArrowUpRight className="-rotate-[135deg]" />
-          </button>
-          <div className="flex gap-2" aria-hidden="true">
-            {s.items.map((_, i) => (
-              <span key={i} className={`h-px transition-all duration-500 ${i === index ? 'w-10 bg-terracotta' : 'w-4 bg-navy/25'}`} />
-            ))}
-          </div>
-          <button type="button" onClick={() => go(1)} className="flex h-12 w-12 items-center justify-center rounded-full border border-navy/25 transition-colors hover:bg-navy hover:text-cream">
-            <span className="sr-only">{s.next}</span>
-            <ArrowUpRight className="rotate-45" />
-          </button>
-        </div>
       </div>
     </section>
   )
@@ -317,104 +93,183 @@ function Management() {
   const { t, to } = useLang()
   const m = t.home.management
   return (
-    <section className="relative overflow-hidden bg-cream pb-28 md:pb-40">
-      <ScrollMarquee text={t.marquee.gestao} reverse className="font-display py-10 text-[13vw] leading-none text-navy/[0.07] italic md:py-16 md:text-[10vw]" />
-      <div className="mx-auto grid max-w-[1440px] items-center gap-16 px-5 md:px-10 lg:grid-cols-12">
-        <Reveal variant="clip" className="lg:col-span-6">
-          <ParallaxImage src={img('gestao-piscina')} alt="" className="aspect-[4/5] w-full md:aspect-[5/6]" />
+    <section className="px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <Reveal variant="left" className="relative">
+          <img src={img('boas-vindas-interior')} alt={m.imageAlt} loading="lazy" className="aspect-[5/4] w-full rounded-3xl object-cover shadow-[0_30px_60px_-30px_rgba(0,25,44,0.45)]" />
+          <div className={`${card} absolute -right-3 -bottom-6 px-6 py-5 md:-right-8`}>
+            <p className="font-display text-4xl leading-none text-terracotta">{m.badge.value}</p>
+            <p className="mt-1.5 max-w-[9rem] text-xs leading-snug text-ink-soft">{m.badge.label}</p>
+          </div>
         </Reveal>
-        <RevealGroup className="lg:col-span-5 lg:col-start-8">
-          <RevealItem>
-            <Eyebrow index="06" className="text-terracotta">
-              {m.eyebrow}
-            </Eyebrow>
-          </RevealItem>
-          <RevealItem>
-            <h2 className="font-display mt-6 text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.02] tracking-[-0.02em]">{m.title}</h2>
-          </RevealItem>
-          <RevealItem>
-            <p className="mt-8 text-lg leading-relaxed text-ink-soft">
-              <Rich text={m.body} />
-            </p>
-          </RevealItem>
-          <RevealItem>
-            <ul className="mt-10 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {m.items.map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="h-px w-5 bg-terracotta" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </RevealItem>
-          <RevealItem className="mt-12">
-            <Button to={to('gestao')}>{t.common.saberMais}</Button>
-          </RevealItem>
-        </RevealGroup>
+        <Reveal variant="right">
+          <Eyebrow>{m.eyebrow}</Eyebrow>
+          <h2 className="font-display mt-4 text-[clamp(2rem,4vw,3.25rem)] leading-[1.08] text-navy">
+            <Accent text={m.title} />
+          </h2>
+          <p className="mt-5 leading-relaxed text-ink-soft">{m.body}</p>
+          <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+            {m.items.map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-sm text-navy">
+                <Icon name="checkCircle" className="h-5 w-5 shrink-0 text-terracotta" /> {item}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Button to={to('gestao')}>{m.cta}</Button>
+            <Button anchor="#simulador" variant="outline" icon="none">
+              <Icon name="calculator" className="-ml-1 h-4 w-4 text-terracotta" /> {m.simulate}
+            </Button>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
 }
 
-const instagramPhotos = ['ig-villa-raul', 'ig-townhouse-rosa', 'ig-villa-marina', 'ig-vista-ondas', 'ig-villa-paulo', 'ig-villa-goreti']
-
-function InstagramStrip() {
+function Algarve() {
   const { t } = useLang()
+  const a = t.home.algarve
+  const photos = ['algarve-praias', 'algarve-lugares', 'algarve-tradicao', 'experiencias-praia']
   return (
-    <section className="overflow-hidden bg-sand py-24 md:py-32">
-      <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-6 px-5 md:flex-row md:items-end md:px-10">
+    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <Eyebrow index="07" className="text-terracotta">
-            {t.footer.follow}
-          </Eyebrow>
-          <a href={EXTERNAL.instagram} target="_blank" rel="noopener" className="font-display mt-4 block text-[clamp(2.4rem,6vw,5.5rem)] leading-none transition-colors hover:text-terracotta">
-            {EXTERNAL.instagramHandle}
-            <span className="sr-only"> {t.common.opensNewTab}</span>
-          </a>
+          <Eyebrow>{a.eyebrow}</Eyebrow>
+          <h2 className="font-display mt-4 text-[clamp(2rem,4vw,3.25rem)] leading-[1.08] text-navy">
+            <Accent text={a.title} />
+          </h2>
+          <p className="mt-5 leading-relaxed text-ink-soft">{a.body}</p>
+          <ul className="mt-10 space-y-6">
+            {a.features.map((f) => (
+              <li key={f.title} className="flex gap-4">
+                <IconTile name={f.icon} />
+                <div>
+                  <h3 className="font-semibold text-navy">{f.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-soft">{f.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Reveal>
+        <div className="grid grid-cols-2 gap-4">
+          {photos.map((photo, i) => (
+            <Reveal key={photo} delay={i * 0.08} variant="scale" className={i % 2 ? 'translate-y-10' : ''}>
+              <img src={img(photo)} alt={a.imageAlt[i]} loading="lazy" className={`w-full rounded-3xl object-cover ${i === 0 || i === 3 ? 'aspect-[4/5]' : 'aspect-square'}`} />
+            </Reveal>
+          ))}
+        </div>
       </div>
-      <ul className="mt-14 flex gap-4 px-5 md:gap-6 md:px-10" aria-label="Instagram">
-        {instagramPhotos.map((photo, i) => (
-          <li key={photo} className="w-[42vw] shrink-0 sm:w-[30vw] lg:w-[calc((100%-7.5rem)/6)]">
-            <Parallax speed={i % 2 ? -10 : 10}>
-              <a href={EXTERNAL.instagram} target="_blank" rel="noopener" className="group block overflow-hidden" tabIndex={-1}>
-                <img src={img(photo)} alt="" loading="lazy" className="aspect-[6/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </a>
-            </Parallax>
-          </li>
+    </section>
+  )
+}
+
+function Experiences() {
+  const { t, to } = useLang()
+  const e = t.home.experiences
+  return (
+    <section className="px-5 py-24 md:px-8 md:py-32">
+      <SectionHeading eyebrow={e.eyebrow} title={e.title} body={e.body} />
+      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3">
+        {t.experiencias.items.slice(0, 3).map((item, i) => (
+          <Reveal as="li" key={item.slug.pt} delay={i * 0.08}>
+            <ExperienceCard item={item} />
+          </Reveal>
+        ))}
+      </ul>
+      <div className="mt-12 text-center">
+        <Button to={to('experiencias')}>{e.cta}</Button>
+      </div>
+    </section>
+  )
+}
+
+function DirectBooking() {
+  const { t } = useLang()
+  const d = t.home.direct
+  return (
+    <section className="relative overflow-hidden bg-navy-deep px-5 py-24 text-center text-white md:py-28">
+      <img src={img('ig-villa-piscina')} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+      <Reveal className="relative mx-auto max-w-3xl">
+        <span className="inline-flex items-center gap-2 rounded-full border border-terracotta/40 bg-terracotta/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-terracotta uppercase">
+          <Icon name="percent" className="h-3.5 w-3.5" /> {d.badge}
+        </span>
+        <h2 className="font-display mt-6 text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.06]">
+          <Accent text={d.title} />
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl leading-relaxed text-white/70">{d.body}</p>
+        <ul className="mt-9 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+          {d.items.map((item) => (
+            <li key={item} className="flex items-center gap-2">
+              <Icon name="check" className="h-4 w-4 text-terracotta" /> {item}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10">
+          <Button href={EXTERNAL.booking}>{d.cta}</Button>
+        </div>
+      </Reveal>
+    </section>
+  )
+}
+
+function Testimonials() {
+  const { t } = useLang()
+  const r = t.home.testimonials
+  return (
+    <section className="px-5 py-24 md:px-8 md:py-32">
+      <SectionHeading eyebrow={r.eyebrow} title={r.title} />
+      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3">
+        {r.items.map((item, i) => (
+          <Reveal as="li" key={item.name} delay={i * 0.08} className={`${card} flex flex-col p-8`}>
+            <div className="flex gap-1 text-terracotta" aria-hidden="true">
+              {Array.from({ length: 5 }, (_, k) => (
+                <svg key={k} viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                  <path d="M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote className="mt-5 flex-1 leading-relaxed text-navy">“{item.quote}”</blockquote>
+            <footer className="mt-6 border-t border-navy/[0.07] pt-5">
+              <p className="font-semibold text-navy">{item.name}</p>
+              <p className="text-sm text-ink-soft">{item.role}</p>
+            </footer>
+          </Reveal>
         ))}
       </ul>
     </section>
   )
 }
 
-function FinalCta() {
-  const { t, to } = useLang()
-  const c = t.home.cta
+function Contact() {
+  const { t } = useLang()
+  const c = t.home.contact
   return (
-    <section className="grain relative flex min-h-[90svh] items-center overflow-hidden bg-navy-deep py-28 text-cream">
-      <ParallaxImage src={img('ig-villa-piscina')} alt="" strength={16} className="absolute inset-0" />
-      <div className="absolute inset-0 bg-navy-deep/65" aria-hidden="true" />
-      <RevealGroup className="relative mx-auto max-w-4xl px-5 text-center">
-        <RevealItem>
-          <Eyebrow className="justify-center text-terracotta">{c.eyebrow}</Eyebrow>
-        </RevealItem>
-        <RevealItem>
-          <h2 className="font-display mt-6 text-[clamp(2.6rem,6vw,5.6rem)] leading-[1] tracking-[-0.02em]">{c.title}</h2>
-        </RevealItem>
-        <RevealItem>
-          <p className="font-display mt-8 text-xl italic md:text-2xl">{c.lead}</p>
-        </RevealItem>
-        <RevealItem>
-          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-cream/80">{c.body}</p>
-        </RevealItem>
-        <RevealItem className="mt-12 flex flex-wrap justify-center gap-3">
-          <Button to={to('gestao')}>{t.common.saberMais}</Button>
-          <Button to={to('contactos')} variant="ghost-light">
-            {t.common.contacteNos}
-          </Button>
-        </RevealItem>
-      </RevealGroup>
+    <section className="bg-sand px-5 py-24 md:px-8 md:py-32">
+      <SectionHeading eyebrow={c.eyebrow} title={c.title} body={c.body} />
+      <div className="mx-auto mt-14 max-w-[960px]">
+        <ContactChannels />
+      </div>
     </section>
+  )
+}
+
+export function Home() {
+  const { to } = useLang()
+  return (
+    <>
+      <HomeHero />
+      <Services />
+      <Featured />
+      <Management />
+      <Algarve />
+      <Experiences />
+      <DirectBooking />
+      <Testimonials />
+      <section id="simulador" className="bg-white px-5 py-24 md:px-8 md:py-32">
+        <Simulator proposalHref={`${to('gestao')}#proposta`} />
+      </section>
+      <Contact />
+    </>
   )
 }
