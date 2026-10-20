@@ -14,8 +14,8 @@ export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: s
       <img src={img(image)} alt="" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover opacity-35" />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/40 to-navy-deep/80" aria-hidden="true" />
       <div className="animate-rise relative mx-auto max-w-3xl">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-white/60">
-          <Link to={to('home')} className="transition-colors hover:text-white">
+        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/60">
+          <Link to={to('home')} className="inline-block py-2 transition-colors hover:text-white">
             {t.common.home}
           </Link>
           <span className="mx-2" aria-hidden="true">
@@ -34,28 +34,28 @@ export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: s
   )
 }
 
-/** Phone, email and WhatsApp cards. */
+/** Phone and email cards. */
 export function ContactChannels() {
   const { t } = useLang()
   const c = t.channels
   const items = [
     { icon: 'phone', title: c.phone.title, value: EXTERNAL.phoneDisplay, note: c.phone.note, href: `tel:${EXTERNAL.phone}` },
     { icon: 'mail', title: c.email.title, value: EXTERNAL.email, href: `mailto:${EXTERNAL.email}` },
-    { icon: 'message', title: c.whatsapp.title, value: c.whatsapp.value, href: EXTERNAL.whatsapp, external: true },
   ]
   return (
-    <ul className="grid gap-5 md:grid-cols-3">
+    <ul className="grid gap-3 md:grid-cols-2 md:gap-5">
       {items.map((item, i) => (
         <Reveal as="li" key={item.title} delay={i * 0.08}>
           <a
             href={item.href}
-            {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}
-            className={`${card} group flex h-full flex-col items-center p-8 text-center transition-transform duration-300 hover:-translate-y-1`}
+            className={`${card} group flex h-full items-center gap-4 p-5 transition-transform duration-300 hover:-translate-y-1 md:flex-col md:gap-0 md:p-8 md:text-center`}
           >
-            <IconTile name={item.icon} className="h-14 w-14" />
-            <span className="mt-5 font-semibold text-navy">{item.title}</span>
-            <span className="mt-1.5 text-ink-soft transition-colors group-hover:text-terracotta">{item.value}</span>
-            {item.note && <span className="mt-1 text-xs text-ink-soft/80">{item.note}</span>}
+            <IconTile name={item.icon} className="md:h-14 md:w-14" />
+            <span className="flex flex-col md:mt-5 md:items-center">
+              <span className="font-semibold text-navy">{item.title}</span>
+              <span className="mt-0.5 text-ink-soft transition-colors group-hover:text-terracotta md:mt-1.5">{item.value}</span>
+              {item.note && <span className="mt-1 text-xs text-ink-soft/80">{item.note}</span>}
+            </span>
           </a>
         </Reveal>
       ))}

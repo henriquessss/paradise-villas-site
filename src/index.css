@@ -26,6 +26,15 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Side reveals (x ±64px) must never widen the page on phones. */
+  html,
+  body {
+    overflow-x: clip;
   }
 
   html.lenis,
@@ -86,7 +95,8 @@
     border: 1px solid color-mix(in oklab, var(--color-navy) 14%, transparent);
     background: #fff;
     padding: 0.8rem 1rem;
-    font-size: 0.95rem;
+    /* 16px: iOS Safari zooms into any focused control smaller than this */
+    font-size: 1rem;
     color: var(--color-navy);
     transition:
       border-color 0.2s,

@@ -68,7 +68,8 @@ export function Button({ children, variant = 'solid', className = '', to, href, 
   const kind = icon ?? (href ? 'external' : 'arrow')
   const inner = (
     <>
-      <span>{children}</span>
+      {/* inline-flex: preflight makes svg children display:block, which would break the line */}
+      <span className="inline-flex items-center gap-2">{children}</span>
       {kind === 'external' && <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
       {kind === 'arrow' && <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />}
     </>
@@ -136,3 +137,14 @@ export function SectionHeading({
 export const card = 'rounded-3xl border border-navy/[0.06] bg-white shadow-[0_1px_2px_rgba(0,25,44,0.04),0_12px_32px_-16px_rgba(0,25,44,0.12)]'
 
 export const img = (name: string) => `/images/${name}.webp`
+
+/**
+ * Phones: a card list becomes an edge-to-edge swipe row with the next card peeking; the grid takes over from `md`.
+ * The row's cards skip their scroll reveal there (the peeking card is too clipped to ever "enter" the viewport) and
+ * are `relative`, so absolutely positioned bits inside them (sr-only text) stay clipped by the row instead of widening the page.
+ */
+export const swipe =
+  'max-md:-mx-5 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:scroll-px-5 max-md:overflow-x-auto max-md:px-5 max-md:pb-6 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden max-md:*:w-[84%] max-md:*:max-w-sm max-md:*:shrink-0 max-md:*:relative max-md:*:snap-start max-md:*:!transform-none max-md:*:!opacity-100'
+
+/** Icon + title + text card: stacked from `sm`, icon beside the text on phones (about half the height). */
+export const featureCard = `${card} p-7 max-sm:grid max-sm:grid-cols-[auto_1fr] max-sm:gap-x-4 max-sm:p-5 max-sm:text-left max-sm:[&>span]:row-span-2 max-sm:[&>h3]:mt-0 max-sm:[&>h3]:pt-0.5 max-sm:[&>p]:col-start-2 max-sm:[&>p]:mt-1`

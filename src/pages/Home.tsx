@@ -4,7 +4,7 @@ import { HomeHero } from '../components/HomeHero'
 import { Icon, IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
 import { Simulator } from '../components/Simulator'
-import { Accent, ArrowUpRight, Button, card, Eyebrow, img, SectionHeading } from '../components/ui'
+import { Accent, ArrowUpRight, Button, card, Eyebrow, img, SectionHeading, swipe } from '../components/ui'
 import { useLang } from '../content'
 import { civitatisUrl, EXTERNAL } from '../routes'
 
@@ -20,7 +20,7 @@ function Services() {
   return (
     <section id="servicos" className="px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={s.eyebrow} title={s.title} body={s.body} />
-      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4 ${swipe}`}>
         {s.items.map((item, i) => {
           const link = links[i]
           const body = (
@@ -61,11 +61,11 @@ function Featured() {
       <div className="mx-auto max-w-[1200px]">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading eyebrow={f.eyebrow} title={f.title} body={f.body} align="left" />
-          <Button href={EXTERNAL.booking} variant="outline" className="self-start md:self-auto">
+          <Button href={EXTERNAL.booking} variant="outline" className="shrink-0 self-start md:self-auto">
             {f.cta}
           </Button>
         </div>
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <ul className={`mt-12 grid gap-6 md:grid-cols-3 ${swipe}`}>
           {f.villas.map((villa, i) => (
             <Reveal as="li" key={villa.name} delay={i * 0.1}>
               <a href={villa.href} target="_blank" rel="noopener" className="group block">
@@ -132,7 +132,7 @@ function Algarve() {
   const a = t.home.algarve
   const photos = ['algarve-praias', 'algarve-lugares', 'algarve-tradicao', 'experiencias-praia']
   return (
-    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+    <section className="px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
           <Eyebrow>{a.eyebrow}</Eyebrow>
@@ -168,9 +168,9 @@ function Experiences() {
   const { t, to } = useLang()
   const e = t.home.experiences
   return (
-    <section className="px-5 py-24 md:px-8 md:py-32">
+    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={e.eyebrow} title={e.title} body={e.body} />
-      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3">
+      <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3 ${swipe}`}>
         {t.experiencias.items.slice(0, 3).map((item, i) => (
           <Reveal as="li" key={item.slug.pt} delay={i * 0.08}>
             <ExperienceCard item={item} />
@@ -219,7 +219,7 @@ function Testimonials() {
   return (
     <section className="px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={r.eyebrow} title={r.title} />
-      <ul className="mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3">
+      <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3 ${swipe}`}>
         {r.items.map((item, i) => (
           <Reveal as="li" key={item.name} delay={i * 0.08} className={`${card} flex flex-col p-8`}>
             <div className="flex gap-1 text-terracotta" aria-hidden="true">
@@ -247,7 +247,7 @@ function Contact() {
   return (
     <section className="bg-sand px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={c.eyebrow} title={c.title} body={c.body} />
-      <div className="mx-auto mt-14 max-w-[960px]">
+      <div className="mx-auto mt-14 max-w-[720px]">
         <ContactChannels />
       </div>
     </section>
@@ -262,13 +262,14 @@ export function Home() {
       <Services />
       <Featured />
       <Management />
+      {/* Right after management: its "Simular rendimento" button jumps here. */}
+      <section id="simulador" className="bg-white px-5 py-24 md:px-8 md:py-32">
+        <Simulator proposalHref={`${to('gestao')}#proposta`} />
+      </section>
       <Algarve />
       <Experiences />
       <DirectBooking />
       <Testimonials />
-      <section id="simulador" className="bg-white px-5 py-24 md:px-8 md:py-32">
-        <Simulator proposalHref={`${to('gestao')}#proposta`} />
-      </section>
       <Contact />
     </>
   )

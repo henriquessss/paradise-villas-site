@@ -42,8 +42,10 @@ function HeroVideo() {
         onPlaying={() => setPlaying(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${playing ? 'opacity-100' : 'opacity-0'}`}
       />
-      <div className="absolute inset-0 bg-navy-deep/45" />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60" />
+      <div className="absolute inset-0 bg-navy-deep/40" />
+      {/* Text sits straight on the video: extra shade behind the centre and the bottom stats. */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,25,44,0.45),transparent_70%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/50 via-transparent to-navy-deep/75" />
     </div>
   )
 }
@@ -72,18 +74,19 @@ function SearchForm() {
     window.open(url, '_blank', 'noopener')
   }
 
-  const box = 'flex items-center gap-3 rounded-2xl border border-navy/10 bg-white px-4 py-2.5 text-left transition-colors focus-within:border-terracotta'
+  // One white bar: a pill on desktop, stacked segments on phones. Each segment is the <label>, so
+  // tapping the icon or the padding focuses the control (bigger touch target).
+  const box = 'flex cursor-pointer items-center gap-3 rounded-2xl px-4 py-2.5 text-left transition-colors hover:bg-sand/60 focus-within:bg-sand/70 md:rounded-full md:px-3 lg:px-5'
+  const divider = 'max-md:border-t max-md:border-navy/[0.07] max-md:rounded-none md:relative md:before:absolute md:before:inset-y-3 md:before:left-0 md:before:w-px md:before:bg-navy/10'
   const label = 'block text-[0.68rem] font-bold tracking-[0.12em] text-ink-soft uppercase'
-  const input = 'w-full bg-transparent text-[0.95rem] font-medium text-navy outline-none'
+  const input = 'w-full bg-transparent text-base font-medium text-navy outline-none'
 
   return (
-    <form onSubmit={submit} aria-label={s.label} className="grid gap-3 md:grid-cols-[1fr_1fr_0.85fr_auto]">
-      <div className={box}>
+    <form onSubmit={submit} aria-label={s.label} className="mx-auto grid max-w-[860px] rounded-[1.75rem] bg-white p-2 shadow-[0_30px_60px_-25px_rgba(0,25,44,0.55)] md:grid-cols-[1fr_1fr_0.8fr_auto] md:items-center md:rounded-full">
+      <label htmlFor={`${id}-in`} className={box}>
         <Icon name="calendar" className="h-5 w-5 shrink-0 text-terracotta" />
-        <div className="min-w-0 flex-1">
-          <label htmlFor={`${id}-in`} className={label}>
-            {s.checkin}
-          </label>
+        <span className="min-w-0 flex-1">
+          <span className={label}>{s.checkin}</span>
           <input
             id={`${id}-in`}
             type="date"
@@ -97,23 +100,19 @@ function SearchForm() {
             }}
             className={input}
           />
-        </div>
-      </div>
-      <div className={box}>
+        </span>
+      </label>
+      <label htmlFor={`${id}-out`} className={`${box} ${divider}`}>
         <Icon name="calendar" className="h-5 w-5 shrink-0 text-terracotta" />
-        <div className="min-w-0 flex-1">
-          <label htmlFor={`${id}-out`} className={label}>
-            {s.checkout}
-          </label>
+        <span className="min-w-0 flex-1">
+          <span className={label}>{s.checkout}</span>
           <input id={`${id}-out`} type="date" min={minCheckout} value={checkout} onChange={(e) => setCheckout(e.target.value)} className={input} aria-invalid={error} />
-        </div>
-      </div>
-      <div className={box}>
+        </span>
+      </label>
+      <label htmlFor={`${id}-guests`} className={`${box} ${divider}`}>
         <Icon name="users" className="h-5 w-5 shrink-0 text-terracotta" />
-        <div className="min-w-0 flex-1">
-          <label htmlFor={`${id}-guests`} className={label}>
-            {s.guests}
-          </label>
+        <span className="min-w-0 flex-1">
+          <span className={label}>{s.guests}</span>
           <select id={`${id}-guests`} value={guests} onChange={(e) => setGuests(Number(e.target.value))} className={`${input} cursor-pointer appearance-none`}>
             {Array.from({ length: 16 }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>
@@ -121,17 +120,17 @@ function SearchForm() {
               </option>
             ))}
           </select>
-        </div>
-      </div>
+        </span>
+      </label>
       <button
         type="submit"
-        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-terracotta px-7 py-4 font-semibold text-white shadow-[0_10px_24px_-10px_rgba(214,89,55,0.8)] transition-colors hover:bg-terracotta-dark"
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-terracotta px-7 py-3.5 font-semibold md:px-5 lg:px-7 md:mt-0 md:rounded-full text-white shadow-[0_10px_24px_-10px_rgba(214,89,55,0.8)] transition-colors hover:bg-terracotta-dark"
       >
         <Icon name="search" className="h-5 w-5" />
         {s.submit}
       </button>
       {error && (
-        <p role="alert" className="text-sm text-red-700 md:col-span-4">
+        <p role="alert" className="col-span-full px-4 pt-2 pb-1 text-left text-sm text-red-700">
           {s.invalid}
         </p>
       )}
@@ -144,43 +143,43 @@ export function HomeHero() {
   const h = t.home.hero
 
   return (
-    <section data-header-dark className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-navy-deep px-4 pt-28 pb-20 md:px-8">
+    <section data-header-dark className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-navy-deep px-5 pt-24 pb-10 text-center text-white sm:pt-28 md:px-8">
       <HeroVideo />
 
-      <div className="animate-rise relative w-full max-w-[920px] rounded-[2rem] bg-white/[0.93] p-6 text-center shadow-[0_40px_80px_-30px_rgba(0,25,44,0.6)] backdrop-blur-xl md:p-10">
+      <div className="animate-rise relative w-full max-w-[1000px]">
         <ul className="flex flex-wrap justify-center gap-2">
           {h.badges.map((badge, i) => (
-            <li key={badge} className="inline-flex items-center gap-1.5 rounded-full bg-sand px-3.5 py-1.5 text-xs font-semibold text-navy">
-              <Icon name={i === 0 ? 'pin' : 'star'} className="h-3.5 w-3.5 text-terracotta" />
+            <li
+              key={badge}
+              className={`${i > 0 ? 'hidden sm:inline-flex' : 'inline-flex'} items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold ring-1 ring-white/20 backdrop-blur-md`}
+            >
+              <Icon name={i === 0 ? 'pin' : 'star'} className="h-3.5 w-3.5 text-[#f2a07f]" />
               {badge}
             </li>
           ))}
         </ul>
-        <h1 className="font-display mx-auto mt-6 max-w-2xl text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.02] tracking-[-0.015em] text-navy">
+        <h1 className="font-display mx-auto mt-5 max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_30px_rgba(0,25,44,0.35)] sm:mt-6 [&_em]:text-[#f2a07f]">
           <Accent text={h.title} />
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">{h.lead}</p>
+        <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed text-white/80 sm:block">{h.lead}</p>
 
-        <div className="mt-8">
+        <div className="mt-8 sm:mt-10">
           <SearchForm />
         </div>
-
-        <dl className="mt-8 grid grid-cols-2 gap-y-5 border-t border-navy/[0.08] pt-7 md:grid-cols-4">
-          {h.stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse">
-              <dt className="mt-1 text-xs font-medium text-ink-soft">{stat.label}</dt>
-              <dd className="font-display text-[2rem] leading-none text-navy">
-                <CountUp to={stat.value} locale={t.locale} />
-                {stat.suffix}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
 
-      <a href="#servicos" className="animate-bob absolute bottom-6 left-1/2 hidden -translate-x-1/2 rounded-full border border-white/30 p-2.5 text-white md:block" aria-label={t.common.scroll}>
-        <Icon name="arrowDown" className="h-4 w-4" />
-      </a>
+      <dl className="animate-rise relative mt-10 grid w-full max-w-[860px] grid-cols-4 gap-2 border-t border-white/15 pt-6 [animation-delay:0.15s] sm:mt-14">
+        {h.stats.map((stat) => (
+          <div key={stat.label} className="flex flex-col-reverse justify-end">
+            <dt className="mt-1.5 text-[0.7rem] leading-tight text-white/65 sm:text-xs">{stat.label}</dt>
+            <dd className="font-display text-[1.5rem] leading-none sm:text-[2rem]">
+              <CountUp to={stat.value} locale={t.locale} />
+              {stat.suffix}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
     </section>
   )
 }

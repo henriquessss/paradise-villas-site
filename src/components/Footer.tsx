@@ -6,13 +6,14 @@ import { Icon } from './icons'
 export function Footer() {
   const { t, to } = useLang()
   const year = new Date().getFullYear()
-  const heading = 'eyebrow mb-5 text-white'
-  const link = 'text-white/65 transition-colors hover:text-terracotta'
+  const heading = 'eyebrow mb-3 text-white'
+  // py-2: comfortable tap targets on phones without spreading the desktop columns
+  const link = 'inline-block py-2 text-white/65 transition-colors hover:text-terracotta'
 
   return (
     <footer className="bg-navy-deep text-white">
-      <div className="mx-auto grid max-w-[1320px] gap-12 px-5 py-16 md:grid-cols-12 md:px-8 md:py-20">
-        <div className="md:col-span-4">
+      <div className="mx-auto grid max-w-[1320px] gap-12 px-5 py-16 md:grid-cols-2 md:px-8 md:py-20 lg:grid-cols-12">
+        <div className="lg:col-span-4">
           <Link to={to('home')} aria-label="Paradise Villas">
             <img src="/logo-escuro.png" alt="Paradise Villas" width={381} height={240} loading="lazy" className="h-20 w-auto" />
           </Link>
@@ -24,9 +25,9 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="md:col-span-3">
+        <div className="lg:col-span-3">
           <h2 className={heading}>{t.footer.links}</h2>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             <li>
               <a href={EXTERNAL.booking} target="_blank" rel="noopener" className={link}>
                 {t.nav.alojamentos}
@@ -47,17 +48,12 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="md:col-span-3">
+        <div className="lg:col-span-3">
           <h2 className={heading}>{t.footer.contacts}</h2>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             <li>
               <a href={`tel:${EXTERNAL.phone}`} className={`${link} inline-flex items-center gap-2`}>
                 <Icon name="phone" className="h-4 w-4" /> {EXTERNAL.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a href={EXTERNAL.whatsapp} target="_blank" rel="noopener" className={`${link} inline-flex items-center gap-2`}>
-                <Icon name="message" className="h-4 w-4" /> WhatsApp
               </a>
             </li>
             <li>
@@ -68,7 +64,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <h2 className={heading}>{t.footer.follow}</h2>
           <a
             href={EXTERNAL.instagram}
@@ -82,11 +78,11 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1320px] flex-col gap-4 px-5 py-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-[1320px] flex-col gap-2 px-5 py-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between md:px-8">
           <p>
             © {year} Paradise Villas. {t.footer.rights}
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <ul className="flex flex-wrap gap-x-6 [&_a]:inline-block [&_a]:py-2">
             <li>
               <Link to={to('privacidade')} className="transition-colors hover:text-white">
                 {t.legal.privacidade.title}

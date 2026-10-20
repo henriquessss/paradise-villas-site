@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { ExperienceCard, PageHero } from '../components/blocks'
 import { IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
-import { Accent, ArrowUpRight, Button, card, Eyebrow, SectionHeading } from '../components/ui'
+import { Accent, ArrowUpRight, Button, card, Eyebrow, SectionHeading, swipe } from '../components/ui'
 import { useLang } from '../content'
 import { civitatisUrl, EXTERNAL } from '../routes'
 
@@ -61,7 +61,7 @@ export function Experiencias() {
 
       <section className="bg-white px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={e.extras.eyebrow} title={e.extras.title} body={e.extras.body} />
-        <ul className="mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3">
+        <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3 ${swipe}`}>
           {e.extras.items.map((item, i) => {
             const link = extraLinks[i]
             const cta = 'mt-6 inline-flex items-center gap-2 self-start rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-terracotta-dark'

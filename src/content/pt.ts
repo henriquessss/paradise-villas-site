@@ -33,7 +33,7 @@ export const pt = {
     },
     contactos: {
       title: 'Contactos — Paradise Villas',
-      description: 'Fale connosco por telefone, WhatsApp, email ou formulário. Paradise Villas, Albufeira — Algarve.',
+      description: 'Fale connosco por telefone, email ou formulário. Paradise Villas, Albufeira — Algarve.',
     },
     privacidade: {
       title: 'Política de Privacidade — Paradise Villas',
@@ -254,7 +254,6 @@ export const pt = {
   channels: {
     phone: { title: 'Telefone', note: '(chamada para rede móvel nacional)' },
     email: { title: 'Email' },
-    whatsapp: { title: 'WhatsApp', value: 'Envie-nos uma mensagem' },
   },
 
   experiencias: {

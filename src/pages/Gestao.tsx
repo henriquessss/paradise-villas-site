@@ -6,7 +6,7 @@ import { CountUp } from '../components/motion/CountUp'
 import { Reveal } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
 import { Simulator } from '../components/Simulator'
-import { Accent, Button, card, Eyebrow, SectionHeading } from '../components/ui'
+import { Accent, Button, card, Eyebrow, featureCard, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
 import { EXTERNAL } from '../routes'
 
@@ -158,7 +158,7 @@ export function Gestao() {
         <SectionHeading eyebrow={g.services.eyebrow} title={g.services.title} body={g.services.body} />
         <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {g.services.items.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={(i % 3) * 0.08} className={`${card} p-7`}>
+            <Reveal as="li" key={s.title} delay={(i % 3) * 0.08} className={featureCard}>
               <IconTile name={s.icon} />
               <h3 className="mt-5 font-semibold text-navy">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.text}</p>
@@ -171,7 +171,7 @@ export function Gestao() {
         <SectionHeading eyebrow={g.legal.eyebrow} title={g.legal.title} body={g.legal.body} />
         <ol className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {g.legal.steps.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={i * 0.06} className={`${card} relative p-6 text-center`}>
+            <Reveal as="li" key={s.title} delay={i * 0.06} className={`${featureCard} relative text-center sm:p-6`}>
               <span className="absolute top-4 right-5 font-display text-sm text-ink-soft/50">0{i + 1}</span>
               <IconTile name={s.icon} />
               <h3 className="mt-5 font-semibold text-navy">{s.title}</h3>

@@ -52,7 +52,6 @@ export const EXTERNAL = {
   huglocals: 'https://huglocals.com/Pereira',
   phone: '+351960039608',
   phoneDisplay: '+351 960 039 608',
-  whatsapp: 'https://wa.me/351960039608',
   email: 'info@paradisevillas.pt',
   address: 'Rua da Esteva, Lote 14, 1ºA, 8200-252 Albufeira',
 }

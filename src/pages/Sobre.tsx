@@ -3,7 +3,7 @@ import { PageHero } from '../components/blocks'
 import { IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
-import { Accent, ArrowUpRight, card, Eyebrow, img, SectionHeading } from '../components/ui'
+import { Accent, ArrowUpRight, Eyebrow, featureCard, img, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
 import { EXTERNAL } from '../routes'
 
@@ -36,7 +36,7 @@ export function Sobre() {
         <SectionHeading eyebrow={s.pillars.eyebrow} title={s.pillars.title} />
         <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {s.pillars.items.map((p, i) => (
-            <Reveal as="li" key={p.title} delay={i * 0.08} className={`${card} p-7`}>
+            <Reveal as="li" key={p.title} delay={i * 0.08} className={featureCard}>
               <IconTile name={p.icon} />
               <h3 className="mt-5 text-lg font-semibold text-navy">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.text}</p>

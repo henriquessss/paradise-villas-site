@@ -3,7 +3,7 @@ import { PageHero } from '../components/blocks'
 import { Consent, ContactFields, Field, FormMessage, useLead, value } from '../components/forms'
 import { Icon, IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
-import { Accent, Button, card, Eyebrow, SectionHeading } from '../components/ui'
+import { Accent, Button, card, Eyebrow, featureCard, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
 import { PARTNER_RATE } from '../routes'
 
@@ -87,7 +87,7 @@ export function Parceiros() {
         <SectionHeading eyebrow={p.who.eyebrow} title={p.who.title} />
         <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {p.who.items.map((item, i) => (
-            <Reveal as="li" key={item.title} delay={i * 0.08} className={`${card} p-7`}>
+            <Reveal as="li" key={item.title} delay={i * 0.08} className={featureCard}>
               <IconTile name={item.icon} />
               <h3 className="mt-5 font-semibold text-navy">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
