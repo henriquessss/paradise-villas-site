@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
 import { ExperienceCard, PageHero } from '../components/blocks'
 import { IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
@@ -10,11 +9,11 @@ import { civitatisUrl, EXTERNAL } from '../routes'
 type Filter = keyof ReturnType<typeof useLang>['t']['experiencias']['filters']
 
 export function Experiencias() {
-  const { t, lang, to } = useLang()
+  const { t, lang } = useLang()
   const e = t.experiencias
   const [filter, setFilter] = useState<Filter>('all')
   const items = filter === 'all' ? e.items : e.items.filter((item) => item.category === filter)
-  const extraLinks = [{ href: civitatisUrl(lang, 'transfers') }, { to: to('contactos') }, { href: EXTERNAL.huglocals }]
+  const extraLinks = [civitatisUrl(lang, 'transfers'), EXTERNAL.huglocals]
 
   return (
     <>
@@ -61,25 +60,18 @@ export function Experiencias() {
 
       <section className="bg-white px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={e.extras.eyebrow} title={e.extras.title} body={e.extras.body} />
-        <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3 ${swipe}`}>
+        <ul className={`mx-auto mt-14 grid max-w-[1000px] gap-6 md:grid-cols-2 ${swipe}`}>
           {e.extras.items.map((item, i) => {
-            const link = extraLinks[i]
             const cta = 'mt-6 inline-flex items-center gap-2 self-start rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-terracotta-dark'
             return (
               <Reveal as="li" key={item.title} delay={i * 0.08} className={`${card} flex flex-col p-8`}>
                 <IconTile name={item.icon} />
                 <h3 className="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">{item.text}</p>
-                {link.href ? (
-                  <a href={link.href} target="_blank" rel="noopener" className={cta}>
-                    {item.cta} <ArrowUpRight />
-                    <span className="sr-only"> {t.common.opensNewTab}</span>
-                  </a>
-                ) : (
-                  <Link to={link.to!} className={cta}>
-                    {item.cta} <span aria-hidden="true">→</span>
-                  </Link>
-                )}
+                <a href={extraLinks[i]} target="_blank" rel="noopener" className={cta}>
+                  {item.cta} <ArrowUpRight />
+                  <span className="sr-only"> {t.common.opensNewTab}</span>
+                </a>
               </Reveal>
             )
           })}

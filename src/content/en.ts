@@ -94,7 +94,7 @@ export const en: Content = {
 
   home: {
     hero: {
-      badges: ['Albufeira, Algarve', 'Over 7 years of experience'],
+      badges: ['Over 7 years of experience'],
       title: 'Where your *best holidays* begin',
       lead: 'Hand-picked holiday homes in the Algarve, with a personal check-in and support throughout your stay.',
       search: {
@@ -108,7 +108,6 @@ export const en: Content = {
         invalid: 'The check-out date must be after the check-in date.',
       },
       stats: [
-        { value: 200, suffix: '+', label: 'Properties' },
         { value: 7, suffix: '+', label: 'Years of experience' },
         { value: 750, suffix: '+', label: 'Guests' },
         { value: 100, suffix: '%', label: 'Satisfaction' },
@@ -136,12 +135,6 @@ export const en: Content = {
           title: 'Private transfers',
           text: 'From Faro airport to your front door, in comfort and whenever you need.',
           cta: 'Book a transfer',
-        },
-        {
-          icon: 'luggage',
-          title: 'Luggage storage',
-          text: 'Late flight? Leave your bags with us and enjoy your last day in the Algarve.',
-          cta: 'Contact us',
         },
       ],
     },
@@ -188,7 +181,7 @@ export const en: Content = {
         'Deposit management',
         'Dynamic pricing',
       ],
-      badge: { value: '500+', label: 'owners trust us' },
+      badge: { value: '7+', label: 'years of experience in holiday rentals' },
       imageAlt: 'Living room of a villa managed by Paradise Villas',
       cta: 'Learn more',
       simulate: 'Estimate your income',
@@ -345,12 +338,6 @@ export const en: Content = {
           cta: 'Book a transfer',
         },
         {
-          icon: 'luggage',
-          title: 'Luggage storage',
-          text: 'The perfect solution for late flights: leave your bags with us and keep exploring the Algarve.',
-          cta: 'Contact us',
-        },
-        {
           icon: 'map',
           title: 'Experiences with locals',
           text: 'Tours, theme parks and activities recommended by people who live in the Algarve, on our HugLocals page.',
@@ -371,7 +358,7 @@ export const en: Content = {
         'We handle the licensing if needed',
         'Support from start to finish',
       ],
-      highlight: { value: '500+', label: 'owners', text: 'already trust Paradise Villas to manage their property.' },
+      highlight: { value: '7+', label: 'years of experience', text: 'managing holiday rentals in the Algarve.' },
     },
     proposal: {
       title: 'Request your proposal',
@@ -385,11 +372,6 @@ export const en: Content = {
       submit: 'Request proposal',
       success: 'Thank you! We have received your request and will be in touch very soon.',
     },
-    stats: [
-      { value: 500, suffix: '+', label: 'Owners' },
-      { value: 200, suffix: '+', label: 'Properties' },
-      { value: 750, suffix: '+', label: 'Guests' },
-    ],
     services: {
       eyebrow: 'What’s included',
       title: 'Services *included*',
@@ -518,7 +500,7 @@ export const en: Content = {
     },
     rate: {
       label: 'Partner commission',
-      text: 'of the management revenue from every property you refer.',
+      text: 'of the management profit from every property you refer.',
     },
     who: {
       eyebrow: 'Who it’s for',
@@ -652,12 +634,6 @@ export const en: Content = {
       success: 'Thank you! We have received your message and will get back to you as soon as possible.',
     },
     address: { title: 'Address' },
-    map: {
-      title: 'Where we are',
-      notice: 'The map is loaded from Google Maps, which may set cookies.',
-      load: 'Show map',
-      open: 'Open in Google Maps',
-    },
   },
 
   legal: {

@@ -148,12 +148,12 @@ export function HomeHero() {
 
       <div className="animate-rise relative w-full max-w-[1000px]">
         <ul className="flex flex-wrap justify-center gap-2">
-          {h.badges.map((badge, i) => (
+          {h.badges.map((badge) => (
             <li
               key={badge}
-              className={`${i > 0 ? 'hidden sm:inline-flex' : 'inline-flex'} items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold ring-1 ring-white/20 backdrop-blur-md`}
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold ring-1 ring-white/20 backdrop-blur-md"
             >
-              <Icon name={i === 0 ? 'pin' : 'star'} className="h-3.5 w-3.5 text-[#f2a07f]" />
+              <Icon name="star" className="h-3.5 w-3.5 text-[#f2a07f]" />
               {badge}
             </li>
           ))}
@@ -168,7 +168,7 @@ export function HomeHero() {
         </div>
       </div>
 
-      <dl className="animate-rise relative mt-10 grid w-full max-w-[860px] grid-cols-4 gap-2 border-t border-white/15 pt-6 [animation-delay:0.15s] sm:mt-14">
+      <dl className="animate-rise relative mt-10 grid w-full max-w-[680px] grid-cols-3 gap-2 border-t border-white/15 pt-6 [animation-delay:0.15s] sm:mt-14">
         {h.stats.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse justify-end">
             <dt className="mt-1.5 text-[0.7rem] leading-tight text-white/65 sm:text-xs">{stat.label}</dt>

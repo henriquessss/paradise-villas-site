@@ -95,7 +95,7 @@ export const pt = {
 
   home: {
     hero: {
-      badges: ['Albufeira, Algarve', 'Mais de 7 anos de experiência'],
+      badges: ['Mais de 7 anos de experiência'],
       title: 'O início das suas *melhores férias*',
       lead: 'Alojamentos selecionados no Algarve, com check-in personalizado e apoio durante toda a estadia.',
       search: {
@@ -110,7 +110,6 @@ export const pt = {
       },
       // Números do site atual — confirmar com o cliente.
       stats: [
-        { value: 200, suffix: '+', label: 'Imóveis' },
         { value: 7, suffix: '+', label: 'Anos de experiência' },
         { value: 750, suffix: '+', label: 'Hóspedes' },
         { value: 100, suffix: '%', label: 'Satisfação' },
@@ -138,12 +137,6 @@ export const pt = {
           title: 'Transfers privados',
           text: 'Do aeroporto de Faro à porta do seu alojamento, com conforto e à hora de que precisar.',
           cta: 'Reservar transfer',
-        },
-        {
-          icon: 'luggage',
-          title: 'Guarda-bagagem',
-          text: 'Voo tardio? Deixe as malas connosco e aproveite o último dia no Algarve com toda a liberdade.',
-          cta: 'Fale connosco',
         },
       ],
     },
@@ -190,7 +183,7 @@ export const pt = {
         'Gestão de cauções',
         'Preços dinâmicos',
       ],
-      badge: { value: '500+', label: 'proprietários confiam em nós' },
+      badge: { value: '7+', label: 'anos de experiência em Alojamento Local' },
       imageAlt: 'Sala de uma moradia gerida pela Paradise Villas',
       cta: 'Saber mais',
       simulate: 'Simular rendimento',
@@ -349,12 +342,6 @@ export const pt = {
           cta: 'Reservar transfer',
         },
         {
-          icon: 'luggage',
-          title: 'Guarda-bagagem',
-          text: 'Temos a solução perfeita para voos tardios: deixe as malas connosco e continue a explorar o Algarve com toda a liberdade.',
-          cta: 'Fale connosco',
-        },
-        {
           icon: 'map',
           title: 'Experiências com locais',
           text: 'Passeios, parques temáticos e atividades recomendados por quem vive no Algarve, na nossa página HugLocals.',
@@ -376,7 +363,7 @@ export const pt = {
         'Tratamos da legalização, se for preciso',
         'Acompanhamento do início ao fim',
       ],
-      highlight: { value: '500+', label: 'proprietários', text: 'já confiam a gestão do seu imóvel à Paradise Villas.' },
+      highlight: { value: '7+', label: 'anos de experiência', text: 'a gerir Alojamento Local no Algarve.' },
     },
     proposal: {
       title: 'Peça a sua proposta',
@@ -390,11 +377,6 @@ export const pt = {
       submit: 'Pedir proposta',
       success: 'Obrigado! Recebemos o seu pedido e entraremos em contacto muito em breve.',
     },
-    stats: [
-      { value: 500, suffix: '+', label: 'Proprietários' },
-      { value: 200, suffix: '+', label: 'Imóveis' },
-      { value: 750, suffix: '+', label: 'Hóspedes' },
-    ],
     services: {
       eyebrow: 'O que incluímos',
       title: 'Serviços *incluídos*',
@@ -524,7 +506,7 @@ export const pt = {
     },
     rate: {
       label: 'Comissão de parceria',
-      text: 'sobre a faturação de gestão de cada imóvel que nos indicar.',
+      text: 'sobre o lucro de gestão de cada imóvel que nos indicar.',
     },
     who: {
       eyebrow: 'Para quem',
@@ -663,12 +645,6 @@ export const pt = {
       success: 'Obrigado! Recebemos a sua mensagem e entraremos em contacto o mais rápido possível.',
     },
     address: { title: 'Morada' },
-    map: {
-      title: 'Onde estamos',
-      notice: 'O mapa é carregado a partir do Google Maps, que pode definir cookies.',
-      load: 'Mostrar mapa',
-      open: 'Abrir no Google Maps',
-    },
   },
 
   legal: {

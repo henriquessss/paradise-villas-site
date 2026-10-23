@@ -55,6 +55,7 @@ export function Footer() {
               <a href={`tel:${EXTERNAL.phone}`} className={`${link} inline-flex items-center gap-2`}>
                 <Icon name="phone" className="h-4 w-4" /> {EXTERNAL.phoneDisplay}
               </a>
+              <span className="mt-0.5 block pl-6 text-xs opacity-60">{t.channels.phone.note}</span>
             </li>
             <li>
               <a href={`mailto:${EXTERNAL.email}`} className={`${link} inline-flex items-center gap-2`}>

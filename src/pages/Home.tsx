@@ -15,12 +15,11 @@ function Services() {
     { href: EXTERNAL.booking },
     { to: to('experiencias') },
     { href: civitatisUrl(lang, 'transfers') },
-    { to: to('contactos') },
   ]
   return (
     <section id="servicos" className="px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={s.eyebrow} title={s.title} body={s.body} />
-      <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4 ${swipe}`}>
+      <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-3 ${swipe}`}>
         {s.items.map((item, i) => {
           const link = links[i]
           const body = (

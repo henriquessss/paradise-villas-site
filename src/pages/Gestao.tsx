@@ -2,7 +2,6 @@ import { useId, type FormEvent } from 'react'
 import { CtaBand } from '../components/blocks'
 import { Consent, ContactFields, Field, FormMessage, useLead, value } from '../components/forms'
 import { Icon, IconTile } from '../components/icons'
-import { CountUp } from '../components/motion/CountUp'
 import { Reveal } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
 import { Simulator } from '../components/Simulator'
@@ -140,20 +139,6 @@ export function Gestao() {
         </div>
       </section>
 
-      <section className="bg-navy-deep px-5 py-16 text-white md:py-20">
-        <dl className="mx-auto grid max-w-[1000px] grid-cols-1 gap-y-10 text-center sm:grid-cols-3">
-          {g.stats.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse">
-              <dt className="eyebrow mt-3 text-white/60">{s.label}</dt>
-              <dd className="font-display text-[clamp(3rem,6vw,4.5rem)] leading-none">
-                <CountUp to={s.value} locale={t.locale} />
-                <span className="text-terracotta">{s.suffix}</span>
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
       <section className="px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={g.services.eyebrow} title={g.services.title} body={g.services.body} />
         <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -192,6 +177,7 @@ export function Gestao() {
         <Button anchor={`tel:${EXTERNAL.phone}`} variant="ghost-light" icon="none">
           <Icon name="phone" className="-ml-1 h-4 w-4" /> {EXTERNAL.phoneDisplay}
         </Button>
+        <p className="basis-full text-xs text-white/55">{t.channels.phone.note}</p>
       </CtaBand>
     </>
   )

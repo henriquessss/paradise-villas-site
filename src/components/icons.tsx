@@ -16,12 +16,6 @@ const shapes = {
       <circle cx="16.5" cy="17" r="2" />
     </>
   ),
-  luggage: (
-    <>
-      <rect x="6" y="7" width="12" height="13" rx="2" />
-      <path d="M9 7V4h6v3M10 11v5M14 11v5M9 20v1.5M15 20v1.5" />
-    </>
-  ),
   sun: (
     <>
       <circle cx="12" cy="12" r="4" />

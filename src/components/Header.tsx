@@ -163,7 +163,10 @@ export function Header() {
                 <Link to={switchTo} hrefLang={otherLang} lang={otherLang} className="font-semibold text-navy">
                   {t.nav.switchLang}
                 </Link>
-                <a href={`tel:${EXTERNAL.phone}`}>{EXTERNAL.phoneDisplay}</a>
+                <a href={`tel:${EXTERNAL.phone}`} className="text-right">
+                  {EXTERNAL.phoneDisplay}
+                  <span className="block text-[0.7rem] opacity-75">{t.channels.phone.note}</span>
+                </a>
               </div>
             </div>
           </motion.div>
