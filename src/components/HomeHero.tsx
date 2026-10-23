@@ -74,17 +74,19 @@ function SearchForm() {
     window.open(url, '_blank', 'noopener')
   }
 
-  // One white bar: a pill on desktop, stacked segments on phones. Each segment is the <label>, so
-  // tapping the icon or the padding focuses the control (bigger touch target).
-  const box = 'flex cursor-pointer items-center gap-3 rounded-2xl px-4 py-2.5 text-left transition-colors hover:bg-sand/60 focus-within:bg-sand/70 md:rounded-full md:px-3 lg:px-5'
-  const divider = 'max-md:border-t max-md:border-navy/[0.07] max-md:rounded-none md:relative md:before:absolute md:before:inset-y-3 md:before:left-0 md:before:w-px md:before:bg-navy/10'
-  const label = 'block text-[0.68rem] font-bold tracking-[0.12em] text-ink-soft uppercase'
-  const input = 'w-full bg-transparent text-base font-medium text-navy outline-none'
+  // One white bar: a pill on desktop; on phones a compact 2×2 card (dates side by side, then
+  // guests next to the button). Each segment is the <label>, so tapping the icon or the padding
+  // focuses the control (bigger touch target). Inputs stay at 16px on phones so iOS does not zoom.
+  const box = 'flex cursor-pointer items-center gap-2.5 rounded-2xl px-3 py-2 text-left transition-colors hover:bg-sand/60 focus-within:bg-sand/70 md:gap-3 md:rounded-full lg:px-5'
+  const divider = 'relative before:absolute before:inset-y-2.5 before:left-0 before:w-px before:bg-navy/10'
+  const label = 'block text-[0.62rem] font-bold tracking-[0.12em] text-ink-soft uppercase'
+  const input = 'w-full bg-transparent text-base font-medium text-navy outline-none md:text-[0.95rem]'
+  const dateIcon = 'hidden h-5 w-5 shrink-0 text-terracotta md:block'
 
   return (
-    <form onSubmit={submit} aria-label={s.label} className="mx-auto grid max-w-[860px] rounded-[1.75rem] bg-white p-2 shadow-[0_30px_60px_-25px_rgba(0,25,44,0.55)] md:grid-cols-[1fr_1fr_0.8fr_auto] md:items-center md:rounded-full">
+    <form onSubmit={submit} aria-label={s.label} className="mx-auto grid max-w-[760px] grid-cols-2 gap-x-1 rounded-[1.5rem] bg-white p-1.5 shadow-[0_30px_60px_-25px_rgba(0,25,44,0.55)] md:grid-cols-[1fr_1fr_0.8fr_auto] md:items-center md:gap-x-0 md:rounded-full">
       <label htmlFor={`${id}-in`} className={box}>
-        <Icon name="calendar" className="h-5 w-5 shrink-0 text-terracotta" />
+        <Icon name="calendar" className={dateIcon} />
         <span className="min-w-0 flex-1">
           <span className={label}>{s.checkin}</span>
           <input
@@ -103,13 +105,16 @@ function SearchForm() {
         </span>
       </label>
       <label htmlFor={`${id}-out`} className={`${box} ${divider}`}>
-        <Icon name="calendar" className="h-5 w-5 shrink-0 text-terracotta" />
+        <Icon name="calendar" className={dateIcon} />
         <span className="min-w-0 flex-1">
           <span className={label}>{s.checkout}</span>
           <input id={`${id}-out`} type="date" min={minCheckout} value={checkout} onChange={(e) => setCheckout(e.target.value)} className={input} aria-invalid={error} />
         </span>
       </label>
-      <label htmlFor={`${id}-guests`} className={`${box} ${divider}`}>
+      <label
+        htmlFor={`${id}-guests`}
+        className={`${box} max-md:mt-1 max-md:bg-sand/60 md:relative md:before:absolute md:before:inset-y-2.5 md:before:left-0 md:before:w-px md:before:bg-navy/10`}
+      >
         <Icon name="users" className="h-5 w-5 shrink-0 text-terracotta" />
         <span className="min-w-0 flex-1">
           <span className={label}>{s.guests}</span>
@@ -124,7 +129,7 @@ function SearchForm() {
       </label>
       <button
         type="submit"
-        className="mt-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-terracotta px-7 py-3.5 font-semibold md:px-5 lg:px-7 md:mt-0 md:rounded-full text-white shadow-[0_10px_24px_-10px_rgba(214,89,55,0.8)] transition-colors hover:bg-terracotta-dark"
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-terracotta px-4 py-3 font-semibold text-white shadow-[0_10px_24px_-10px_rgba(214,89,55,0.8)] transition-colors hover:bg-terracotta-dark md:mt-0 md:rounded-full md:px-5 lg:px-6"
       >
         <Icon name="search" className="h-5 w-5" />
         {s.submit}
