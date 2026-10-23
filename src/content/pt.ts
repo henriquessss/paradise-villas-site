@@ -95,7 +95,6 @@ export const pt = {
 
   home: {
     hero: {
-      badges: ['Mais de 7 anos de experiência'],
       title: 'O início das suas *melhores férias*',
       lead: 'Alojamentos selecionados no Algarve, com check-in personalizado e apoio durante toda a estadia.',
       search: {

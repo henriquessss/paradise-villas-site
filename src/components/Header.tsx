@@ -87,7 +87,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className={`hidden items-center gap-1 rounded-full px-3 py-1.5 text-[0.78rem] font-semibold sm:flex ${light ? 'bg-white/10' : 'bg-sand'}`} aria-label={t.nav.langLabel}>
+            <div className={`flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[0.78rem] font-semibold sm:px-3 ${light ? 'bg-white/10' : 'bg-sand'}`} aria-label={t.nav.langLabel}>
               <Icon name="globe" className="h-3.5 w-3.5 opacity-70" />
               {(['pt', 'en'] as const).map((l) =>
                 l === lang ? (
@@ -133,18 +133,19 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-white px-6 pt-24 pb-10 text-navy xl:hidden"
+            data-lenis-prevent
+            className="fixed inset-x-0 top-0 z-40 flex h-[100dvh] flex-col overflow-y-auto overscroll-contain bg-white px-6 pt-20 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-navy md:pt-24 xl:hidden"
           >
             <nav aria-label={t.nav.menu}>
               <ul className="divide-y divide-navy/[0.07]">
                 {[{ label: t.nav.home, to: to('home') }, ...items].map((item) => (
                   <li key={item.label}>
                     {item.href ? (
-                      <a href={item.href} target="_blank" rel="noopener" className="font-display flex items-center justify-between py-4 text-2xl">
+                      <a href={item.href} target="_blank" rel="noopener" className="font-display flex items-center justify-between py-[0.7rem] text-[1.45rem] leading-tight">
                         {item.label} <ArrowUpRight className="h-5 w-5 text-terracotta" />
                       </a>
                     ) : (
-                      <NavLink to={item.to!} end className={({ isActive }) => `font-display block py-4 text-2xl ${isActive ? 'text-terracotta' : ''}`}>
+                      <NavLink to={item.to!} end className={({ isActive }) => `font-display block py-[0.7rem] text-[1.45rem] leading-tight ${isActive ? 'text-terracotta' : ''}`}>
                         {item.label}
                       </NavLink>
                     )}
@@ -152,22 +153,20 @@ export function Header() {
                 ))}
               </ul>
             </nav>
-            <div className="mt-auto space-y-3 pt-10">
-              <a href={EXTERNAL.booking} target="_blank" rel="noopener" className="block rounded-full bg-terracotta px-6 py-3.5 text-center font-semibold text-white">
-                {t.nav.book}
-              </a>
-              <a href={EXTERNAL.ownerLogin} target="_blank" rel="noopener" className="block rounded-full border border-navy/15 px-6 py-3.5 text-center font-semibold">
-                {t.nav.ownerLogin}
-              </a>
-              <div className="flex items-center justify-between pt-4 text-sm text-ink-soft">
-                <Link to={switchTo} hrefLang={otherLang} lang={otherLang} className="font-semibold text-navy">
-                  {t.nav.switchLang}
-                </Link>
-                <a href={`tel:${EXTERNAL.phone}`} className="text-right">
-                  {EXTERNAL.phoneDisplay}
-                  <span className="block text-[0.7rem] opacity-75">{t.channels.phone.note}</span>
+            <div className="mt-auto pt-5">
+              <div className="grid grid-cols-2 gap-3">
+                <a href={EXTERNAL.booking} target="_blank" rel="noopener" className="rounded-full bg-terracotta px-4 py-3 text-center text-[0.95rem] font-semibold text-white">
+                  {t.nav.book}
+                </a>
+                <a href={EXTERNAL.ownerLogin} target="_blank" rel="noopener" className="rounded-full border border-navy/15 px-4 py-3 text-center text-[0.95rem] font-semibold">
+                  {t.nav.owner}
                 </a>
               </div>
+              <a href={`tel:${EXTERNAL.phone}`} className="mt-4 flex flex-wrap items-center justify-center gap-x-2 text-sm text-ink-soft">
+                <Icon name="phone" className="h-4 w-4 text-terracotta" />
+                <span className="font-semibold whitespace-nowrap text-navy">{EXTERNAL.phoneDisplay}</span>
+                <span className="basis-full text-center text-[0.7rem]">{t.channels.phone.note}</span>
+              </a>
             </div>
           </motion.div>
         )}

@@ -152,18 +152,7 @@ export function HomeHero() {
       <HeroVideo />
 
       <div className="animate-rise relative w-full max-w-[1000px]">
-        <ul className="flex flex-wrap justify-center gap-2">
-          {h.badges.map((badge) => (
-            <li
-              key={badge}
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold ring-1 ring-white/20 backdrop-blur-md"
-            >
-              <Icon name="star" className="h-3.5 w-3.5 text-[#f2a07f]" />
-              {badge}
-            </li>
-          ))}
-        </ul>
-        <h1 className="font-display mx-auto mt-5 max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_30px_rgba(0,25,44,0.35)] sm:mt-6 [&_em]:text-[#f2a07f]">
+        <h1 className="font-display mx-auto max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_30px_rgba(0,25,44,0.35)] [&_em]:text-[#f2a07f]">
           <Accent text={h.title} />
         </h1>
         <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed text-white/80 sm:block">{h.lead}</p>

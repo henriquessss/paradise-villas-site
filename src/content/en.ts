@@ -94,7 +94,6 @@ export const en: Content = {
 
   home: {
     hero: {
-      badges: ['Over 7 years of experience'],
       title: 'Where your *best holidays* begin',
       lead: 'Hand-picked holiday homes in the Algarve, with a personal check-in and support throughout your stay.',
       search: {
