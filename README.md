@@ -22,15 +22,17 @@ Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, ca
 - **Experiências** — atividades da Civitatis com filtros; `CIVITATIS_AID` em `src/routes.ts` acrescenta o ID de afiliado.
 - **Gestão AL** — pedido de proposta, serviços, legalização, simulador de rendimento (valores em `src/simulator.ts`), FAQ. Sem percentagens de comissão.
 - **Parceiros** — programa de indicação; percentagem em `PARTNER_RATE` (`src/routes.ts`).
-- Todos os formulários enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro).
+- Todos os formulários (incluindo o curto de «Fale connosco» na Home) enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro). A função reencaminha o pedido para o backoffice (`/api/pedido-site`, projeto `reservas-pdf`), que o guarda em «Pedidos do site» e avisa a equipa. Se o backoffice falhar, envia o pedido por email via Resend.
 
 ## Variáveis de ambiente (Vercel)
 
 | Variável | Exemplo |
 |---|---|
-| `RESEND_API_KEY` | chave da conta Resend |
+| `BACKOFFICE_URL` | `https://paradise-villas.vercel.app` |
+| `SITE_PEDIDOS_SEGREDO` | o mesmo valor que no projeto do backoffice |
+| `RESEND_API_KEY` | chave da conta Resend (só para o envio de recurso) |
 | `CONTACT_TO` | `info@paradisevillas.pt` |
-| `CONTACT_FROM` | `Paradise Villas <site@paradisevillas.pt>` (domínio verificado no Resend) |
+| `CONTACT_FROM` | `Paradise Villas <site@paradisevillas.pt>` (domínio verificado no Resend; vazio = `onboarding@resend.dev`, que só entrega no email da conta) |
 
 ## Pendente com o cliente
 

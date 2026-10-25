@@ -12,8 +12,10 @@ export interface LeadPayload {
   phone: string
   service?: string
   message?: string
-  /** Extra key → value pairs shown in the email (property details, estimate, …). */
+  /** Extra key → value pairs shown to the team (property details, …). */
   details?: Record<string, string>
+  /** Simulator only: what the owner picked (Portuguese labels) and the estimate shown, in €/year. */
+  simulation?: { location: string; type: string; bedrooms: string; pool: boolean; seaView: boolean; low: number; high: number }
 }
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
@@ -30,7 +32,7 @@ export function useLead(kind: LeadKind) {
       const response = await fetch('/api/contacto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, lang, consent: data.get('consent') === 'on', website: data.get('website') ?? '', ...payload }),
+        body: JSON.stringify({ kind, lang, page: window.location.href, consent: data.get('consent') === 'on', website: data.get('website') ?? '', ...payload }),
       })
       setStatus(response.ok ? 'success' : 'error')
       return response.ok

@@ -1,5 +1,7 @@
+import { useId, type FormEvent } from 'react'
 import { Link } from 'react-router'
 import { ContactChannels, ExperienceCard } from '../components/blocks'
+import { Consent, Field, FormMessage, useLead, value } from '../components/forms'
 import { HomeHero } from '../components/HomeHero'
 import { Icon, IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
@@ -240,14 +242,64 @@ function Testimonials() {
   )
 }
 
+/** Short message form: name, email and message. The full one (subject, phone) lives on Contactos. */
+function QuickContactForm() {
+  const { t } = useLang()
+  const f = t.contactos.form
+  const id = useId()
+  const lead = useLead('contacto')
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const ok = await lead.send(form, {
+      name: value(form, 'name'),
+      email: value(form, 'email'),
+      phone: '',
+      message: value(form, 'message'),
+    })
+    if (ok) form.reset()
+  }
+
+  return (
+    <form onSubmit={submit} className={`${card} relative space-y-4 p-6 md:p-8`}>
+      <h3 className="font-display text-2xl text-navy">{t.home.contact.formTitle}</h3>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label={t.form.name} htmlFor={`${id}-name`} required>
+          <input id={`${id}-name`} name="name" required autoComplete="name" placeholder={t.form.namePlaceholder} className="field" />
+        </Field>
+        <Field label={t.form.email} htmlFor={`${id}-email`} required>
+          <input id={`${id}-email`} name="email" type="email" required autoComplete="email" placeholder={t.form.emailPlaceholder} className="field" />
+        </Field>
+      </div>
+      <Field label={f.message} htmlFor={`${id}-msg`} required>
+        <textarea id={`${id}-msg`} name="message" required rows={4} placeholder={t.home.contact.messagePlaceholder} className="field resize-y" />
+      </Field>
+      <Consent id={id} />
+      <button
+        type="submit"
+        disabled={lead.status === 'sending'}
+        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-terracotta px-6 py-3.5 font-semibold text-white transition-colors hover:bg-terracotta-dark disabled:opacity-60 sm:w-auto sm:px-8"
+      >
+        <Icon name="message" className="h-5 w-5" />
+        {lead.status === 'sending' ? t.form.sending : f.submit}
+      </button>
+      <FormMessage status={lead.status} success={f.success} />
+    </form>
+  )
+}
+
 function Contact() {
   const { t } = useLang()
   const c = t.home.contact
   return (
     <section className="bg-sand px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={c.eyebrow} title={c.title} body={c.body} />
-      <div className="mx-auto mt-14 max-w-[720px]">
-        <ContactChannels />
+      <div className="mx-auto mt-14 grid max-w-[1040px] gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-6">
+        <ContactChannels stacked />
+        <Reveal delay={0.12}>
+          <QuickContactForm />
+        </Reveal>
       </div>
     </section>
   )

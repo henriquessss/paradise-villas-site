@@ -237,6 +237,8 @@ export const en: Content = {
       eyebrow: 'Contact',
       title: 'Talk *to us*',
       body: 'Own a property or planning your holiday? We are just a call or message away.',
+      formTitle: 'Leave us a message',
+      messagePlaceholder: 'How can we help?',
     },
   },
 

@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
-import { useLang } from '../content'
+import { content, useLang } from '../content'
 import { estimate, LOCATIONS, type Estimate, type PropertyType, type SimulatorInput } from '../simulator'
 import { Consent, ContactFields, Field, useLead, value } from './forms'
 import { Icon } from './icons'
@@ -45,13 +45,15 @@ export function Simulator({ proposalHref }: { proposalHref: string }) {
       name: value(form, 'name'),
       email: value(form, 'email'),
       phone: value(form, 'phone'),
-      details: {
-        Localização: place,
-        Tipo: s.types[input.type],
-        Quartos: s.bedroomOptions[input.bedrooms],
-        Piscina: input.pool ? 'Sim' : 'Não',
-        'Vista mar': input.seaView ? 'Sim' : 'Não',
-        'Estimativa anual': `${euro(est.low)} – ${euro(est.high)}`,
+      // Portuguese labels whatever the page language: the team reads and filters them in the backoffice.
+      simulation: {
+        location: place,
+        type: content.pt.gestao.simulator.types[input.type],
+        bedrooms: content.pt.gestao.simulator.bedroomOptions[input.bedrooms],
+        pool: input.pool,
+        seaView: input.seaView,
+        low: est.low,
+        high: est.high,
       },
     })
     setSendFailed(!ok)

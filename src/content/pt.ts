@@ -239,6 +239,8 @@ export const pt = {
       eyebrow: 'Contacto',
       title: 'Fale *connosco*',
       body: 'Tem um imóvel ou está a planear as suas férias? Estamos à distância de uma chamada ou mensagem.',
+      formTitle: 'Deixe-nos uma mensagem',
+      messagePlaceholder: 'Em que podemos ajudar?',
     },
   },
 

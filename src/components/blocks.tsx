@@ -35,7 +35,8 @@ export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: s
 }
 
 /** Phone and email cards. */
-export function ContactChannels() {
+/** Phone and email cards. `stacked` keeps them as one column of rows (next to a form). */
+export function ContactChannels({ stacked = false }: { stacked?: boolean }) {
   const { t } = useLang()
   const c = t.channels
   const items = [
@@ -43,15 +44,15 @@ export function ContactChannels() {
     { icon: 'mail', title: c.email.title, value: EXTERNAL.email, href: `mailto:${EXTERNAL.email}` },
   ]
   return (
-    <ul className="grid gap-3 md:grid-cols-2 md:gap-5">
+    <ul className={`grid gap-3 ${stacked ? 'md:gap-4' : 'md:grid-cols-2 md:gap-5'}`}>
       {items.map((item, i) => (
         <Reveal as="li" key={item.title} delay={i * 0.08}>
           <a
             href={item.href}
-            className={`${card} group flex h-full items-center gap-4 p-5 transition-transform duration-300 hover:-translate-y-1 md:flex-col md:gap-0 md:p-8 md:text-center`}
+            className={`${card} group flex h-full items-center gap-4 p-5 transition-transform duration-300 hover:-translate-y-1 ${stacked ? 'md:p-6' : 'md:flex-col md:gap-0 md:p-8 md:text-center'}`}
           >
-            <IconTile name={item.icon} className="md:h-14 md:w-14" />
-            <span className="flex flex-col md:mt-5 md:items-center">
+            <IconTile name={item.icon} className={stacked ? '' : 'md:h-14 md:w-14'} />
+            <span className={`flex flex-col ${stacked ? '' : 'md:mt-5 md:items-center'}`}>
               <span className="font-semibold text-navy">{item.title}</span>
               <span className="mt-0.5 text-ink-soft transition-colors group-hover:text-terracotta md:mt-1.5">{item.value}</span>
               {item.note && <span className="mt-1 text-xs text-ink-soft/80">{item.note}</span>}
