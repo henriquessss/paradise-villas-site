@@ -5,13 +5,16 @@
   "outputDirectory": "dist",
   "trailingSlash": true,
   "redirects": [
-    { "source": "/portfolio/:slug*", "destination": "/experiencias/", "permanent": true },
-    { "source": "/portfolio-category/:slug*", "destination": "/experiencias/", "permanent": true },
-    { "source": "/alojamentos", "destination": "https://alojamentos.paradisevillas.pt/", "permanent": false },
-    { "source": "/contacts", "destination": "/contactos/", "permanent": true },
-    { "source": "/homepage-2", "destination": "/", "permanent": true },
-    { "source": "/homepage-3", "destination": "/", "permanent": true },
-    { "source": "/erro", "destination": "/", "permanent": true }
+    { "source": "/portfolio/(.*)", "destination": "/experiencias/", "permanent": true },
+    { "source": "/portfolio-category/(.*)", "destination": "/experiencias/", "permanent": true },
+    { "source": "/portfolio-tag/(.*)", "destination": "/experiencias/", "permanent": true },
+    { "source": "/header/(.*)", "destination": "/", "permanent": true },
+    { "source": "/alojamentos/", "destination": "https://alojamentos.paradisevillas.pt/", "permanent": false },
+    { "source": "/contacts/", "destination": "/contactos/", "permanent": true },
+    { "source": "/homepage-2/", "destination": "/", "permanent": true },
+    { "source": "/homepage-3/", "destination": "/", "permanent": true },
+    { "source": "/erro/", "destination": "/", "permanent": true },
+    { "source": "/sitemap_index.xml", "destination": "/sitemap.xml", "permanent": true }
   ],
   "headers": [
     {

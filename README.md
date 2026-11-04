@@ -24,6 +24,15 @@ Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, ca
 - **Parceiros** — programa de indicação; percentagem em `PARTNER_RATE` (`src/routes.ts`).
 - Todos os formulários (incluindo o curto de «Fale connosco» na Home) enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro). A função reencaminha o pedido para o backoffice (`/api/pedido-site`, projeto `reservas-pdf`), que o guarda em «Pedidos do site» e avisa a equipa. Se o backoffice falhar, envia o pedido por email via Resend.
 
+## Redirects do WordPress antigo
+
+`vercel.json` encaminha os URLs do site antigo que o Google conhece (sitemaps do Yoast em `sitemap_index.xml`):
+- o portfólio, as categorias e as etiquetas vão para Experiências;
+- os templates do Elementor (`/header/…`) e as páginas soltas vão para a Home;
+- `/alojamentos/` vai para o Avantio.
+
+Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar os redirects. Por isso cada `source` tem de acabar em `/` (ou usar `(.*)`): um `"/erro"` nunca corresponde.
+
 ## Variáveis de ambiente (Vercel)
 
 | Variável | Exemplo |
@@ -45,4 +54,4 @@ Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, ca
 - Foto do fundador: a atual parece imagem de banco — pedir foto real do Bruno.
 - Textos legais referem o SEF (extinto); rever com quem os redigiu.
 - Motor de reservas: trocar `EXTERNAL.booking` / `ownerLogin` em `src/routes.ts` quando entrar a RentalReady.
-- Domínio: o DNS está com a programadora do site antigo — apontar o apex para a Vercel.
+- Domínio: o DNS está na Cloudflare (conta da Paradise Villas, todos os registos em «DNS only»). Falta apontar `@` e `www` para a Vercel, sem tocar no resto da zona: email, `app`, `send.app`, `alojamentos`.
