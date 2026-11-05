@@ -7,44 +7,44 @@ export const pt = {
   meta: {
     siteName: 'Paradise Villas',
     home: {
-      title: 'Paradise Villas — Alojamentos de férias e gestão de Alojamento Local no Algarve',
+      title: 'Paradise Villas | Alojamentos de férias e gestão de Alojamento Local no Algarve',
       description:
         'Alojamentos de férias selecionados no Algarve, experiências e gestão completa de Alojamento Local. Reserve diretamente com a Paradise Villas, em Albufeira.',
     },
     experiencias: {
-      title: 'Experiências no Algarve — Paradise Villas',
+      title: 'Experiências no Algarve | Paradise Villas',
       description:
         'Passeios de barco às grutas de Benagil, golfinhos, caiaque, jipe, provas de vinho e muito mais. Reserve online as melhores experiências no Algarve.',
     },
     gestao: {
-      title: 'Gestão de Alojamento Local no Algarve — Paradise Villas',
+      title: 'Gestão de Alojamento Local no Algarve | Paradise Villas',
       description:
         'Gestão completa do seu Alojamento Local: limpezas, check-in, manutenção, preços dinâmicos e visibilidade nas principais plataformas. Simule o rendimento do seu imóvel.',
     },
     parceiros: {
-      title: 'Programa de Parceiros — Paradise Villas',
+      title: 'Programa de Parceiros | Paradise Villas',
       description:
         'Indique proprietários à Paradise Villas e receba uma comissão de parceria por cada imóvel que entre em gestão. Para imobiliárias, condomínios, contabilistas e particulares.',
     },
     sobre: {
-      title: 'Sobre Nós — Paradise Villas',
+      title: 'Sobre Nós | Paradise Villas',
       description:
         'Especialistas em gestão de alojamento local no Algarve, focados em criar estadias acolhedoras e inesquecíveis. Conheça a Paradise Villas e o fundador, Bruno Pereira.',
     },
     contactos: {
-      title: 'Contactos — Paradise Villas',
-      description: 'Fale connosco por telefone, email ou formulário. Paradise Villas, Albufeira — Algarve.',
+      title: 'Contactos | Paradise Villas',
+      description: 'Fale connosco por telefone, email ou formulário. Paradise Villas, Albufeira, Algarve.',
     },
     privacidade: {
-      title: 'Política de Privacidade — Paradise Villas',
+      title: 'Política de Privacidade | Paradise Villas',
       description: 'Como a Paradise Villas trata e protege os seus dados pessoais.',
     },
     termos: {
-      title: 'Termos e Condições — Paradise Villas',
+      title: 'Termos e Condições | Paradise Villas',
       description: 'Condições de reserva e de estadia nos alojamentos Paradise Villas.',
     },
     notFound: {
-      title: 'Página não encontrada — Paradise Villas',
+      title: 'Página não encontrada | Paradise Villas',
       description: 'A página que procura não existe.',
     },
   },
@@ -128,7 +128,7 @@ export const pt = {
         {
           icon: 'compass',
           title: 'Experiências no Algarve',
-          text: 'Grutas, golfinhos, caiaque e aventura — escolha a sua e reserve online em poucos minutos.',
+          text: 'Grutas, golfinhos, caiaque e aventura. Escolha a sua e reserve online em poucos minutos.',
           cta: 'Ver experiências',
         },
         {
@@ -155,7 +155,7 @@ export const pt = {
         {
           name: 'Apt. Palmeiras',
           place: 'Lagoa',
-          text: 'Acolhedor apartamento em Alporchinhos — uma das zonas mais privilegiadas do Algarve.',
+          text: 'Acolhedor apartamento em Alporchinhos, uma das zonas mais privilegiadas do Algarve.',
           image: 'apt-palmeiras',
           href: 'https://alojamentos.paradisevillas.pt/aluguer/apartamento-porches-apartamento-palmeiras-689717.html',
         },
@@ -190,7 +190,7 @@ export const pt = {
     algarve: {
       eyebrow: 'Algarve',
       title: 'Muito mais do que um *destino*',
-      body: 'Praias que parecem postais, falésias douradas, vilas caiadas e mais de 300 dias de sol por ano. O Algarve tem tudo para umas férias perfeitas — e nós conhecemo-lo como ninguém.',
+      body: 'Praias que parecem postais, falésias douradas, vilas caiadas e mais de 300 dias de sol por ano. O Algarve tem tudo para umas férias perfeitas, e nós conhecemo-lo como ninguém.',
       features: [
         { icon: 'sun', title: '300+ dias de sol', text: 'Uma das regiões mais soalheiras da Europa, para férias em qualquer altura do ano.' },
         { icon: 'waves', title: 'Praias deslumbrantes', text: 'Da Falésia à Marinha: grandes areais e enseadas escondidas.' },
@@ -481,7 +481,7 @@ export const pt = {
         },
         {
           q: 'Como posso acompanhar o desempenho do meu alojamento?',
-          a: 'Disponibilizamos um **painel de controlo online**, onde pode acompanhar em tempo real as **reservas**, **taxa de ocupação**, **preços aplicados** e **avaliações dos hóspedes** — com total transparência.',
+          a: 'Disponibilizamos um **painel de controlo online**, onde pode acompanhar em tempo real as **reservas**, **taxa de ocupação**, **preços aplicados** e **avaliações dos hóspedes**, com total transparência.',
         },
         {
           q: 'Como posso aderir ao serviço?',
@@ -541,7 +541,7 @@ export const pt = {
       items: [
         { title: 'Indique', text: 'Envie-nos o contacto do proprietário, com a autorização dele, pelo formulário ou por telefone.' },
         { title: 'Nós tratamos do resto', text: 'Visitamos o imóvel, apresentamos a proposta e cuidamos de todo o processo.' },
-        { title: 'Receba a sua comissão', text: 'Quando o imóvel entra em gestão, recebe a sua percentagem — com total transparência.' },
+        { title: 'Receba a sua comissão', text: 'Quando o imóvel entra em gestão, recebe a sua percentagem com total transparência.' },
       ],
     },
     benefits: {
@@ -576,7 +576,7 @@ export const pt = {
     intro: {
       body: [
         'Em **Paradise Villas** somos especialistas em gestão de alojamento local no Algarve, focados em criar estadias acolhedoras e inesquecíveis. Mais do que gerir imóveis, **proporcionamos experiências únicas que fazem os hóspedes sentirem-se em casa.**',
-        'Trabalhamos com proximidade, dedicação e atenção ao detalhe — para garantir conforto, segurança e bem-estar em cada estadia.',
+        'Trabalhamos com proximidade, dedicação e atenção ao detalhe, para garantir conforto, segurança e bem-estar em cada estadia.',
       ],
       imageAlt: 'Piscina de uma villa Paradise Villas',
     },
@@ -597,7 +597,7 @@ export const pt = {
         {
           icon: 'heart',
           title: 'Valores',
-          text: 'Confiança, hospitalidade, dedicação e profissionalismo — com proprietários, hóspedes e parceiros. São estes os pilares que guiam todas as nossas ações e relações.',
+          text: 'Confiança, hospitalidade, dedicação e profissionalismo na relação com proprietários, hóspedes e parceiros. São estes os pilares que guiam todas as nossas ações e relações.',
         },
         {
           icon: 'sparkles',
@@ -613,19 +613,19 @@ export const pt = {
       imageAlt: 'Bruno Pereira, fundador da Paradise Villas',
       body: [
         'Bruno Pereira é o fundador da Paradise Villas e o rosto por trás de cada estadia bem-sucedida. Natural do Algarve e com mais de 7 anos de experiência em alojamento local, criou a marca para proporcionar muito mais do que casas para férias: experiências acolhedoras, tranquilas e autênticas, tanto para os hóspedes como para os proprietários.',
-        'Com espírito empreendedor e atenção constante aos detalhes, o Bruno acompanha pessoalmente cada processo — da receção de hóspedes à gestão diária dos imóveis — com profissionalismo, proximidade e um sorriso genuíno.',
+        'Com espírito empreendedor e atenção constante aos detalhes, o Bruno acompanha pessoalmente cada processo, da receção de hóspedes à gestão diária dos imóveis. Fá-lo com profissionalismo, proximidade e um sorriso genuíno.',
       ],
       closing: 'Confie em quem vive o Algarve, entende de hospitalidade e trata o seu imóvel e as suas férias com atenção única.',
     },
     ctas: [
       {
         title: 'Gestão de Alojamento Local',
-        text: 'Rentabilize o seu imóvel com confiança, transparência e apoio total — nós tratamos de tudo por si.',
+        text: 'Rentabilize o seu imóvel com confiança, transparência e apoio total. Nós tratamos de tudo por si.',
         image: 'sobre-cta-gestao',
       },
       {
         title: 'Alojamentos para férias',
-        text: 'Férias no Algarve com conforto, privacidade e tudo preparado ao detalhe — só precisa de relaxar.',
+        text: 'Férias no Algarve com conforto, privacidade e tudo preparado ao detalhe. Só precisa de relaxar.',
         image: 'sobre-cta-alojamentos',
       },
     ],
@@ -635,7 +635,7 @@ export const pt = {
     header: {
       eyebrow: 'Contacto',
       title: 'Fale *connosco*',
-      body: 'Tem um imóvel ou está a planear as suas férias? Ligue, envie mensagem ou preencha o formulário — respondemos o mais rápido possível.',
+      body: 'Tem um imóvel ou está a planear as suas férias? Ligue, envie mensagem ou preencha o formulário. Respondemos o mais rápido possível.',
     },
     form: {
       title: 'Envie-nos uma mensagem',

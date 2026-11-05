@@ -28,7 +28,7 @@ The number of guests may not exceed the legal and/or advertised capacity of the 
 
 No pets of any breed, size or age are allowed. PARADISE VILLAS reserves the right to require guests to leave the property without any compensation or refund of the fees paid if an animal is found inside.
 
-Under Article 45(1)(a) of the Convention implementing the Schengen Agreement, the accommodation of foreign citizens — meaning anyone who does not hold Portuguese nationality — must be reported to SEF.
+Under Article 45(1)(a) of the Convention implementing the Schengen Agreement, the accommodation of foreign citizens, meaning anyone who does not hold Portuguese nationality, must be reported to SEF.
 
 For the purposes of the previous paragraph, all guests of foreign nationality must provide all information relating to their identification no later than the check-in date, using the form sent for that purpose.
 

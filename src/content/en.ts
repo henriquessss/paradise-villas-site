@@ -7,44 +7,44 @@ export const en: Content = {
   meta: {
     siteName: 'Paradise Villas',
     home: {
-      title: 'Paradise Villas — Holiday rentals and property management in the Algarve',
+      title: 'Paradise Villas | Holiday rentals and property management in the Algarve',
       description:
         'Hand-picked holiday homes in the Algarve, local experiences and complete holiday rental management. Book direct with Paradise Villas in Albufeira.',
     },
     experiencias: {
-      title: 'Experiences in the Algarve — Paradise Villas',
+      title: 'Experiences in the Algarve | Paradise Villas',
       description:
         'Boat trips to the Benagil caves, dolphin watching, kayaking, jeep safaris, wine tasting and much more. Book the best experiences in the Algarve online.',
     },
     gestao: {
-      title: 'Holiday Rental Management in the Algarve — Paradise Villas',
+      title: 'Holiday Rental Management in the Algarve | Paradise Villas',
       description:
         'Complete management of your holiday rental: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms. Estimate your property’s income.',
     },
     parceiros: {
-      title: 'Partner Programme — Paradise Villas',
+      title: 'Partner Programme | Paradise Villas',
       description:
         'Refer property owners to Paradise Villas and earn a partner commission for every property that joins our management. For estate agents, building managers, accountants and individuals.',
     },
     sobre: {
-      title: 'About Us — Paradise Villas',
+      title: 'About Us | Paradise Villas',
       description:
         'Holiday rental management specialists in the Algarve, focused on warm and unforgettable stays. Meet Paradise Villas and its founder, Bruno Pereira.',
     },
     contactos: {
-      title: 'Contact — Paradise Villas',
-      description: 'Talk to us by phone, email or form. Paradise Villas, Albufeira — Algarve.',
+      title: 'Contact | Paradise Villas',
+      description: 'Talk to us by phone, email or form. Paradise Villas, Albufeira, Algarve.',
     },
     privacidade: {
-      title: 'Privacy Policy — Paradise Villas',
+      title: 'Privacy Policy | Paradise Villas',
       description: 'How Paradise Villas processes and protects your personal data.',
     },
     termos: {
-      title: 'Terms and Conditions — Paradise Villas',
+      title: 'Terms and Conditions | Paradise Villas',
       description: 'Booking and stay conditions for Paradise Villas properties.',
     },
     notFound: {
-      title: 'Page not found — Paradise Villas',
+      title: 'Page not found | Paradise Villas',
       description: 'The page you are looking for does not exist.',
     },
   },
@@ -126,7 +126,7 @@ export const en: Content = {
         {
           icon: 'compass',
           title: 'Experiences in the Algarve',
-          text: 'Sea caves, dolphins, kayaking and adventure — choose yours and book online in minutes.',
+          text: 'Sea caves, dolphins, kayaking and adventure. Choose yours and book online in minutes.',
           cta: 'View experiences',
         },
         {
@@ -153,7 +153,7 @@ export const en: Content = {
         {
           name: 'Apt. Palmeiras',
           place: 'Lagoa',
-          text: 'A cosy apartment in Alporchinhos — one of the most sought-after areas of the Algarve.',
+          text: 'A cosy apartment in Alporchinhos, one of the most sought-after areas of the Algarve.',
           image: 'apt-palmeiras',
           href: 'https://alojamentos.paradisevillas.pt/aluguer/apartamento-porches-apartamento-palmeiras-689717.html',
         },
@@ -188,7 +188,7 @@ export const en: Content = {
     algarve: {
       eyebrow: 'Algarve',
       title: 'Much more than a *destination*',
-      body: 'Postcard beaches, golden cliffs, whitewashed villages and over 300 days of sunshine a year. The Algarve has everything for the perfect holiday — and we know it like no one else.',
+      body: 'Postcard beaches, golden cliffs, whitewashed villages and over 300 days of sunshine a year. The Algarve has everything for the perfect holiday, and we know it like no one else.',
       features: [
         { icon: 'sun', title: '300+ days of sun', text: 'One of the sunniest regions in Europe, for holidays at any time of year.' },
         { icon: 'waves', title: 'Stunning beaches', text: 'From Falésia to Marinha: long sandy beaches and hidden coves.' },
@@ -476,7 +476,7 @@ export const en: Content = {
         },
         {
           q: 'How can I follow my property’s performance?',
-          a: 'You get an **online dashboard** where you can follow **bookings**, **occupancy rate**, **prices** and **guest reviews** in real time — with full transparency.',
+          a: 'You get an **online dashboard** where you can follow **bookings**, **occupancy rate**, **prices** and **guest reviews** in real time, with full transparency.',
         },
         {
           q: 'How do I sign up?',
@@ -535,7 +535,7 @@ export const en: Content = {
       items: [
         { title: 'Refer', text: 'Send us the owner’s contact, with their permission, through the form or by phone.' },
         { title: 'We do the rest', text: 'We visit the property, present our proposal and handle the whole process.' },
-        { title: 'Earn your commission', text: 'Once the property joins our management, you receive your share — fully transparent.' },
+        { title: 'Earn your commission', text: 'Once the property joins our management, you receive your share with full transparency.' },
       ],
     },
     benefits: {
@@ -565,7 +565,7 @@ export const en: Content = {
     intro: {
       body: [
         'At **Paradise Villas** we specialise in holiday rental management in the Algarve, focused on creating warm and unforgettable stays. More than managing properties, **we create unique experiences that make guests feel at home.**',
-        'We work closely, with dedication and attention to detail — to ensure comfort, safety and well-being in every stay.',
+        'We work closely, with dedication and attention to detail, to ensure comfort, safety and well-being in every stay.',
       ],
       imageAlt: 'Pool of a Paradise Villas villa',
     },
@@ -586,7 +586,7 @@ export const en: Content = {
         {
           icon: 'heart',
           title: 'Values',
-          text: 'Trust, hospitality, dedication and professionalism — with owners, guests and partners. These are the pillars behind everything we do.',
+          text: 'Trust, hospitality, dedication and professionalism in our relationships with owners, guests and partners. These are the pillars behind everything we do.',
         },
         {
           icon: 'sparkles',
@@ -602,19 +602,19 @@ export const en: Content = {
       imageAlt: 'Bruno Pereira, founder of Paradise Villas',
       body: [
         'Bruno Pereira is the founder of Paradise Villas and the face behind every successful stay. Born in the Algarve and with more than 7 years of experience in holiday rentals, he created the brand to offer much more than holiday homes: warm, relaxed and authentic experiences for guests and owners alike.',
-        'With an entrepreneurial spirit and constant attention to detail, Bruno personally oversees every process — from welcoming guests to the day-to-day management of each property — with professionalism, closeness and a genuine smile.',
+        'With an entrepreneurial spirit and constant attention to detail, Bruno personally oversees every process, from welcoming guests to the day-to-day management of each property. He does it with professionalism, closeness and a genuine smile.',
       ],
       closing: 'Trust someone who lives the Algarve, understands hospitality and looks after your property and your holiday with unique care.',
     },
     ctas: [
       {
         title: 'Holiday rental management',
-        text: 'Earn from your property with confidence, transparency and full support — we take care of everything.',
+        text: 'Earn from your property with confidence, transparency and full support. We take care of everything.',
         image: 'sobre-cta-gestao',
       },
       {
         title: 'Holiday rentals',
-        text: 'Holidays in the Algarve with comfort, privacy and every detail prepared — all you need to do is relax.',
+        text: 'Holidays in the Algarve with comfort, privacy and every detail prepared. All you need to do is relax.',
         image: 'sobre-cta-alojamentos',
       },
     ],
@@ -624,7 +624,7 @@ export const en: Content = {
     header: {
       eyebrow: 'Contact',
       title: 'Talk *to us*',
-      body: 'Own a property or planning your holiday? Call, send a message or fill in the form — we reply as soon as possible.',
+      body: 'Own a property or planning your holiday? Call, send a message or fill in the form. We reply as soon as possible.',
     },
     form: {
       title: 'Send us a message',

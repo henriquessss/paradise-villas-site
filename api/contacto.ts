@@ -13,7 +13,7 @@
 
 const KINDS = {
   contacto: 'Contacto',
-  gestao: 'Pedido de proposta — Gestão AL',
+  gestao: 'Pedido de proposta: Gestão AL',
   simulador: 'Simulador de rendimento',
   parceiro: 'Candidatura a parceiro',
 } as const
@@ -124,7 +124,7 @@ async function sendEmail(lead: Lead): Promise<boolean> {
         from,
         to: [to],
         reply_to: lead.email,
-        subject: `${KINDS[lead.kind]} — ${lead.name}`,
+        subject: `${KINDS[lead.kind]} · ${lead.name}`,
         text: lines.join('\n'),
       }),
     })
