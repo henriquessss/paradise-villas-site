@@ -41,7 +41,7 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 | `SITE_PEDIDOS_SEGREDO` | o mesmo valor que no projeto do backoffice |
 | `RESEND_API_KEY` | chave da conta Resend (só para o envio de recurso) |
 | `CONTACT_TO` | `info@paradisevillas.pt` |
-| `CONTACT_FROM` | `Paradise Villas <site@paradisevillas.pt>` (domínio verificado no Resend; vazio = `onboarding@resend.dev`, que só entrega no email da conta) |
+| `CONTACT_FROM` | `Paradise Villas <site@app.paradisevillas.pt>` (subdomínio já verificado no Resend para o backoffice; o domínio principal não está verificado, de propósito. Vazio = `onboarding@resend.dev`, que só entrega no email da conta) |
 
 ## Pendente com o cliente
 
