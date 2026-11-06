@@ -249,7 +249,7 @@ export const en: Content = {
 
   experiencias: {
     header: {
-      eyebrow: 'Algarve',
+      eyebrow: 'Experiences in the Algarve',
       title: 'Adventure, fun and *discovery*',
       body: 'Boat trips, sea caves, dolphins and much more. We have picked the best experiences to enjoy the Algarve during your stay.',
     },
@@ -350,7 +350,7 @@ export const en: Content = {
 
   gestao: {
     hero: {
-      eyebrow: 'Holiday rental management',
+      eyebrow: 'Holiday rental management in the Algarve',
       title: 'Ready to *get started*?',
       body: 'Leave your details and a few facts about your property. We will prepare a tailored proposal, with no commitment.',
       points: [

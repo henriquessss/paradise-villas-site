@@ -23,9 +23,12 @@ export function PageHero({ eyebrow, title, body, image, children }: { eyebrow: s
           </span>
           <span className="text-white/85">{eyebrow}</span>
         </nav>
-        <p className="eyebrow text-terracotta">{eyebrow}</p>
-        <h1 className="font-display mt-4 text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.04] tracking-[-0.015em]">
-          <Accent text={title} />
+        {/* The eyebrow sits inside <h1> so the heading carries the page's keywords, not just the slogan. */}
+        <h1>
+          <span className="eyebrow block text-terracotta">{eyebrow}</span>
+          <span className="font-display mt-4 block text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.04] tracking-[-0.015em]">
+            <Accent text={title} />
+          </span>
         </h1>
         {body && <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-white/75">{body}</p>}
         {children && <div className="mt-9 flex flex-wrap justify-center gap-3">{children}</div>}

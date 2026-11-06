@@ -5,7 +5,7 @@ import { Icon, IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
 import { Rich } from '../components/Rich'
 import { Simulator } from '../components/Simulator'
-import { Accent, Button, card, Eyebrow, featureCard, SectionHeading } from '../components/ui'
+import { Accent, Button, card, featureCard, SectionHeading } from '../components/ui'
 import { useLang } from '../content'
 import { EXTERNAL } from '../routes'
 
@@ -111,9 +111,12 @@ export function Gestao() {
       <section className="px-5 pt-32 pb-20 md:px-8 md:pt-40 md:pb-28">
         <div className="mx-auto grid max-w-[1200px] items-start gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
           <div className="animate-rise lg:sticky lg:top-32">
-            <Eyebrow>{g.hero.eyebrow}</Eyebrow>
-            <h1 className="font-display mt-4 text-[clamp(2.6rem,6vw,4.6rem)] leading-[1.02] tracking-[-0.015em] text-navy">
-              <Accent text={g.hero.title} />
+            {/* Eyebrow inside <h1>: «Gestão de Alojamento Local no Algarve» is the keyword this page ranks for. */}
+            <h1>
+              <span className="eyebrow block text-terracotta">{g.hero.eyebrow}</span>
+              <span className="font-display mt-4 block text-[clamp(2.6rem,6vw,4.6rem)] leading-[1.02] tracking-[-0.015em] text-navy">
+                <Accent text={g.hero.title} />
+              </span>
             </h1>
             <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-ink-soft">{g.hero.body}</p>
             <div className={`${card} mt-8 flex max-w-md items-center gap-5 p-5`}>

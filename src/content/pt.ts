@@ -252,7 +252,7 @@ export const pt = {
 
   experiencias: {
     header: {
-      eyebrow: 'Algarve',
+      eyebrow: 'Experiências no Algarve',
       title: 'Aventura, diversão e *descoberta*',
       body: 'Passeios de barco, grutas, golfinhos e muito mais. Selecionámos as melhores experiências para viver o Algarve durante a sua estadia.',
     },
@@ -354,7 +354,7 @@ export const pt = {
 
   gestao: {
     hero: {
-      eyebrow: 'Gestão de Alojamento Local',
+      eyebrow: 'Gestão de Alojamento Local no Algarve',
       title: 'Pronto para *começar*?',
       body: 'Deixe-nos os seus contactos e os dados do imóvel. Preparamos uma proposta personalizada, sem compromisso.',
       // NOVO — validar com o cliente.
