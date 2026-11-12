@@ -42,10 +42,10 @@ function HeroVideo() {
         onPlaying={() => setPlaying(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${playing ? 'opacity-100' : 'opacity-0'}`}
       />
-      <div className="absolute inset-0 bg-navy-deep/40" />
-      {/* Text sits straight on the video: extra shade behind the centre and the bottom stats. */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,25,44,0.45),transparent_70%)]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/50 via-transparent to-navy-deep/75" />
+      {/* Light touch so the villas stay bright (client, 2026-11): a soft shade behind the centred
+          text plus top/bottom fades for the header and the stats; text shadows do the rest. */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,25,44,0.28),transparent_65%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/35 via-transparent via-30% to-navy-deep/45" />
     </div>
   )
 }
@@ -152,20 +152,20 @@ export function HomeHero() {
       <HeroVideo />
 
       <div className="animate-rise relative w-full max-w-[1000px]">
-        <h1 className="font-display mx-auto max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_30px_rgba(0,25,44,0.35)] [&_em]:text-[#f2a07f]">
+        <h1 className="font-display mx-auto max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_24px_rgba(0,25,44,0.45)] [&_em]:text-[#ff6a1f]">
           <Accent text={h.title} />
         </h1>
-        <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed text-white/80 sm:block">{h.lead}</p>
+        <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed font-medium text-white/95 [text-shadow:0_1px_12px_rgba(0,25,44,0.6)] sm:block">{h.lead}</p>
 
         <div className="mt-8 sm:mt-10">
           <SearchForm />
         </div>
       </div>
 
-      <dl className="animate-rise relative mt-10 grid w-full max-w-[680px] grid-cols-3 gap-2 border-t border-white/15 pt-6 [animation-delay:0.15s] sm:mt-14">
+      <dl className="animate-rise relative mt-10 grid w-full max-w-[680px] grid-cols-3 gap-2 border-t border-white/25 pt-6 [text-shadow:0_1px_12px_rgba(0,25,44,0.55)] [animation-delay:0.15s] sm:mt-14">
         {h.stats.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse justify-end">
-            <dt className="mt-1.5 text-[0.7rem] leading-tight text-white/65 sm:text-xs">{stat.label}</dt>
+            <dt className="mt-1.5 text-[0.7rem] leading-tight font-medium text-white/90 sm:text-xs">{stat.label}</dt>
             <dd className="font-display text-[1.5rem] leading-none sm:text-[2rem]">
               <CountUp to={stat.value} locale={t.locale} />
               {stat.suffix}
