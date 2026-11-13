@@ -57,6 +57,17 @@ export function Header() {
       isActive ? (light ? 'bg-white/15 text-white' : 'bg-terracotta/10 text-terracotta') : light ? 'text-white/85 hover:text-white' : 'text-navy/75 hover:text-terracotta'
     }`
 
+  const navItem = (item: (typeof items)[number]) =>
+    item.href ? (
+      <a key={item.label} href={item.href} target="_blank" rel="noopener" className={linkClass({ isActive: false })}>
+        {item.label}
+      </a>
+    ) : (
+      <NavLink key={item.label} to={item.to!} className={linkClass}>
+        {item.label}
+      </NavLink>
+    )
+
   return (
     <>
       <a href="#conteudo" className="sr-only z-[60] rounded bg-white px-4 py-2 text-navy focus:not-sr-only focus:fixed focus:top-4 focus:left-4">
@@ -67,26 +78,22 @@ export function Header() {
           light ? 'bg-gradient-to-b from-navy-deep/50 to-transparent text-white' : 'bg-white/95 text-navy shadow-[0_1px_0_rgba(0,25,44,0.06)] backdrop-blur-md'
         }`}
       >
-        <div className="mx-auto flex h-[4.5rem] max-w-[1320px] items-center justify-between gap-6 px-5 md:h-20 md:px-8">
+        {/* Desktop (xl): split nav with the logo centred, language and owner button on the right.
+            Below xl: logo on the left, language, owner button and the menu button on the right. */}
+        <div className="mx-auto flex h-[4.5rem] max-w-[1320px] items-center justify-between gap-6 px-5 md:h-20 md:px-8 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-8">
+          <nav aria-label="Principal" className="hidden items-center justify-end gap-1 xl:flex">
+            {items.slice(0, 3).map(navItem)}
+          </nav>
+
           <Link to={to('home')} aria-label="Paradise Villas" className="shrink-0">
             <img src={light ? '/logo-texto-claro.png' : '/logo-texto.png'} alt="Paradise Villas" width={287} height={180} className="h-11 w-auto md:h-12" />
           </Link>
 
-          <nav aria-label="Principal" className="hidden items-center gap-1 xl:flex">
-            {items.map((item) =>
-              item.href ? (
-                <a key={item.label} href={item.href} target="_blank" rel="noopener" className={linkClass({ isActive: false })}>
-                  {item.label}
-                </a>
-              ) : (
-                <NavLink key={item.label} to={item.to!} className={linkClass}>
-                  {item.label}
-                </NavLink>
-              ),
-            )}
-          </nav>
-
           <div className="flex items-center gap-2 sm:gap-3">
+            <nav aria-label="Principal (continuação)" className="hidden items-center gap-1 xl:flex">
+              {items.slice(3).map(navItem)}
+            </nav>
+            <span aria-hidden="true" className={`hidden h-6 w-px xl:block ${light ? 'bg-white/40' : 'bg-navy/15'}`} />
             <div className={`flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[0.78rem] font-semibold sm:px-3 ${light ? 'bg-white/10' : 'bg-sand'}`} aria-label={t.nav.langLabel}>
               <Icon name="globe" className="h-3.5 w-3.5 opacity-70" />
               {(['pt', 'en'] as const).map((l) =>
