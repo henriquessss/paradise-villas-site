@@ -142,6 +142,29 @@ export function Gestao() {
         </div>
       </section>
 
+      <section className="bg-white px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <SectionHeading eyebrow={g.local.eyebrow} title={g.local.title} align="left" />
+          <Reveal>
+            <div className="space-y-5 text-[1.05rem] leading-relaxed text-ink-soft">
+              {g.local.paragraphs.map((p) => (
+                <p key={p.slice(0, 24)}>{p}</p>
+              ))}
+            </div>
+            <h3 className="mt-8 flex items-center gap-2 text-sm font-semibold text-navy">
+              <Icon name="pin" className="h-4 w-4 text-terracotta" /> {g.local.zonesLabel}
+            </h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {g.local.zones.map((zone) => (
+                <li key={zone} className="rounded-full bg-sand px-4 py-1.5 text-sm font-medium text-navy">
+                  {zone}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={g.services.eyebrow} title={g.services.title} body={g.services.body} />
         <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-3">

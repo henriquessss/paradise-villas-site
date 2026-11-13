@@ -7,7 +7,7 @@ export const en: Content = {
   meta: {
     siteName: 'Paradise Villas',
     home: {
-      title: 'Paradise Villas | Holiday rentals and property management in the Algarve',
+      title: 'Paradise Villas | Holiday Homes and Rental Management, Algarve',
       description:
         'Hand-picked holiday homes in the Algarve, local experiences and complete holiday rental management. Book direct with Paradise Villas in Albufeira.',
     },
@@ -17,9 +17,9 @@ export const en: Content = {
         'Boat trips to the Benagil caves, dolphin watching, kayaking, jeep safaris, wine tasting and much more. Book the best experiences in the Algarve online.',
     },
     gestao: {
-      title: 'Holiday Rental Management in the Algarve | Paradise Villas',
+      title: 'Holiday Rental Management in Albufeira and the Algarve | Paradise Villas',
       description:
-        'Complete management of your holiday rental: cleaning, check-in, maintenance, dynamic pricing and visibility on the main booking platforms. Estimate your property’s income.',
+        'Complete holiday rental management in Albufeira and the Algarve: listings, pricing, check-in, cleaning and maintenance. Estimate your revenue, get a proposal.',
     },
     parceiros: {
       title: 'Partner Programme | Paradise Villas',
@@ -424,6 +424,17 @@ export const en: Content = {
           text: 'Prices adjusted to demand, season and occupancy to maximise your income all year round.',
         },
       ],
+    },
+    local: {
+      eyebrow: 'Albufeira and the Algarve',
+      title: 'Holiday rental management *in Albufeira*',
+      paragraphs: [
+        'Paradise Villas is based in Albufeira and manages holiday rental villas and apartments in the central Algarve. Being close to the properties makes a difference: we welcome guests in person, sort out problems on the same day and know the market in each area.',
+        'Management is complete. We create and fine-tune the listings on Airbnb, Booking, Vrbo and our own website, adjust prices to the season and demand, and take care of bookings, guest communication, check-in, cleaning, linen and maintenance. Owners follow everything in an online dashboard, with bookings, occupancy and each month’s statement.',
+        'If your property is not licensed yet, we handle the holiday rental (AL) registration, the mandatory insurance and the rest of the process. To see what it could earn, try the simulator on this page or ask for a proposal: we assess your property with no commitment.',
+      ],
+      zonesLabel: 'Where we work',
+      zones: ['Albufeira', 'Armação de Pêra', 'Pêra', 'Lagoa', 'Porches', 'Carvoeiro'],
     },
     legal: {
       eyebrow: 'Starting from scratch?',

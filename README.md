@@ -9,7 +9,7 @@ npm run dev         # desenvolvimento (sem pré-render; /api não corre aqui)
 npm run build       # scripts/experiencias.mjs + tsc + build cliente + build SSR + scripts/prerender.mjs → dist/
 npm run experiencias # só o passo das experiências (pedido ao backoffice)
 npm run preview     # serve dist/ (sem /api: os formulários mostram erro de envio)
-npm run media       # regenera public/images, logos e favicons
+npm run media       # regenera public/images, logos e favicons (os favicons sozinhos: node scripts/favicons.mjs)
 npm run media:hero  # regenera o vídeo da hero (public/video/) a partir dos vídeos do cliente
 ```
 
@@ -50,6 +50,8 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 - Percentagem e base de cálculo da parceria (`PARTNER_RATE`).
 - Valores do simulador (`VALORES` em `src/simulator.ts`): calibrados a partir da única referência dada pelos administradores (moradia T4 com piscina em Albufeira = 70 000–80 000 € brutos/ano); o resto está em `docs/simulador-valores-a-confirmar.md`.
 - Vídeo final da hero (o cliente ficou de enviar; o atual é uma montagem dos vídeos das villas).
+- Zonas onde fazem gestão (`gestao.local.zones` em `src/content/pt.ts`/`en.ts`; alimentam também o JSON-LD `areaServed`).
+- SEO fora do código (Search Console, Perfil da Empresa no Google, avaliações, Ads): `docs/seo-o-que-fazer.md`.
 - Confirmar números da Gestão AL (500+ proprietários, 200+ imóveis).
 - Foto do fundador: a atual parece imagem de banco — pedir foto real do Bruno.
 - Textos legais referem o SEF (extinto); rever com quem os redigiu.

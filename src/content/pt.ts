@@ -7,7 +7,7 @@ export const pt = {
   meta: {
     siteName: 'Paradise Villas',
     home: {
-      title: 'Paradise Villas | Alojamentos de férias e gestão de Alojamento Local no Algarve',
+      title: 'Paradise Villas | Férias e Gestão de Alojamento Local no Algarve',
       description:
         'Alojamentos de férias selecionados no Algarve, experiências e gestão completa de Alojamento Local. Reserve diretamente com a Paradise Villas, em Albufeira.',
     },
@@ -17,9 +17,9 @@ export const pt = {
         'Passeios de barco às grutas de Benagil, golfinhos, caiaque, jipe, provas de vinho e muito mais. Reserve online as melhores experiências no Algarve.',
     },
     gestao: {
-      title: 'Gestão de Alojamento Local no Algarve | Paradise Villas',
+      title: 'Gestão de Alojamento Local em Albufeira e no Algarve | Paradise Villas',
       description:
-        'Gestão completa do seu Alojamento Local: limpezas, check-in, manutenção, preços dinâmicos e visibilidade nas principais plataformas. Simule o rendimento do seu imóvel.',
+        'Gestão completa de Alojamento Local em Albufeira e no Algarve: anúncios, preços, check-in, limpezas e manutenção. Simule a receita e peça uma proposta.',
     },
     parceiros: {
       title: 'Programa de Parceiros | Paradise Villas',
@@ -429,6 +429,18 @@ export const pt = {
           text: 'Preços ajustados à procura, à época e à ocupação, para maximizar o rendimento ao longo do ano.',
         },
       ],
+    },
+    // Texto para o Google («gestão de alojamento local Albufeira/Algarve»). Zonas: confirmar com o cliente.
+    local: {
+      eyebrow: 'Albufeira e Algarve',
+      title: 'Gestão de Alojamento Local *em Albufeira*',
+      paragraphs: [
+        'A Paradise Villas está sediada em Albufeira e gere moradias e apartamentos de Alojamento Local no centro do Algarve. Estar perto dos imóveis faz diferença: recebemos os hóspedes pessoalmente, resolvemos imprevistos no próprio dia e conhecemos o mercado de cada zona.',
+        'A gestão é completa. Criamos e otimizamos os anúncios no Airbnb, Booking, Vrbo e no nosso site, ajustamos os preços à época e à procura, e tratamos das reservas, da comunicação com os hóspedes, do check-in, das limpezas, da roupa e da manutenção. O proprietário acompanha tudo num painel online, com as reservas, a ocupação e as liquidações de cada mês.',
+        'Se o imóvel ainda não está legalizado, tratamos do registo de Alojamento Local, do seguro obrigatório e do resto do processo. Para saber quanto pode render, use o simulador desta página ou peça uma proposta: avaliamos o imóvel sem compromisso.',
+      ],
+      zonesLabel: 'Onde atuamos',
+      zones: ['Albufeira', 'Armação de Pêra', 'Pêra', 'Lagoa', 'Porches', 'Carvoeiro'],
     },
     legal: {
       eyebrow: 'Quer começar do zero?',
