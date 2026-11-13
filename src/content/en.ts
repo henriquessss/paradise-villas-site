@@ -273,12 +273,12 @@ export const en: Content = {
         slug: { pt: 'avistamento-golfinhos-albufeira', en: 'dolphin-watching-albufeira' },
       },
       {
-        title: 'Kayak tour',
+        title: 'Benagil caves kayak tour',
         text: 'Paddle into sea caves and hidden coves, close to the water and the rock.',
-        place: 'Albufeira',
+        place: 'Benagil',
         category: 'natureza',
         image: 'exp-caiaque',
-        slug: { pt: 'tour-caiaque-albufeira', en: 'kayak-tour-albufeira' },
+        slug: { pt: 'benagil/tour-caiaque-grutas-benagil', en: 'benagil/benagil-caves-kayak-guided-tour' },
       },
       {
         title: 'Jeep safari',
@@ -286,7 +286,7 @@ export const en: Content = {
         place: 'Albufeira',
         category: 'aventura',
         image: 'exp-safari',
-        slug: { pt: 'jeep-safari-albufeira-entardecer', en: 'jeep-safari-tour' },
+        slug: { pt: 'jeep-safari-albufeira', en: 'jeep-safari-tour' },
       },
       {
         title: 'Algarve villages and wine tasting',

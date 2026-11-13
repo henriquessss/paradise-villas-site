@@ -47,7 +47,6 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 
 - Validar textos novos (marcados «NOVO» em `src/content/pt.ts`) e toda a tradução EN.
 - Percentagem e base de cálculo da parceria (`PARTNER_RATE`).
-- ID de afiliado Civitatis (`CIVITATIS_AID`).
 - Valores do simulador (`src/simulator.ts`) — são estimativas nossas, não dados do cliente.
 - Vídeo final da hero (o cliente ficou de enviar; o atual é uma montagem dos vídeos das villas).
 - Confirmar números da Gestão AL (500+ proprietários, 200+ imóveis).

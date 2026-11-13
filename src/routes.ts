@@ -70,15 +70,21 @@ export function bookingSearchUrl(lang: Lang, { from, to, guests }: { from: Date;
 }
 
 /**
- * Civitatis affiliate id (`ag_aid`). Empty = plain links (no commission).
- * TODO(cliente): pedir o ID de afiliado da Paradise Villas na Civitatis.
+ * Civitatis affiliate id (`ag_aid`) of the Paradise Villas accommodation account (Civitatis Pro
+ * panel, Links e recursos). Empty = plain links (no commission).
  */
-export const CIVITATIS_AID = ''
+export const CIVITATIS_AID = '93834'
+/** Campaign name (`cmp`): the panel's statistics show these sales as coming from the website. */
+const CIVITATIS_CAMPAIGN = 'website'
 
-/** Civitatis page in the visitor's language; `slug` is the activity path under /albufeira/. */
+/**
+ * Civitatis page in the visitor's language. `slug` is the activity path under /albufeira/, or
+ * `destination/activity` for activities listed under another destination (e.g. benagil/…).
+ */
 export function civitatisUrl(lang: Lang, slug = ''): string {
-  const url = `https://www.civitatis.com/${lang}/albufeira/${slug ? `${slug}/` : ''}`
-  return CIVITATIS_AID ? `${url}?ag_aid=${CIVITATIS_AID}` : url
+  const path = slug.includes('/') ? slug : `albufeira/${slug}`
+  const url = `https://www.civitatis.com/${lang}/${path.replace(/\/?$/, '/')}`
+  return CIVITATIS_AID ? `${url}?ag_aid=${CIVITATIS_AID}&cmp=${CIVITATIS_CAMPAIGN}` : url
 }
 
 /**
