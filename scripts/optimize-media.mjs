@@ -132,7 +132,5 @@ for (let i = 0; i < light.length; i += 4) {
 }
 await sharp(light, { raw: wordmark.info }).png({ compressionLevel: 9 }).toFile('public/logo-texto-claro.png')
 await sharp(path.join(SRC, 'logo-footer.png')).trim().resize({ height: 240 }).png({ compressionLevel: 9 }).toFile('public/logo-escuro.png')
-for (const [size, name] of [[32, 'favicon.png'], [180, 'apple-touch-icon.png']]) {
-  await sharp(path.join(SRC, 'favicon-icone.png')).resize(size, size).png().toFile(path.join('public', name))
-}
-console.log('logos + favicons → public/')
+console.log('logos → public/')
+await import('./favicons.mjs')
