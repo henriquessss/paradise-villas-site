@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useLang } from '../content'
+import type { Experience } from '../content/experiencias'
 import { civitatisUrl, EXTERNAL } from '../routes'
 import { Icon, IconTile } from './icons'
 import { Reveal } from './motion/Reveal'
@@ -67,15 +68,13 @@ export function ContactChannels({ stacked = false }: { stacked?: boolean }) {
   )
 }
 
-export type Experience = (ReturnType<typeof useLang>['t'])['experiencias']['items'][number]
-
-/** Civitatis activity card. */
+/** Civitatis activity card. The backoffice list brings its own affiliate link; the embedded one builds it. */
 export function ExperienceCard({ item }: { item: Experience }) {
   const { t, lang } = useLang()
   const category = t.experiencias.filters[item.category as keyof typeof t.experiencias.filters]
   return (
     <a
-      href={civitatisUrl(lang, item.slug[lang])}
+      href={item.link ?? civitatisUrl(lang, item.slug[lang])}
       target="_blank"
       rel="noopener sponsored"
       className={`${card} group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1`}

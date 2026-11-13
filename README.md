@@ -6,7 +6,8 @@ Substitui o WordPress em paradisevillas.pt. React 19 + Vite + TypeScript + Tailw
 
 ```bash
 npm run dev         # desenvolvimento (sem pré-render; /api não corre aqui)
-npm run build       # tsc + build cliente + build SSR + scripts/prerender.mjs → dist/
+npm run build       # scripts/experiencias.mjs + tsc + build cliente + build SSR + scripts/prerender.mjs → dist/
+npm run experiencias # só o passo das experiências (pedido ao backoffice)
 npm run preview     # serve dist/ (sem /api: os formulários mostram erro de envio)
 npm run media       # regenera public/images, logos e favicons
 npm run media:hero  # regenera o vídeo da hero (public/video/) a partir dos vídeos do cliente
@@ -19,7 +20,7 @@ npm run media:hero  # regenera o vídeo da hero (public/video/) a partir dos ví
 Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, cartões brancos, títulos em serifa com uma palavra em itálico terracota (`*palavra*` nos textos).
 
 - **Home** — vídeo das villas do cliente com card central (título, pesquisa de datas/hóspedes, números). A pesquisa abre o Avantio já filtrado (`bookingSearchUrl` em `src/routes.ts`).
-- **Experiências** — atividades da Civitatis com filtros; `CIVITATIS_AID` em `src/routes.ts` acrescenta o ID de afiliado.
+- **Experiências** — atividades da Civitatis com filtros (a Home mostra as 3 primeiras). A lista é gerida no backoffice («Experiências do site»): antes de cada build, `scripts/experiencias.mjs` pede `GET {BACKOFFICE_URL}/api/experiencias-site`, valida a resposta toda e grava `src/content/experiencias.gerado.json` (fora do git). Sem variáveis, ou com qualquer erro (404, 401, 503, timeout de 10 s, resposta inválida, menos de 3), o ficheiro é apagado e o site usa a lista embutida em `src/content/pt.ts`/`en.ts`; o build nunca falha por isto. A lista do backoffice traz os links de afiliado prontos; a embutida usa `civitatisUrl()` com `CIVITATIS_AID` (`src/routes.ts`). Depois de mudar a lista no backoffice é preciso um novo deploy do site.
 - **Gestão AL** — pedido de proposta, serviços, legalização, simulador de rendimento (valores em `src/simulator.ts`), FAQ. Sem percentagens de comissão.
 - **Parceiros** — programa de indicação; percentagem em `PARTNER_RATE` (`src/routes.ts`).
 - Todos os formulários (incluindo o curto de «Fale connosco» na Home) enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro). A função reencaminha o pedido para o backoffice (`/api/pedido-site`, projeto `reservas-pdf`), que o guarda em «Pedidos do site» e avisa a equipa. Se o backoffice falhar, envia o pedido por email via Resend.
@@ -38,7 +39,7 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 | Variável | Exemplo |
 |---|---|
 | `BACKOFFICE_URL` | `https://paradise-villas.vercel.app` |
-| `SITE_PEDIDOS_SEGREDO` | o mesmo valor que no projeto do backoffice |
+| `SITE_PEDIDOS_SEGREDO` | o mesmo valor que no projeto do backoffice (usado no `api/contacto.ts` e no build, pelas experiências) |
 | `RESEND_API_KEY` | chave da conta Resend (só para o envio de recurso) |
 | `CONTACT_TO` | `info@paradisevillas.pt` |
 | `CONTACT_FROM` | `Paradise Villas <site@app.paradisevillas.pt>` (subdomínio já verificado no Resend para o backoffice; o domínio principal não está verificado, de propósito. Vazio = `onboarding@resend.dev`, que só entrega no email da conta) |

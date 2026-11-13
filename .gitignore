@@ -32,3 +32,6 @@ dist-ssr
 media-jobs/raw/
 content-source/
 dist-server
+
+# Experiences fetched from the backoffice at build time (scripts/experiencias.mjs)
+src/content/experiencias.gerado.json

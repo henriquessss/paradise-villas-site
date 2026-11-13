@@ -4,6 +4,7 @@ import { IconTile } from '../components/icons'
 import { Reveal } from '../components/motion/Reveal'
 import { Accent, ArrowUpRight, Button, card, Eyebrow, SectionHeading, swipe } from '../components/ui'
 import { useLang } from '../content'
+import { experiences } from '../content/experiencias'
 import { civitatisUrl, EXTERNAL } from '../routes'
 
 type Filter = keyof ReturnType<typeof useLang>['t']['experiencias']['filters']
@@ -11,8 +12,9 @@ type Filter = keyof ReturnType<typeof useLang>['t']['experiencias']['filters']
 export function Experiencias() {
   const { t, lang } = useLang()
   const e = t.experiencias
+  const all = experiences[lang]
   const [filter, setFilter] = useState<Filter>('all')
-  const items = filter === 'all' ? e.items : e.items.filter((item) => item.category === filter)
+  const items = filter === 'all' ? all : all.filter((item) => item.category === filter)
   const extraLinks = [civitatisUrl(lang, 'transfers'), EXTERNAL.huglocals]
 
   return (
@@ -39,7 +41,7 @@ export function Experiencias() {
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (
-              <li key={item.slug.pt}>
+              <li key={item.id ?? item.slug.pt}>
                 <ExperienceCard item={item} />
               </li>
             ))}

@@ -8,6 +8,7 @@ import { Reveal } from '../components/motion/Reveal'
 import { Simulator } from '../components/Simulator'
 import { Accent, ArrowUpRight, Button, card, Eyebrow, img, SectionHeading, swipe } from '../components/ui'
 import { useLang } from '../content'
+import { experiences } from '../content/experiencias'
 import { civitatisUrl, EXTERNAL } from '../routes'
 
 function Services() {
@@ -166,14 +167,14 @@ function Algarve() {
 }
 
 function Experiences() {
-  const { t, to } = useLang()
+  const { t, to, lang } = useLang()
   const e = t.home.experiences
   return (
     <section className="bg-white px-5 py-24 md:px-8 md:py-32">
       <SectionHeading eyebrow={e.eyebrow} title={e.title} body={e.body} />
       <ul className={`mx-auto mt-14 grid max-w-[1200px] gap-6 md:grid-cols-3 ${swipe}`}>
-        {t.experiencias.items.slice(0, 3).map((item, i) => (
-          <Reveal as="li" key={item.slug.pt} delay={i * 0.08}>
+        {experiences[lang].slice(0, 3).map((item, i) => (
+          <Reveal as="li" key={item.id ?? item.slug.pt} delay={i * 0.08}>
             <ExperienceCard item={item} />
           </Reveal>
         ))}
