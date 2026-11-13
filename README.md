@@ -21,7 +21,7 @@ Redesign v2 (branch `redesign/v2`) inspirado em homeholidays.pt: fundo creme, ca
 
 - **Home** — vídeo das villas do cliente com card central (título, pesquisa de datas/hóspedes, números). A pesquisa abre o Avantio já filtrado (`bookingSearchUrl` em `src/routes.ts`).
 - **Experiências** — atividades da Civitatis com filtros (a Home mostra as 3 primeiras). A lista é gerida no backoffice («Experiências do site»): antes de cada build, `scripts/experiencias.mjs` pede `GET {BACKOFFICE_URL}/api/experiencias-site`, valida a resposta toda e grava `src/content/experiencias.gerado.json` (fora do git). Sem variáveis, ou com qualquer erro (404, 401, 503, timeout de 10 s, resposta inválida, menos de 3), o ficheiro é apagado e o site usa a lista embutida em `src/content/pt.ts`/`en.ts`; o build nunca falha por isto. A lista do backoffice traz os links de afiliado prontos; a embutida usa `civitatisUrl()` com `CIVITATIS_AID` (`src/routes.ts`). O site não se atualiza sozinho, de propósito: o botão «Publicar no site» do backoffice chama o Deploy Hook da Vercel do site, para juntar várias alterações numa só publicação.
-- **Gestão AL** — pedido de proposta, serviços, legalização, simulador de rendimento (valores em `src/simulator.ts`), FAQ. Sem percentagens de comissão.
+- **Gestão AL** — pedido de proposta, serviços, legalização, simulador de receita bruta anual em intervalo (valores em `VALORES`, `src/simulator.ts`), FAQ. Sem percentagens de comissão.
 - **Parceiros** — programa de indicação; percentagem em `PARTNER_RATE` (`src/routes.ts`).
 - Todos os formulários (incluindo o curto de «Fale connosco» na Home) enviam para `api/contacto.ts` com um `kind` (contacto, gestao, simulador, parceiro). A função reencaminha o pedido para o backoffice (`/api/pedido-site`, projeto `reservas-pdf`), que o guarda em «Pedidos do site» e avisa a equipa. Se o backoffice falhar, envia o pedido por email via Resend.
 
@@ -48,7 +48,7 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 
 - Validar textos novos (marcados «NOVO» em `src/content/pt.ts`) e toda a tradução EN.
 - Percentagem e base de cálculo da parceria (`PARTNER_RATE`).
-- Valores do simulador (`src/simulator.ts`) — são estimativas nossas, não dados do cliente.
+- Valores do simulador (`VALORES` em `src/simulator.ts`): calibrados a partir da única referência dada pelos administradores (moradia T4 com piscina em Albufeira = 70 000–80 000 € brutos/ano); o resto está em `docs/simulador-valores-a-confirmar.md`.
 - Vídeo final da hero (o cliente ficou de enviar; o atual é uma montagem dos vídeos das villas).
 - Confirmar números da Gestão AL (500+ proprietários, 200+ imóveis).
 - Foto do fundador: a atual parece imagem de banco — pedir foto real do Bruno.

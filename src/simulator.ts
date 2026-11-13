@@ -1,8 +1,14 @@
 /*
- * Gestão AL revenue simulator — indicative figures only.
- * TODO(cliente): validar todos os valores com a Paradise Villas antes de publicar. São uma
- * primeira aproximação (preço médio por noite e ocupação típicos de alojamento local no
- * Algarve), não dados do cliente.
+ * Gestão AL revenue simulator: estimated GROSS yearly booking revenue, shown as a range.
+ * Gross = what guests pay for the stays, before platform commissions, cleaning and management.
+ *
+ * ┌──────────────────────────────────────────────────────────────────────────────────────┐
+ * │ ALL THE VALUES LIVE IN `VALORES` BELOW — edit only there.                            │
+ * │ Calibration (Paradise Villas, meeting of 2026-11-13): a 4-bedroom villa with a pool  │
+ * │ in Albufeira grosses 70 000–80 000 € a year. Everything else is our estimate, scaled │
+ * │ from that reference, and waits for the administrators' figures                       │
+ * │ (list in docs/simulador-valores-a-confirmar.md).                                     │
+ * └──────────────────────────────────────────────────────────────────────────────────────┘
  */
 
 export type PropertyType = 'apartamento' | 'moradia'
@@ -16,40 +22,59 @@ export interface SimulatorInput {
   seaView: boolean
 }
 
-/** Average nightly rate (€) by bedrooms, for an apartment without pool or sea view. */
-const NIGHTLY_RATE = [70, 90, 125, 170, 230, 290, 370]
+export const VALORES = {
+  /**
+   * Gross yearly revenue (€) of a property in ALBUFEIRA, middle of the range.
+   * Index = bedrooms: [T0, T1, T2, T3, T4, T5, T6+].
+   */
+  receitaAnualAlbufeira: {
+    apartamento: {
+      semPiscina: [11_000, 15_000, 20_000, 26_000, 32_000, 38_000, 45_000],
+      // Shared (condominium) pool.
+      comPiscina: [12_500, 17_000, 23_000, 30_000, 37_000, 44_000, 52_000],
+    },
+    moradia: {
+      semPiscina: [14_000, 18_000, 26_000, 36_000, 48_000, 58_000, 70_000],
+      //                                       reference ↓ (70 000–80 000 €)
+      comPiscina: [18_000, 24_000, 38_000, 55_000, 75_000, 92_000, 115_000],
+    },
+  },
+  /** Revenue factor by zone, relative to Albufeira (1 = same as Albufeira). Order = order in the form. */
+  zonas: [
+    { id: 'albufeira', name: 'Albufeira', fator: 1 },
+    { id: 'armacao-pera', name: 'Armação de Pêra / Pêra', fator: 0.87 },
+    { id: 'carvoeiro-lagoa', name: 'Carvoeiro / Lagoa', fator: 1 },
+    { id: 'portimao', name: 'Portimão / Alvor', fator: 0.9 },
+    { id: 'lagos', name: 'Lagos', fator: 1.02 },
+    { id: 'vilamoura', name: 'Vilamoura / Quarteira', fator: 1.07 },
+    { id: 'loule-almancil', name: 'Loulé / Almancil', fator: 1.02 },
+    { id: 'faro', name: 'Faro', fator: 0.8 },
+    { id: 'tavira', name: 'Tavira', fator: 0.8 },
+    { id: 'silves', name: 'Silves', fator: 0.62 },
+  ],
+  /** Extra for sea view (0.1 = +10 %). */
+  vistaMar: 0.1,
+  /** Width of the range around the middle value (0.07 = −7 % to +7 %; 75 000 € → 70 000–80 000 €). */
+  margem: 0.07,
+}
 
-/** Locations served, with a price factor and occupied nights per year. */
-export const LOCATIONS: { id: string; name: string; price: number; nights: number }[] = [
-  { id: 'albufeira', name: 'Albufeira', price: 1, nights: 175 },
-  { id: 'armacao-pera', name: 'Armação de Pêra / Pêra', price: 0.95, nights: 160 },
-  { id: 'carvoeiro-lagoa', name: 'Carvoeiro / Lagoa', price: 1.05, nights: 165 },
-  { id: 'portimao', name: 'Portimão / Alvor', price: 0.95, nights: 165 },
-  { id: 'lagos', name: 'Lagos', price: 1.05, nights: 170 },
-  { id: 'vilamoura', name: 'Vilamoura / Quarteira', price: 1.1, nights: 170 },
-  { id: 'loule-almancil', name: 'Loulé / Almancil', price: 1.15, nights: 155 },
-  { id: 'faro', name: 'Faro', price: 0.85, nights: 165 },
-  { id: 'tavira', name: 'Tavira', price: 0.9, nights: 155 },
-  { id: 'silves', name: 'Silves', price: 0.8, nights: 135 },
-]
+export const LOCATIONS = VALORES.zonas
 
 export interface Estimate {
   low: number
   high: number
-  nightly: number
-  nights: number
 }
 
-const round = (value: number, step: number) => Math.round(value / step) * step
+/** Rounds to 500 € below 20 000 € and to 1 000 € above, so the range reads as an estimate. */
+const round = (value: number) => {
+  const step = value < 20_000 ? 500 : 1_000
+  return Math.round(value / step) * step
+}
 
 export function estimate(input: SimulatorInput): Estimate {
-  const place = LOCATIONS.find((l) => l.id === input.location) ?? LOCATIONS[0]
-  let nightly = NIGHTLY_RATE[Math.min(Math.max(input.bedrooms, 0), NIGHTLY_RATE.length - 1)] * place.price
-  if (input.type === 'moradia') nightly *= 1.15
-  if (input.pool) nightly *= 1.2
-  if (input.seaView) nightly *= 1.1
-  // Pools stretch the season (spring and autumn bookings).
-  const nights = Math.round(place.nights * (input.pool ? 1.06 : 1))
-  const yearly = nightly * nights
-  return { low: round(yearly * 0.85, 500), high: round(yearly * 1.15, 500), nightly: round(nightly, 5), nights }
+  const zone = VALORES.zonas.find((z) => z.id === input.location) ?? VALORES.zonas[0]
+  const table = VALORES.receitaAnualAlbufeira[input.type][input.pool ? 'comPiscina' : 'semPiscina']
+  const bedrooms = Math.min(Math.max(input.bedrooms, 0), table.length - 1)
+  const middle = table[bedrooms] * zone.fator * (input.seaView ? 1 + VALORES.vistaMar : 1)
+  return { low: round(middle * (1 - VALORES.margem)), high: round(middle * (1 + VALORES.margem)) }
 }

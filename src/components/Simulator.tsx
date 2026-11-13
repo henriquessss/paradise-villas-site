@@ -193,19 +193,11 @@ export function Simulator({ proposalHref }: { proposalHref: string }) {
               {s.resultTitle}
             </h3>
             <p className="font-display mt-4 text-[clamp(2rem,6vw,3.4rem)] leading-tight text-navy">
-              {euro(result.low)} <span className="text-[0.55em] text-ink-soft">{s.to}</span> {euro(result.high)}
+              <span className="text-[0.55em] text-ink-soft">{s.between}</span> {euro(result.low)} <span className="text-[0.55em] text-ink-soft">{s.and}</span>{' '}
+              <span className="whitespace-nowrap">{euro(result.high)}</span>
             </p>
-            <dl className="mt-8 grid grid-cols-2 gap-4">
-              <div className="rounded-2xl bg-sand p-4">
-                <dd className="font-display text-2xl text-navy">{euro(result.nightly)}</dd>
-                <dt className="mt-1 text-xs text-ink-soft">{s.perNight}</dt>
-              </div>
-              <div className="rounded-2xl bg-sand p-4">
-                <dd className="font-display text-2xl text-navy">{result.nights}</dd>
-                <dt className="mt-1 text-xs text-ink-soft">{s.nights}</dt>
-              </div>
-            </dl>
-            <p className="mt-6 text-xs leading-relaxed text-ink-soft">{s.disclaimer}</p>
+            <p className="mt-2 text-sm font-medium text-ink-soft">{s.grossNote}</p>
+            <p className="mx-auto mt-6 max-w-md rounded-2xl bg-sand px-5 py-4 text-xs leading-relaxed text-ink-soft">{s.disclaimer}</p>
             {sendFailed && <p className="mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800">{s.sendError}</p>}
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button anchor={proposalHref}>{s.cta}</Button>
