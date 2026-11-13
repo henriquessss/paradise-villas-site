@@ -53,8 +53,14 @@ export function Header() {
   ]
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `rounded-full px-3 py-2 text-[0.9rem] font-medium transition-colors ${
-      isActive ? (light ? 'bg-white/15 text-white' : 'bg-terracotta/10 text-terracotta') : light ? 'text-white/85 hover:text-white' : 'text-navy/75 hover:text-terracotta'
+    `font-display rounded-full px-2.5 py-2 text-[0.95rem] 2xl:px-3 2xl:text-[0.98rem] font-medium whitespace-nowrap transition-colors ${
+      isActive
+        ? light
+          ? 'bg-white/15 text-white'
+          : 'bg-terracotta/10 text-terracotta'
+        : light
+          ? 'text-white/90 [text-shadow:0_1px_10px_rgba(0,25,44,0.5)] hover:text-white'
+          : 'text-navy/80 hover:text-terracotta'
     }`
 
   const navItem = (item: (typeof items)[number]) =>
@@ -80,16 +86,16 @@ export function Header() {
       >
         {/* Desktop (xl): split nav with the logo centred, language and owner button on the right.
             Below xl: logo on the left, language, owner button and the menu button on the right. */}
-        <div className="mx-auto flex h-[4.5rem] max-w-[1320px] items-center justify-between gap-6 px-5 md:h-20 md:px-8 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-8">
+        <div className="mx-auto flex h-[4.5rem] max-w-[1320px] items-center justify-between gap-6 px-5 md:h-20 md:px-8 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-5 2xl:gap-8">
           <nav aria-label="Principal" className="hidden items-center justify-end gap-1 xl:flex">
             {items.slice(0, 3).map(navItem)}
           </nav>
 
           <Link to={to('home')} aria-label="Paradise Villas" className="shrink-0">
-            <img src={light ? '/logo-texto-claro.png' : '/logo-texto.png'} alt="Paradise Villas" width={287} height={180} className="h-11 w-auto md:h-12" />
+            <img src={light ? '/logo-texto-claro.png' : '/logo-texto.png'} alt="Paradise Villas" width={287} height={180} className={`h-11 w-auto transition-[filter] duration-300 md:h-12 ${light ? 'drop-shadow-[0_2px_10px_rgba(0,25,44,0.55)]' : ''}`} />
           </Link>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 xl:gap-2.5 2xl:gap-3">
             <nav aria-label="Principal (continuação)" className="hidden items-center gap-1 xl:flex">
               {items.slice(3).map(navItem)}
             </nav>
@@ -112,7 +118,7 @@ export function Header() {
               href={EXTERNAL.ownerLogin}
               target="_blank"
               rel="noopener"
-              className="hidden rounded-full bg-terracotta px-5 py-2.5 text-[0.85rem] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(214,89,55,0.7)] transition-colors hover:bg-terracotta-dark md:inline-block"
+              className="hidden rounded-full bg-terracotta px-5 py-2.5 xl:px-4 2xl:px-5 text-[0.85rem] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(214,89,55,0.7)] transition-colors hover:bg-terracotta-dark md:inline-block"
             >
               {t.nav.owner}
             </a>

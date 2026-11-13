@@ -152,17 +152,17 @@ export function HomeHero() {
       <HeroVideo />
 
       <div className="animate-rise relative w-full max-w-[1000px]">
-        <h1 className="font-display mx-auto max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_2px_24px_rgba(0,25,44,0.45)] [&_em]:text-[#ff6a1f]">
+        <h1 className="font-display mx-auto max-w-3xl text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] tracking-[-0.015em] [text-shadow:0_1px_3px_rgba(0,25,44,0.35),0_4px_28px_rgba(0,25,44,0.55)] [&_em]:text-[#ff6a1f]">
           <Accent text={h.title} />
         </h1>
-        <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed font-medium text-white/95 [text-shadow:0_1px_12px_rgba(0,25,44,0.6)] sm:block">{h.lead}</p>
+        <p className="mx-auto mt-5 hidden max-w-xl text-[1.05rem] leading-relaxed font-medium text-white/95 [text-shadow:0_1px_2px_rgba(0,25,44,0.45),0_2px_16px_rgba(0,25,44,0.7)] sm:block">{h.lead}</p>
 
         <div className="mt-8 sm:mt-10">
           <SearchForm />
         </div>
       </div>
 
-      <dl className="animate-rise relative mt-10 grid w-full max-w-[680px] grid-cols-3 gap-2 border-t border-white/25 pt-6 [text-shadow:0_1px_12px_rgba(0,25,44,0.55)] [animation-delay:0.15s] sm:mt-14">
+      <dl className="animate-rise relative mt-10 grid w-full max-w-[680px] grid-cols-3 gap-2 border-t border-white/25 pt-6 [text-shadow:0_1px_2px_rgba(0,25,44,0.4),0_2px_14px_rgba(0,25,44,0.65)] [animation-delay:0.15s] sm:mt-14">
         {h.stats.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse justify-end">
             <dt className="mt-1.5 text-[0.7rem] leading-tight font-medium text-white/90 sm:text-xs">{stat.label}</dt>
