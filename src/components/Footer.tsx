@@ -67,14 +67,25 @@ export function Footer() {
 
         <div className="lg:col-span-2">
           <h2 className={heading}>{t.footer.follow}</h2>
-          <a
-            href={EXTERNAL.instagram}
-            target="_blank"
-            rel="noopener"
-            className="inline-flex items-center gap-2 rounded-xl bg-white/[0.07] px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/15"
-          >
-            <Icon name="instagram" className="h-4 w-4" /> Instagram
-          </a>
+          <ul className="flex flex-wrap gap-2 lg:flex-col lg:items-start">
+            {(
+              [
+                ['instagram', EXTERNAL.instagram, 'Instagram'],
+                ['facebook', EXTERNAL.facebook, 'Facebook'],
+              ] as const
+            ).map(([icon, href, label]) => (
+              <li key={icon}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/[0.07] px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/15"
+                >
+                  <Icon name={icon} className="h-4 w-4" /> {label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

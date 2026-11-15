@@ -60,7 +60,7 @@ function structuredData(route: PageRoute): object | null {
           areaServed: 'PT',
           availableLanguage: ['Portuguese', 'English'],
         },
-        sameAs: [EXTERNAL.instagram],
+        sameAs: [EXTERNAL.instagram, EXTERNAL.facebook],
       },
       {
         // Holiday homes and property management, run from the Albufeira office.
@@ -76,7 +76,7 @@ function structuredData(route: PageRoute): object | null {
         address: ADDRESS,
         areaServed: areaServed(),
         parentOrganization: { '@id': ORG_ID },
-        sameAs: [EXTERNAL.instagram],
+        sameAs: [EXTERNAL.instagram, EXTERNAL.facebook],
       },
       {
         '@type': 'WebSite',

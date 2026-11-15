@@ -342,12 +342,6 @@ export const pt = {
           text: 'Chegue ao seu alojamento sem preocupações: transfers privados diretos do aeroporto de Faro, com conforto e pontualidade.',
           cta: 'Reservar transfer',
         },
-        {
-          icon: 'map',
-          title: 'Experiências com locais',
-          text: 'Passeios, parques temáticos e atividades recomendados por quem vive no Algarve, na nossa página HugLocals.',
-          cta: 'Ver na HugLocals',
-        },
       ],
     },
   },

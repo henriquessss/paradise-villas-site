@@ -20,11 +20,14 @@ export function ArrowUpRight({ className = '' }: { className?: string }) {
 
 /** Renders a title where `*text*` becomes the italic terracotta accent. */
 export function Accent({ text }: { text: string }) {
+  const parts = text.split(/(\*[^*]+\*)/g)
   return (
     <>
-      {text.split(/(\*[^*]+\*)/g).map((part, i) =>
+      {parts.map((part, i) =>
         part.startsWith('*') && part.endsWith('*') ? (
-          <em key={i} className="text-terracotta italic">
+          // The italic's last letter leans right: when punctuation follows right away («imóvel?»),
+          // a little room keeps the two glyphs from touching.
+          <em key={i} className={`text-terracotta italic${/^[?!:;.,]/.test(parts[i + 1] ?? '') ? ' pr-[0.12em]' : ''}`}>
             {part.slice(1, -1)}
           </em>
         ) : (

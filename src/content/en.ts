@@ -338,12 +338,6 @@ export const en: Content = {
           text: 'Arrive at your rental stress-free: private transfers straight from Faro airport, comfortable and on time.',
           cta: 'Book a transfer',
         },
-        {
-          icon: 'map',
-          title: 'Experiences with locals',
-          text: 'Tours, theme parks and activities recommended by people who live in the Algarve, on our HugLocals page.',
-          cta: 'View on HugLocals',
-        },
       ],
     },
   },

@@ -5,7 +5,7 @@ import { Reveal } from '../components/motion/Reveal'
 import { Accent, ArrowUpRight, Button, card, Eyebrow, SectionHeading, swipe } from '../components/ui'
 import { useLang } from '../content'
 import { experiences } from '../content/experiencias'
-import { civitatisUrl, EXTERNAL } from '../routes'
+import { civitatisUrl } from '../routes'
 
 type Filter = keyof ReturnType<typeof useLang>['t']['experiencias']['filters']
 
@@ -15,7 +15,7 @@ export function Experiencias() {
   const all = experiences[lang]
   const [filter, setFilter] = useState<Filter>('all')
   const items = filter === 'all' ? all : all.filter((item) => item.category === filter)
-  const extraLinks = [civitatisUrl(lang, 'transfers'), EXTERNAL.huglocals]
+  const extraLinks = [civitatisUrl(lang, 'transfers')]
 
   return (
     <>
@@ -62,7 +62,7 @@ export function Experiencias() {
 
       <section className="bg-white px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={e.extras.eyebrow} title={e.extras.title} body={e.extras.body} />
-        <ul className={`mx-auto mt-14 grid max-w-[1000px] gap-6 md:grid-cols-2 ${swipe}`}>
+        <ul className={`mx-auto mt-14 grid gap-6 ${e.extras.items.length > 1 ? `max-w-[1000px] md:grid-cols-2 ${swipe}` : 'max-w-[520px]'}`}>
           {e.extras.items.map((item, i) => {
             const cta = 'mt-6 inline-flex items-center gap-2 self-start rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-terracotta-dark'
             return (

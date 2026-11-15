@@ -49,7 +49,7 @@ export const EXTERNAL = {
     'https://app.avantio.pro/index.php?url=&module=Usuarios&action=Login&return_module=Home&return_action=index&avs=ZTUveE1tcVJ1YXU2RHM2NDl3UjVJeGx0K0xjK0oyK3BiK0tMa3RxaXIvZ1dscHJndXVMdDl6YUJHN09lRjVORGkrTUlpTUpOdnEvSE5KM21HanZ5bDd2cWpBQm4xRkJXd1N3aENaWFRyS2M9',
   instagram: 'https://www.instagram.com/paradisevillas_/',
   instagramHandle: '@paradisevillas_',
-  huglocals: 'https://huglocals.com/Pereira',
+  facebook: 'https://www.facebook.com/Paradisevillaspropertymanagement',
   phone: '+351960039608',
   phoneDisplay: '+351 960 039 608',
   email: 'info@paradisevillas.pt',
