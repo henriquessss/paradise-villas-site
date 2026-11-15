@@ -50,7 +50,7 @@ Com `trailingSlash: true` a Vercel acrescenta a barra final **antes** de aplicar
 - Percentagem e base de cálculo da parceria (`PARTNER_RATE`).
 - Valores do simulador (`VALORES` em `src/simulator.ts`): calibrados a partir da única referência dada pelos administradores (moradia T4 com piscina em Albufeira = 70 000–80 000 € brutos/ano); o resto está em `docs/simulador-valores-a-confirmar.md`.
 - Vídeo final da hero (o cliente ficou de enviar; o atual é uma montagem dos vídeos das villas).
-- Zonas onde fazem gestão (`gestao.local.zones` em `src/content/pt.ts`/`en.ts`; alimentam também o JSON-LD `areaServed`).
+- Foto limpa do Apartamento Palmeiras (cartão da Home): a atual traz o gradiente escuro do site antigo. Pôr em `content-source/images/` e correr `npm run media`.
 - SEO fora do código (Search Console, Perfil da Empresa no Google, avaliações, Ads): `docs/seo-o-que-fazer.md`.
 - Confirmar números da Gestão AL (500+ proprietários, 200+ imóveis).
 - Foto do fundador: a atual parece imagem de banco — pedir foto real do Bruno.

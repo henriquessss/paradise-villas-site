@@ -23,11 +23,8 @@ const ADDRESS = {
   addressCountry: 'PT',
 }
 
-/** Areas served: the Algarve plus the towns listed on the property-management page (single source). */
-const areaServed = () => [
-  { '@type': 'AdministrativeArea', name: 'Algarve' },
-  ...content.pt.gestao.local.zones.map((name) => ({ '@type': 'City', name })),
-]
+/** Areas served: the whole Algarve (the admins don't want a list of towns, 15/11). */
+const areaServed = () => [{ '@type': 'AdministrativeArea', name: 'Algarve' }]
 
 /**
  * Structured data. Home: the company (Organization + LocalBusiness) and the website, which is what

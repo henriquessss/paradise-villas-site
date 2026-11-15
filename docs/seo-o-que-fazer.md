@@ -1,6 +1,6 @@
 # Aparecer no Google: o que a Paradise Villas tem de fazer
 
-O site já está preparado: títulos e descrições por página, sitemap, dados da empresa para o Google (logótipo, morada, contactos, zonas), favicon no tamanho certo e uma secção sobre gestão de Alojamento Local em Albufeira. O que falta só pode ser feito com as contas da empresa.
+O site já está preparado: títulos e descrições por página, sitemap, dados da empresa para o Google (logótipo, morada, contactos, zona servida), favicon no tamanho certo e uma secção sobre gestão de Alojamento Local no Algarve. O que falta só pode ser feito com as contas da empresa.
 
 ## 1. Google Search Console (primeiro, 15 minutos)
 1. Entrar em search.google.com/search-console com a conta Google da empresa e adicionar a propriedade **paradisevillas.pt** (tipo «Domínio»).
@@ -15,7 +15,7 @@ O logótipo junto ao resultado (a «bolinha» falada na reunião) é o favicon. 
 É o que põe a Paradise Villas no mapa e no quadro do lado direito quando alguém pesquisa o nome.
 1. Criar ou reclamar o perfil em business.google.com com a morada do escritório (Rua da Esteva, Lote 14, 1ºA, Albufeira).
 2. Escolher a categoria principal «Agência de alojamento de férias» ou «Gestão de propriedades», e acrescentar «Serviço de aluguer de casas de férias».
-3. Indicar como zona servida Albufeira, Lagoa e as restantes zonas onde trabalham.
+3. Indicar como zona servida o Algarve inteiro (o site diz «Atuamos em todo o Algarve»).
 4. Pôr o site, o telefone, o horário, o logótipo, fotografias das moradias e da equipa, e uma descrição curta.
 5. Verificar o perfil. O Google costuma pedir um vídeo ou enviar um postal com um código.
 

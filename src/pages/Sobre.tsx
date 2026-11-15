@@ -20,26 +20,38 @@ export function Sobre() {
       <section className="px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal variant="left">
-            <img src={img('boas-vindas-piscina')} alt={s.intro.imageAlt} loading="lazy" className="aspect-[5/4] w-full rounded-3xl object-cover" />
+            {/* 3:2 is the photo's own shape: shown whole, no cropping. */}
+            <img src={img('sobre-casa')} alt={s.intro.imageAlt} loading="lazy" width={1400} height={933} className="aspect-[3/2] w-full rounded-3xl object-cover" />
           </Reveal>
-          <Reveal variant="right" className="space-y-5 text-[1.05rem] leading-relaxed text-ink-soft [&_strong]:text-navy">
-            {s.intro.body.map((p) => (
-              <p key={p}>
-                <Rich text={p} />
-              </p>
-            ))}
+          <Reveal variant="right">
+            <h2 className="font-display text-[clamp(1.9rem,3.4vw,2.75rem)] leading-[1.1] text-navy">
+              <Accent text={s.intro.title} />
+            </h2>
+            <div className="mt-6 space-y-5 text-[1.05rem] leading-relaxed text-ink-soft [&_strong]:text-navy">
+              {s.intro.body.map((p) => (
+                <p key={p}>
+                  <Rich text={p} />
+                </p>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
 
       <section className="bg-white px-5 py-24 md:px-8 md:py-32">
         <SectionHeading eyebrow={s.pillars.eyebrow} title={s.pillars.title} />
-        <ul className="mx-auto mt-14 grid max-w-[1200px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mx-auto mt-14 grid max-w-[1040px] gap-5 sm:grid-cols-2">
           {s.pillars.items.map((p, i) => (
-            <Reveal as="li" key={p.title} delay={i * 0.08} className={featureCard}>
-              <IconTile name={p.icon} />
-              <h3 className="mt-5 text-lg font-semibold text-navy">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.text}</p>
+            <Reveal as="li" key={p.title} delay={(i % 2) * 0.08} className={`${featureCard} md:p-9`}>
+              <div className="flex items-center gap-4">
+                <IconTile name={p.icon} />
+                <h3 className="font-display text-2xl text-navy">{p.title}</h3>
+              </div>
+              <div className="mt-5 space-y-3 text-[0.95rem] leading-relaxed text-ink-soft">
+                {p.text.map((para) => (
+                  <p key={para.slice(0, 24)}>{para}</p>
+                ))}
+              </div>
             </Reveal>
           ))}
         </ul>
@@ -48,7 +60,15 @@ export function Sobre() {
       <section className="px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-20">
           <Reveal variant="scale">
-            <img src={img('fundador')} alt={s.founder.imageAlt} loading="lazy" className="aspect-[4/5] w-full rounded-3xl object-cover object-top" />
+            {/* 3:4 is the portrait's own shape: shown whole. */}
+            <img
+              src={img('fundador')}
+              alt={s.founder.imageAlt}
+              loading="lazy"
+              width={1086}
+              height={1448}
+              className="mx-auto aspect-[3/4] w-full max-w-[460px] rounded-3xl object-cover shadow-[0_30px_60px_-30px_rgba(0,25,44,0.45)] lg:max-w-none"
+            />
           </Reveal>
           <Reveal>
             <Eyebrow>{s.founder.eyebrow}</Eyebrow>
@@ -60,8 +80,13 @@ export function Sobre() {
                 <p key={p}>{p}</p>
               ))}
             </div>
-            <p className="font-display mt-8 border-l-2 border-terracotta pl-5 text-xl leading-snug text-navy italic">{s.founder.closing}</p>
-            <p className="mt-4 text-sm font-semibold text-navy">— {s.founder.name}</p>
+            <figure className="mt-8 border-l-2 border-terracotta pl-5">
+              <blockquote className="font-display text-xl leading-snug text-navy italic">“{s.founder.closing}”</blockquote>
+              <figcaption className="mt-4 text-sm">
+                <span className="block font-semibold text-navy">{s.founder.name}</span>
+                <span className="text-ink-soft">{s.founder.role}</span>
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </section>

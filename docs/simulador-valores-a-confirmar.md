@@ -35,7 +35,7 @@ O site mostra este valor com uma margem de 7 % para cada lado. Por exemplo, 75 0
 | Silves | 0,62 | 43 000 a 50 000 € |
 
 Perguntar aos administradores:
-- Em que zonas atuam de facto? Retiramos as que não fazem e acrescentamos as que faltam.
+- Atuam em todo o Algarve (resposta de 15/11). Falta alguma zona do Algarve nesta lista?
 - Os fatores parecem-lhes certos? O de Silves (0,62) e o de Almancil (1,02) são os mais incertos.
 
 ## 3. Outros parâmetros
@@ -45,4 +45,4 @@ Perguntar aos administradores:
 
 ## 4. Fora do simulador
 
-Na reunião foi dito que a gestão completa é «desde 25 %». Ainda não foi decidido se essa percentagem aparece no site. Neste momento o site não mostra nenhuma percentagem de comissão.
+A comissão de gestão de 25 % aparece na página Para Proprietários (pedido dos administradores, 15/11).

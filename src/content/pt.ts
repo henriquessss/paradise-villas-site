@@ -415,7 +415,7 @@ export const pt = {
         {
           icon: 'globe',
           title: 'Visibilidade e ocupação',
-          text: 'Anúncios no Airbnb, Booking, Vrbo, Expedia e no nosso site, para máxima visibilidade e ocupação.',
+          text: 'Anúncios nas principais plataformas de reservas e no nosso site, para máxima visibilidade e ocupação.',
         },
         {
           icon: 'chart',
@@ -424,17 +424,25 @@ export const pt = {
         },
       ],
     },
-    // Texto para o Google («gestão de alojamento local Albufeira/Algarve»). Zonas: confirmar com o cliente.
+    // Texto dos administradores (15/11). Também é o texto que o Google lê para «gestão de alojamento local Algarve».
     local: {
-      eyebrow: 'Albufeira e Algarve',
-      title: 'Gestão de Alojamento Local *em Albufeira*',
+      eyebrow: 'Sediados em Albufeira',
+      title: 'Gestão de Alojamento Local *no Algarve*',
       paragraphs: [
-        'A Paradise Villas está sediada em Albufeira e gere moradias e apartamentos de Alojamento Local no centro do Algarve. Estar perto dos imóveis faz diferença: recebemos os hóspedes pessoalmente, resolvemos imprevistos no próprio dia e conhecemos o mercado de cada zona.',
-        'A gestão é completa. Criamos e otimizamos os anúncios no Airbnb, Booking, Vrbo e no nosso site, ajustamos os preços à época e à procura, e tratamos das reservas, da comunicação com os hóspedes, do check-in, das limpezas, da roupa e da manutenção. O proprietário acompanha tudo num painel online, com as reservas, a ocupação e as liquidações de cada mês.',
-        'Se o imóvel ainda não está legalizado, tratamos do registo de Alojamento Local, do seguro obrigatório e do resto do processo. Para saber quanto pode render, use o simulador desta página ou peça uma proposta: avaliamos o imóvel sem compromisso.',
+        'A Paradise Villas está sediada em Albufeira e é especializada na gestão de moradias e apartamentos de Alojamento Local no Algarve. Acreditamos que a proximidade e o acompanhamento personalizado fazem toda a diferença. Conhecemos o mercado local, recebemos os hóspedes e estamos disponíveis para resolver qualquer imprevisto, garantindo uma experiência de qualidade tanto para os proprietários como para os hóspedes.',
+        'Oferecemos um serviço de gestão completo, pensado para maximizar o potencial de rendimento de cada imóvel. Criamos e otimizamos os anúncios nas principais plataformas de reservas e no nosso próprio site, ajustamos os preços de acordo com a sazonalidade e a procura e asseguramos toda a operação, desde a gestão das reservas e comunicação com os hóspedes até ao check-in, limpezas, lavandaria e manutenção. Através de uma plataforma online, cada proprietário pode acompanhar as reservas, a ocupação e as liquidações mensais do seu imóvel, com total transparência.',
+        'Tratamos também de todo o processo de legalização do Alojamento Local, incluindo o registo e o seguro obrigatório. Se pretende descobrir o potencial de rendimento do seu imóvel, pode utilizar o nosso simulador ou solicitar uma proposta personalizada. Avaliamos cada propriedade sem qualquer compromisso.',
       ],
-      zonesLabel: 'Onde atuamos',
-      zones: ['Albufeira', 'Armação de Pêra', 'Pêra', 'Lagoa', 'Porches', 'Carvoeiro'],
+      area: {
+        title: 'Atuamos em todo o Algarve',
+        text: 'A nossa sede é em Albufeira, mas gerimos imóveis em toda a região.',
+      },
+      commission: {
+        value: '25%',
+        label: 'Comissão de gestão',
+        title: 'Gestão completa com uma comissão de 25%',
+        text: 'Na Paradise Villas, asseguramos a gestão do seu Alojamento Local com uma comissão de 25%, oferecendo um serviço personalizado e acompanhamento próximo em todas as etapas.',
+      },
     },
     legal: {
       eyebrow: 'Quer começar do zero?',
@@ -579,49 +587,64 @@ export const pt = {
       title: 'Conheça a *Paradise Villas*',
       body: 'Especialistas em gestão de alojamento local no Algarve, focados em criar estadias acolhedoras e inesquecíveis.',
     },
+    // Textos dos administradores (15/11).
     intro: {
+      title: 'Gestão profissional. Confiança duradoura. *Hospitalidade de excelência.*',
       body: [
-        'Em **Paradise Villas** somos especialistas em gestão de alojamento local no Algarve, focados em criar estadias acolhedoras e inesquecíveis. Mais do que gerir imóveis, **proporcionamos experiências únicas que fazem os hóspedes sentirem-se em casa.**',
-        'Trabalhamos com proximidade, dedicação e atenção ao detalhe, para garantir conforto, segurança e bem-estar em cada estadia.',
+        'A **Paradise Villas** é uma empresa especializada na gestão de alojamento local no Algarve, que combina conhecimento do mercado, experiência no setor e uma abordagem orientada para a qualidade e valorização de cada propriedade.',
+        'Trabalhamos para proporcionar aos proprietários uma gestão eficiente, transparente e cuidada dos seus imóveis, enquanto oferecemos aos hóspedes experiências de estadia marcadas pelo conforto, tranquilidade e atenção ao detalhe.',
+        'Mais do que gerir alojamentos, **procuramos criar valor, estabelecer relações de confiança e contribuir para a excelência da hospitalidade no Algarve.**',
       ],
-      imageAlt: 'Piscina de uma villa Paradise Villas',
+      imageAlt: 'Moradia com piscina gerida pela Paradise Villas',
     },
     pillars: {
       eyebrow: 'O que nos move',
-      title: 'Missão, visão e *valores*',
+      title: 'Princípios que orientam a *nossa atuação*',
       items: [
         {
           icon: 'compass',
           title: 'Missão',
-          text: 'Proporcionar estadias memoráveis e confortáveis a quem visita o Algarve, através de uma gestão de alojamento local eficiente, tanto para hóspedes como para proprietários.',
+          text: [
+            'Oferecer soluções profissionais de gestão de alojamento local, promovendo a valorização dos imóveis, a tranquilidade dos proprietários e experiências de estadia de elevada qualidade para os hóspedes.',
+          ],
         },
         {
           icon: 'star',
           title: 'Visão',
-          text: 'Ser uma referência na gestão de alojamento local no Algarve, reconhecida pela excelência no atendimento, atenção aos detalhes e criação de experiências autênticas e acolhedoras.',
+          text: [
+            'Consolidar a Paradise Villas como uma referência na gestão de alojamento local no Algarve, reconhecida pela qualidade dos serviços, confiança dos proprietários, eficiência operacional e excelência na hospitalidade.',
+          ],
         },
         {
           icon: 'heart',
           title: 'Valores',
-          text: 'Confiança, hospitalidade, dedicação e profissionalismo na relação com proprietários, hóspedes e parceiros. São estes os pilares que guiam todas as nossas ações e relações.',
+          text: [
+            'A nossa atuação assenta em quatro pilares fundamentais: confiança, transparência, profissionalismo e compromisso.',
+            'Valorizamos relações duradouras, uma comunicação clara e uma abordagem responsável, procurando assegurar elevados padrões de qualidade em cada propriedade e em cada experiência.',
+          ],
         },
         {
           icon: 'sparkles',
           title: 'Diferenciação',
-          text: 'Atendimento próximo e um serviço pensado ao detalhe. Gerimos cada imóvel como se fosse nosso e recebemos cada hóspede como gostaríamos de ser recebidos.',
+          text: [
+            'Combinamos conhecimento do mercado algarvio, acompanhamento próximo e atenção aos detalhes com uma abordagem profissional à gestão de propriedades.',
+            'Cada imóvel é tratado de acordo com as suas características e necessidades, privilegiando a qualidade do serviço, a preservação do património e a satisfação de proprietários e hóspedes.',
+          ],
         },
       ],
     },
     founder: {
       eyebrow: 'Conheça o fundador',
       name: 'Bruno Pereira',
-      title: 'Paixão pelo Algarve. *Dedicação* a cada detalhe.',
+      role: 'Fundador da Paradise Villas',
+      title: 'Liderança com experiência. *Visão orientada para o futuro.*',
       imageAlt: 'Bruno Pereira, fundador da Paradise Villas',
       body: [
-        'Bruno Pereira é o fundador da Paradise Villas e o rosto por trás de cada estadia bem-sucedida. Natural do Algarve e com mais de 7 anos de experiência em alojamento local, criou a marca para proporcionar muito mais do que casas para férias: experiências acolhedoras, tranquilas e autênticas, tanto para os hóspedes como para os proprietários.',
-        'Com espírito empreendedor e atenção constante aos detalhes, o Bruno acompanha pessoalmente cada processo, da receção de hóspedes à gestão diária dos imóveis. Fá-lo com profissionalismo, proximidade e um sorriso genuíno.',
+        'Bruno Pereira, natural do Algarve e com mais de 7 anos de experiência no setor do alojamento local, fundou a Paradise Villas com o objetivo de desenvolver uma marca assente na qualidade, confiança e profissionalismo.',
+        'O seu conhecimento do mercado regional e a experiência adquirida ao longo do percurso profissional estão na base de uma visão empresarial focada na valorização das propriedades, na excelência dos serviços e na construção de relações duradouras com proprietários e parceiros.',
+        'Enquanto fundador, Bruno Pereira orienta o desenvolvimento da Paradise Villas, promovendo uma cultura de responsabilidade, atenção ao detalhe e melhoria contínua.',
       ],
-      closing: 'Confie em quem vive o Algarve, entende de hospitalidade e trata o seu imóvel e as suas férias com atenção única.',
+      closing: 'Acreditamos que a confiança se constrói através da qualidade do trabalho, da transparência e do compromisso com cada propriedade.',
     },
     ctas: [
       {

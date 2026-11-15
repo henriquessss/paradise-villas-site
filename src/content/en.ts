@@ -410,7 +410,7 @@ export const en: Content = {
         {
           icon: 'globe',
           title: 'Visibility and occupancy',
-          text: 'Listings on Airbnb, Booking, Vrbo, Expedia and our own website for maximum visibility and occupancy.',
+          text: 'Listings on the main booking platforms and our own website for maximum visibility and occupancy.',
         },
         {
           icon: 'chart',
@@ -420,15 +420,23 @@ export const en: Content = {
       ],
     },
     local: {
-      eyebrow: 'Albufeira and the Algarve',
-      title: 'Holiday rental management *in Albufeira*',
+      eyebrow: 'Based in Albufeira',
+      title: 'Holiday rental management *in the Algarve*',
       paragraphs: [
-        'Paradise Villas is based in Albufeira and manages holiday rental villas and apartments in the central Algarve. Being close to the properties makes a difference: we welcome guests in person, sort out problems on the same day and know the market in each area.',
-        'Management is complete. We create and fine-tune the listings on Airbnb, Booking, Vrbo and our own website, adjust prices to the season and demand, and take care of bookings, guest communication, check-in, cleaning, linen and maintenance. Owners follow everything in an online dashboard, with bookings, occupancy and each month’s statement.',
-        'If your property is not licensed yet, we handle the holiday rental (AL) registration, the mandatory insurance and the rest of the process. To see what it could earn, try the simulator on this page or ask for a proposal: we assess your property with no commitment.',
+        'Paradise Villas is based in Albufeira and specialises in managing holiday rental villas and apartments in the Algarve. We believe that being close by and offering a personal service make all the difference. We know the local market, we welcome the guests ourselves and we are on hand to deal with anything unexpected, so that both owners and guests enjoy a high-quality experience.',
+        'We offer a complete management service, designed to make the most of each property’s earning potential. We create and optimise the listings on the main booking platforms and on our own website, adjust prices to the season and demand, and run the whole operation, from bookings and guest communication to check-in, cleaning, laundry and maintenance. Through an online platform, every owner can follow their property’s bookings, occupancy and monthly statements, with full transparency.',
+        'We also handle the whole holiday rental (AL) licensing process, including the registration and the mandatory insurance. To find out what your property could earn, try our simulator or ask for a tailored proposal. We assess every property with no commitment.',
       ],
-      zonesLabel: 'Where we work',
-      zones: ['Albufeira', 'Armação de Pêra', 'Pêra', 'Lagoa', 'Porches', 'Carvoeiro'],
+      area: {
+        title: 'We work across the whole Algarve',
+        text: 'Our office is in Albufeira, but we manage properties throughout the region.',
+      },
+      commission: {
+        value: '25%',
+        label: 'Management fee',
+        title: 'Full management for a 25% commission',
+        text: 'At Paradise Villas, we manage your holiday rental for a 25% commission, with a personal service and close support at every stage.',
+      },
     },
     legal: {
       eyebrow: 'Starting from scratch?',
@@ -568,48 +576,62 @@ export const en: Content = {
       body: 'Holiday rental management specialists in the Algarve, focused on warm and unforgettable stays.',
     },
     intro: {
+      title: 'Professional management. Lasting trust. *Outstanding hospitality.*',
       body: [
-        'At **Paradise Villas** we specialise in holiday rental management in the Algarve, focused on creating warm and unforgettable stays. More than managing properties, **we create unique experiences that make guests feel at home.**',
-        'We work closely, with dedication and attention to detail, to ensure comfort, safety and well-being in every stay.',
+        '**Paradise Villas** specialises in holiday rental management in the Algarve, combining market knowledge, experience in the sector and an approach focused on quality and on adding value to every property.',
+        'We give owners efficient, transparent and careful management of their properties, while offering guests stays defined by comfort, peace of mind and attention to detail.',
+        'More than managing rentals, **we aim to create value, build relationships of trust and contribute to outstanding hospitality in the Algarve.**',
       ],
-      imageAlt: 'Pool of a Paradise Villas villa',
+      imageAlt: 'Villa with a pool managed by Paradise Villas',
     },
     pillars: {
       eyebrow: 'What drives us',
-      title: 'Mission, vision and *values*',
+      title: 'The principles that *guide our work*',
       items: [
         {
           icon: 'compass',
           title: 'Mission',
-          text: 'To provide memorable, comfortable stays for visitors to the Algarve through efficient holiday rental management, for guests and owners alike.',
+          text: [
+            'To offer professional holiday rental management that adds value to properties, gives owners peace of mind and provides guests with high-quality stays.',
+          ],
         },
         {
           icon: 'star',
           title: 'Vision',
-          text: 'To be a benchmark in holiday rental management in the Algarve, known for excellent service, attention to detail and authentic, welcoming experiences.',
+          text: [
+            'To establish Paradise Villas as a benchmark in holiday rental management in the Algarve, recognised for the quality of its services, the trust of its owners, operational efficiency and outstanding hospitality.',
+          ],
         },
         {
           icon: 'heart',
           title: 'Values',
-          text: 'Trust, hospitality, dedication and professionalism in our relationships with owners, guests and partners. These are the pillars behind everything we do.',
+          text: [
+            'Our work rests on four core pillars: trust, transparency, professionalism and commitment.',
+            'We value lasting relationships, clear communication and a responsible approach, aiming for high standards of quality in every property and every stay.',
+          ],
         },
         {
           icon: 'sparkles',
           title: 'What sets us apart',
-          text: 'Personal service, designed down to the last detail. We manage every property as if it were our own and welcome every guest as we would like to be welcomed.',
+          text: [
+            'We combine knowledge of the Algarve market, close support and attention to detail with a professional approach to property management.',
+            'Each property is managed according to its own features and needs, with priority given to service quality, the care of the property and the satisfaction of owners and guests.',
+          ],
         },
       ],
     },
     founder: {
       eyebrow: 'Meet the founder',
       name: 'Bruno Pereira',
-      title: 'Passion for the Algarve. *Dedication* to every detail.',
+      role: 'Founder of Paradise Villas',
+      title: 'Experienced leadership. *A vision focused on the future.*',
       imageAlt: 'Bruno Pereira, founder of Paradise Villas',
       body: [
-        'Bruno Pereira is the founder of Paradise Villas and the face behind every successful stay. Born in the Algarve and with more than 7 years of experience in holiday rentals, he created the brand to offer much more than holiday homes: warm, relaxed and authentic experiences for guests and owners alike.',
-        'With an entrepreneurial spirit and constant attention to detail, Bruno personally oversees every process, from welcoming guests to the day-to-day management of each property. He does it with professionalism, closeness and a genuine smile.',
+        'Bruno Pereira, born in the Algarve and with more than 7 years of experience in holiday rentals, founded Paradise Villas to build a brand based on quality, trust and professionalism.',
+        'His knowledge of the regional market and the experience gained throughout his career underpin a business vision focused on adding value to properties, excellent service and lasting relationships with owners and partners.',
+        'As founder, Bruno Pereira leads the development of Paradise Villas, promoting a culture of responsibility, attention to detail and continuous improvement.',
       ],
-      closing: 'Trust someone who lives the Algarve, understands hospitality and looks after your property and your holiday with unique care.',
+      closing: 'We believe trust is built through the quality of our work, transparency and commitment to every property.',
     },
     ctas: [
       {

@@ -144,23 +144,31 @@ export function Gestao() {
 
       <section className="bg-white px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <SectionHeading eyebrow={g.local.eyebrow} title={g.local.title} align="left" />
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <SectionHeading eyebrow={g.local.eyebrow} title={g.local.title} align="left" />
+            {/* The management fee, asked to be visible on this page (admins, 15/11). */}
+            <Reveal className="relative mt-10 overflow-hidden rounded-3xl bg-navy-deep p-8 text-white shadow-[0_30px_60px_-30px_rgba(0,25,44,0.55)] md:p-10">
+              <p className="eyebrow text-terracotta">{g.local.commission.label}</p>
+              <p className="font-display mt-3 text-[clamp(3.5rem,8vw,5rem)] leading-none text-terracotta">{g.local.commission.value}</p>
+              <h3 className="font-display mt-5 text-2xl leading-snug">{g.local.commission.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/70">{g.local.commission.text}</p>
+            </Reveal>
+          </div>
           <Reveal>
             <div className="space-y-5 text-[1.05rem] leading-relaxed text-ink-soft">
               {g.local.paragraphs.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
             </div>
-            <h3 className="mt-8 flex items-center gap-2 text-sm font-semibold text-navy">
-              <Icon name="pin" className="h-4 w-4 text-terracotta" /> {g.local.zonesLabel}
-            </h3>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {g.local.zones.map((zone) => (
-                <li key={zone} className="rounded-full bg-sand px-4 py-1.5 text-sm font-medium text-navy">
-                  {zone}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-8 flex items-start gap-4 rounded-2xl bg-sand p-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
+                <Icon name="pin" className="h-5 w-5" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-navy">{g.local.area.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{g.local.area.text}</p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -9,11 +9,11 @@ const OUT = 'public/images'
 
 // [source file, output name, max width]
 const images = [
-  ['home-boas-vindas-layer-1.png', 'boas-vindas-piscina', 1200],
+  // Quem Somos intro photo, sent by the admins (15/11).
+  ['sobre-nos-casa-2026-11.jpg', 'sobre-casa', 1400],
   ['home-boas-vindas-layer-2.png', 'boas-vindas-interior', 1100],
-  ['villa-goreti.jpg', 'villa-goreti', 740],
-  ['apt-palmeiras.jpg', 'apt-palmeiras', 740],
-  ['villa-marina.jpg', 'villa-marina', 740],
+  // The old site's villa cards had a dark gradient baked into the photo: Villa Goreti and
+  // Villa Marina now come from Instagram, Palmeiras from the admins (all below).
   ['home-vantagens-reservar-bg.jpg', 'vantagens', 2400],
   ['gestao-al-bg-1.jpg', 'gestao-piscina', 1800],
   ['gestao-al-bg-2.jpg', 'gestao-quarto', 1800],
@@ -48,7 +48,8 @@ const images = [
   ['sobre-nos-card-visao.jpg', 'sobre-visao', 960],
   ['sobre-nos-card-valores.jpg', 'sobre-valores', 960],
   ['sobre-nos-card-diferenciacao.jpg', 'sobre-diferenciacao', 960],
-  ['sobre-nos-fundador-bruno-pereira.png', 'fundador', 1170],
+  // New founder portrait, sent by the admins (15/11). 3:4, shown whole.
+  ['sobre-nos-fundador-2026-11.png', 'fundador', 1086],
   ['sobre-nos-cta-gestao-al.jpg', 'sobre-cta-gestao', 740],
   ['sobre-nos-cta-alojamentos.jpg', 'sobre-cta-alojamentos', 740],
 ]
@@ -79,7 +80,20 @@ const igPosts = [
 for (const [file, name] of igPosts) {
   await sharp(path.join(IG, file)).extract({ left: 0, top: 0, width: 1440, height: 1200 }).resize({ width: 900 }).webp({ quality: 78 }).toFile(path.join(OUT, `${name}.webp`))
 }
-console.log(`${igPosts.length + 1} imagens do Instagram → ${OUT}`)
+// Home villa cards (4:5): the same posts, cut to portrait from the photo above the info band,
+// so the card shows the original colours with no gradient. `left` keeps each house in frame.
+const villaCards = [
+  ['2026-05-18_DYfVyn3lCmm_1.jpg', 'villa-goreti', 200],
+  ['2026-03-16_DV9Ok6-ldFH_1.jpg', 'villa-marina', 440],
+]
+for (const [file, name, left] of villaCards) {
+  await sharp(path.join(IG, file)).extract({ left, top: 0, width: 960, height: 1200 }).resize({ width: 740 }).webp({ quality: 80 }).toFile(path.join(OUT, `${name}.webp`))
+}
+console.log(`${igPosts.length + villaCards.length + 1} imagens do Instagram → ${OUT}`)
+
+// Apartamento Palmeiras (sent by the admins, 15/11, 1024×768): the 4:5 cut stops above the
+// Paradise Villas watermark at the bottom centre.
+await sharp(path.join(SRC, 'apt-palmeiras-2026-11.avif')).extract({ left: 140, top: 0, width: 480, height: 600 }).webp({ quality: 82 }).toFile(path.join(OUT, 'apt-palmeiras.webp'))
 
 // Social share image (JPEG for maximum compatibility).
 await sharp(path.join(SRC, 'gestao-al-bg-1.jpg'))
